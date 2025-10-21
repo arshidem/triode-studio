@@ -1,0 +1,130 @@
+/* src/shared/TestimonialCard.module.css */
+/* Premium testimonial card with elegant design */
+
+.testimonialCard {
+  background: var(--card-bg, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .testimonialCard {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.quoteIcon {
+  color: var(--primary, #4a90e2);
+  margin-bottom: 1.5rem;
+}
+
+.quote {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 2rem;
+  font-style: italic;
+  text-align: left;
+}
+
+.rating {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
+}
+
+.starFilled,
+.starEmpty {
+  font-size: 1.5rem;
+}
+
+.starFilled {
+  color: #fbbf24;
+}
+
+.starEmpty {
+  color: var(--border, rgba(0, 0, 0, 0.2));
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4a90e2 0%, #667eea 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.authorInfo {
+  text-align: left;
+}
+
+.name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: var(--text);
+}
+
+.role {
+  font-size: 0.95rem;
+  color: var(--subtext);
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .testimonialCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatarPlaceholder {
+    font-size: 1.25rem;
+  }
+
+  .name {
+    font-size: 1rem;
+  }
+
+  .role {
+    font-size: 0.875rem;
+  }
+}

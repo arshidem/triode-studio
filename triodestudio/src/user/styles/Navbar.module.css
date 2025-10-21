@@ -1,0 +1,355 @@
+/* ---------- Base navbar ---------- */
+.navbar {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  position: fixed;
+  width: calc(100% - 10px);
+  z-index: 100;
+  top: 10px;
+  left: 10px;
+  font-family: 'Poppins', sans-serif;
+  animation: slideDown 1s ease-in-out forwards;
+  border-radius: var(--radius-md);
+  margin: 0;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.scrolled {
+  background: var(--bg-blur);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Container layout ---------- */
+.navbarContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------- Logo ---------- */
+.navbarLogo {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+  font-size: 1.2rem;
+  animation: slideFromLeft 1.5s ease-in-out forwards;
+}
+
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-300%);
+  }
+  50% {
+    transform: translateX(-300%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ---------- Desktop links ---------- */
+.navbarLinks {
+  display: flex;
+  gap: 20px;
+  animation: slideFromTopCenter 1.5s ease-in-out forwards;
+  font-size: 12px;
+}
+
+@keyframes slideFromTopCenter {
+  0% {
+    transform: translateY(-300%);
+  }
+  50% {
+    transform: translateY(-300%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .navbarLinks {
+    font-size: 14px;
+  }
+}
+
+.navLink {
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600 !important;
+  padding: 0.5rem 0;
+  transition: color var(--transition-base);
+}
+
+.navLink:hover,
+.navLink.active {
+  color: var(--primary);
+}
+
+/* ---------- Actions container ---------- */
+.navbarIcons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  animation: slideFromLeftToRight 1.5s ease-in-out forwards;
+}
+
+.desktopActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.desktopThemeToggle {
+  display: block;
+}
+
+.getInTouch {
+  display: block;
+}
+
+/* ---------- Get In Touch button ---------- */
+.getInTouchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+  padding: 2px 2px;
+  font-weight: 600;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.getInTouchBtn:hover {
+  background-color: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.arrowCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  border-radius: 50%;
+  transition: all var(--transition-base);
+}
+
+.getInTouchBtn:hover .arrowCircle {
+  background-color: var(--card-bg);
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
+.getInTouchText {
+  font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  padding-right: 5px;
+  color: var(--text);
+}
+
+.mobileGetInTouch .getInTouchBtn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 0;
+  font-size: 1rem;
+}
+
+@keyframes slideFromLeftToRight {
+  0% {
+    transform: translateX(300%);
+  }
+  50% {
+    transform: translateX(300%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopThemeToggle {
+    display: none;
+  }
+
+  .getInTouch {
+    display: none;
+  }
+}
+
+/* ---------- Hamburger menu ---------- */
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18px;
+  height: 15px;
+  cursor: pointer;
+  z-index: 1100;
+  gap: 5px;
+  margin-left: 5px;
+  background: none;
+  border: none;
+  animation: mobileIconSlideIn 1.5s ease-in-out forwards;
+}
+
+@keyframes mobileIconSlideIn {
+  0% {
+    transform: translateX(400px);
+  }
+  50% {
+    transform: translateX(400px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.menuBtn .line {
+  background-color: var(--text);
+  height: 2px;
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.menuBtn.open .line:nth-child(1) {
+  transform: rotate(45deg) translateY(9.5px);
+}
+
+.menuBtn.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtn.open .line:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9.5px);
+}
+
+@media (max-width: 768px) {
+  .menuBtn {
+    display: flex;
+  }
+
+  .navbarLinks {
+    display: none;
+  }
+}
+
+/* ---------- Backdrop ---------- */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* ---------- Mobile Menu ---------- */
+.navbarMobileMenu {
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  width: 250px;
+  height: calc(100vh - 70px);
+  background-color: var(--bg);
+  box-shadow: var(--shadow-md);
+  padding: 0; /* full-width hover fix */
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.mobileLinks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* remove gaps so hover feels continuous */
+}
+
+.mobileLink {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 12px 24px; /* indent text cleanly */
+  transition: background var(--transition-base), color var(--transition-base);
+  border-radius: 10px; /* removes rounded edge gaps */
+  box-sizing: border-box;
+}
+
+.mobileLink:hover {
+  color: var(--primary);
+  background: var(--hover-bg);
+}
+
+.mobileLink.activeMobile {
+  color: var(--primary);
+  font-weight: 700;
+  background: var(--active-bg);
+}
+
+.mobileToggleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.toggleLabel {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  font-weight: 500;
+}
+
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 500px) {
+  .navbarLogo {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbarMobileMenu {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbarLogo,
+  .navbarLinks,
+  .navbarIcons,
+  .menuBtn {
+    animation: none;
+  }
+}
