@@ -126,7 +126,10 @@
     gap: 0.5rem;
     font-size: 1.1rem;
   }
-  
+  .navbarContainer{
+      padding: 0 24px 0px 0px;
+  }
+
   .logo {
     width: 28px;
     height: 28px;
@@ -438,8 +441,13 @@
 /* ---------- Responsive Design ---------- */
 @media (max-width: 500px) {
   .navbarLogo {
-    display: block;
+    display: flex;
   }
+
+.logoText {
+font-size: medium;
+}
+
 }
 
 @media (min-width: 769px) {

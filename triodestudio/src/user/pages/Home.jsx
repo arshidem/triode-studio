@@ -51,34 +51,28 @@ const floatingAnimation = {
 const Home = () => {
   const navigate = useNavigate();
 
-  // Enhanced features data with media
+  // SIMPLIFIED features data - only images
   const features = [
     {
-      mediaType: "video",
-      mediaSrc: "/assets/videos/features/api-development.mp4",
-      fallbackImage: "/assets/images/features/api-development-poster.jpg",
+      image: "/assets/images/features/api-development.jpg",
       title: "API Development",
       description: "RESTful & GraphQL APIs built for scalability and performance.",
       color: "#6366f1"
     },
     {
-      mediaType: "image", 
-      mediaSrc: "/assets/images/features/backend-systems.jpg",
-      title: "Backend Systems",
+      image: "/assets/images/features/backend-systems.jpg",
+      title: "Backend Systems", 
       description: "Robust server architecture that handles millions of requests.",
       color: "#10b981"
     },
     {
-      mediaType: "image",
-      mediaSrc: "/assets/images/features/integrations.jpg", 
+      image: "/assets/images/features/integrations.jpg",
       title: "Integrations",
       description: "Seamless third-party API integrations and microservices.",
       color: "#f59e0b"
     },
     {
-      mediaType: "video",
-      mediaSrc: "/assets/videos/features/deployment.mp4",
-      fallbackImage: "/assets/images/features/deployment-poster.jpg",
+      image: "/assets/images/features/deployment.jpg",
       title: "Deployment",
       description: "CI/CD pipelines and cloud infrastructure management.",
       color: "#ef4444"
@@ -113,6 +107,13 @@ const Home = () => {
         damping: 15
       }
     }
+  };
+
+  // Handle image loading errors
+  const handleImageError = (e, featureTitle) => {
+    console.error(`Failed to load image for ${featureTitle}:`, e.target.src);
+    // You can set a fallback image here
+    e.target.src = "https://via.placeholder.com/400x300/2a2a2a/ffffff?text=Image+Coming+Soon";
   };
 
   return (
@@ -172,72 +173,54 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-      {features.map((feature, index) => (
-  <motion.div
-    key={index}
-    className={styles.featureCard}
-    variants={itemVariants}
-    whileHover={{
-      y: -15,
-      scale: 1.05,
-      transition: { type: "spring", stiffness: 300 }
-    }}
-    whileTap={{ scale: 0.95 }}
-    style={{ 
-      '--accent-color': feature.color,
-    }}
-  >
-    {/* Background Media */}
-    <div className={styles.featureBackgroundMedia}>
-      {feature.mediaType === "video" ? (
-        <video 
-          className={styles.featureBackgroundVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={feature.fallbackImage}
-        >
-          <source src={feature.mediaSrc} type="video/mp4" />
-          {/* Fallback to image if video doesn't load */}
-          <img 
-            src={feature.fallbackImage} 
-            alt={feature.title}
-            className={styles.featureBackgroundImage}
-          />
-        </video>
-      ) : (
-        <img 
-          src={feature.mediaSrc} 
-          alt={feature.title}
-          className={styles.featureBackgroundImage}
-        />
-      )}
-      {/* Overlay for better text readability */}
-      <div className={styles.featureMediaOverlay}></div>
-    </div>
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              className={styles.featureCard}
+              variants={itemVariants}
+              whileHover={{
+                y: -15,
+                scale: 1.05,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                '--accent-color': feature.color,
+              }}
+            >
+              {/* Background Media - SIMPLIFIED for images only */}
+              <div className={styles.featureBackgroundMedia}>
+                <img 
+                  src={feature.image} 
+                  alt={feature.title}
+                  className={styles.featureBackgroundImage}
+                  onError={(e) => handleImageError(e, feature.title)}
+                />
+                {/* Overlay for better text readability */}
+                <div className={styles.featureMediaOverlay}></div>
+              </div>
 
-    {/* Content */}
-    <motion.div 
-      className={styles.featureContent}
-      whileHover={{ 
-        scale: 1.05,
-        transition: { duration: 0.3 }
-      }}
-    >
-      <h3 className={styles.featureTitle}>{feature.title}</h3>
-      <p className={styles.featureDescription}>{feature.description}</p>
-    </motion.div>
+              {/* Content */}
+              <motion.div 
+                className={styles.featureContent}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <h3 className={styles.featureTitle}>{feature.title}</h3>
+                <p className={styles.featureDescription}>{feature.description}</p>
+              </motion.div>
 
-    <motion.div 
-      className={styles.featureLine}
-      initial={{ scaleX: 0 }}
-      whileInView={{ scaleX: 1 }}
-      transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-      viewport={{ once: true }}
-    />
-  </motion.div>
-))}
+              <motion.div 
+                className={styles.featureLine}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+                viewport={{ once: true }}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </section>
 

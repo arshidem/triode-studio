@@ -4,9 +4,11 @@
 .footer {
   background: var(--footer-bg, rgba(0, 0, 0, 0.02));
   border-top: 1px solid var(--border, rgba(0, 0, 0, 0.1));
-  padding: 4rem 2rem 2rem;
-  margin-top: 4rem;
   transition: all 0.3s ease;
+  position: relative;
+  top: 20px;
+  margin: 10px;
+  border-radius: 20px;
 }
 
 .dark .footer {
