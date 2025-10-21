@@ -1,5 +1,5 @@
 /* src/user/styles/Home.module.css */
-/* Enhanced Home Page with Modern Animations & Media Support */
+/* Enhanced Home Page with Modern Animations & Background Media Support */
 
 .home {
   min-height: 100vh;
@@ -74,11 +74,12 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
 
+/* Background Media Feature Cards */
 .featureCard {
   background: var(--card-bg, rgba(255, 255, 255, 0.05));
   border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
@@ -90,6 +91,11 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .featureCard::before {
@@ -102,11 +108,11 @@
   background: linear-gradient(135deg, var(--accent-color, #6366f1), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
-  z-index: -1;
+  z-index: 1;
 }
 
 .featureCard:hover::before {
-  opacity: 0.05;
+  opacity: 0.1;
 }
 
 .dark .featureCard {
@@ -114,74 +120,126 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Enhanced Media Styles for Videos and Images */
-.featureMedia {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 2rem;
+/* Background Media Styles */
+.featureBackgroundMedia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
   border-radius: 24px;
   overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--card-bg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
 }
 
-.featureCard:hover .featureMedia {
-  border-color: var(--accent-color);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.featureVideo,
-.featureImage {
+.featureBackgroundVideo,
+.featureBackgroundImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
-.featureVideo {
-  filter: brightness(0.95);
+.featureBackgroundVideo {
+  filter: brightness(0.4) saturate(1.2);
   transition: filter 0.3s ease;
 }
 
-.featureCard:hover .featureVideo {
-  filter: brightness(1.05);
-}
-
-.featureImage {
-  filter: grayscale(0.2);
+.featureBackgroundImage {
+  filter: brightness(0.5) saturate(1.1);
   transition: filter 0.3s ease;
 }
 
-.featureCard:hover .featureImage {
-  filter: grayscale(0);
+.featureCard:hover .featureBackgroundVideo {
+  filter: brightness(0.6) saturate(1.3);
+}
+
+.featureCard:hover .featureBackgroundImage {
+  filter: brightness(0.7) saturate(1.2);
+}
+
+.featureMediaOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  border-radius: 24px;
+  transition: background 0.3s ease;
+}
+
+.featureCard:hover .featureMediaOverlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+}
+
+.featureContent {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover .featureContent {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
 }
 
 .featureTitle {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--text);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .featureDescription {
-  color: var(--subtext);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   font-size: 1.05rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .featureLine {
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--accent-color, #6366f1), transparent);
+  background: linear-gradient(90deg, var(--accent-color, #6366f1), rgba(255, 255, 255, 0.8));
   margin: 1.5rem auto 0;
   transform-origin: left;
   border-radius: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Remove the old featureMedia styles since we're using background now */
+.featureMedia {
+  display: none;
+}
+
+/* Dark mode adjustments */
+.dark .featureContent {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .featureCard:hover .featureContent {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Stats Section */
@@ -358,18 +416,25 @@
   }
 
   .featuresGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
     gap: 2rem;
   }
 
   .featureCard {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
+    min-height: 300px;
   }
 
-  .featureMedia {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 1.5rem;
+  .featureContent {
+    padding: 1.5rem;
+  }
+
+  .featureTitle {
+    font-size: 1.3rem;
+  }
+
+  .featureDescription {
+    font-size: 1rem;
   }
 
   .statsSection {
@@ -412,11 +477,18 @@
   }
 }
 
-/* Loading states for media */
-.featureMedia.loading {
+/* Loading states for background media */
+.featureBackgroundMedia.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
+  border-radius: 24px;
 }
 
 @keyframes loading {
@@ -440,21 +512,16 @@
   .featureCard,
   .ctaButtonPrimary,
   .ctaButtonSecondary,
-  .featureMedia {
+  .featureContent {
     transition: none !important;
   }
   
-  .featureVideo {
+  .featureBackgroundVideo {
     animation: none !important;
   }
 }
 
-/* Dark mode adjustments for media */
-.dark .featureMedia {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.dark .featureMedia.loading {
+/* Dark mode loading states */
+.dark .featureBackgroundMedia.loading::after {
   background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
-  background-size: 200% 100%;
 }

@@ -172,65 +172,72 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className={styles.featureCard}
-              variants={itemVariants}
-              whileHover={{
-                y: -15,
-                scale: 1.05,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{ 
-                '--accent-color': feature.color,
-              }}
-            >
-              <motion.div 
-                className={styles.featureMedia}
-                whileHover={{ 
-                  scale: 1.1,
-                  transition: { duration: 0.5 }
-                }}
-              >
-                {feature.mediaType === "video" ? (
-                  <video 
-                    className={styles.featureVideo}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster={feature.fallbackImage}
-                  >
-                    <source src={feature.mediaSrc} type="video/mp4" />
-                    {/* Fallback to image if video doesn't load */}
-                    <img 
-                      src={feature.fallbackImage} 
-                      alt={feature.title}
-                      className={styles.featureImage}
-                    />
-                  </video>
-                ) : (
-                  <img 
-                    src={feature.mediaSrc} 
-                    alt={feature.title}
-                    className={styles.featureImage}
-                  />
-                )}
-              </motion.div>
-              
-              <h3 className={styles.featureTitle}>{feature.title}</h3>
-              <p className={styles.featureDescription}>{feature.description}</p>
-              <motion.div 
-                className={styles.featureLine}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
-                viewport={{ once: true }}
-              />
-            </motion.div>
-          ))}
+      {features.map((feature, index) => (
+  <motion.div
+    key={index}
+    className={styles.featureCard}
+    variants={itemVariants}
+    whileHover={{
+      y: -15,
+      scale: 1.05,
+      transition: { type: "spring", stiffness: 300 }
+    }}
+    whileTap={{ scale: 0.95 }}
+    style={{ 
+      '--accent-color': feature.color,
+    }}
+  >
+    {/* Background Media */}
+    <div className={styles.featureBackgroundMedia}>
+      {feature.mediaType === "video" ? (
+        <video 
+          className={styles.featureBackgroundVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={feature.fallbackImage}
+        >
+          <source src={feature.mediaSrc} type="video/mp4" />
+          {/* Fallback to image if video doesn't load */}
+          <img 
+            src={feature.fallbackImage} 
+            alt={feature.title}
+            className={styles.featureBackgroundImage}
+          />
+        </video>
+      ) : (
+        <img 
+          src={feature.mediaSrc} 
+          alt={feature.title}
+          className={styles.featureBackgroundImage}
+        />
+      )}
+      {/* Overlay for better text readability */}
+      <div className={styles.featureMediaOverlay}></div>
+    </div>
+
+    {/* Content */}
+    <motion.div 
+      className={styles.featureContent}
+      whileHover={{ 
+        scale: 1.05,
+        transition: { duration: 0.3 }
+      }}
+    >
+      <h3 className={styles.featureTitle}>{feature.title}</h3>
+      <p className={styles.featureDescription}>{feature.description}</p>
+    </motion.div>
+
+    <motion.div 
+      className={styles.featureLine}
+      initial={{ scaleX: 0 }}
+      whileInView={{ scaleX: 1 }}
+      transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+      viewport={{ once: true }}
+    />
+  </motion.div>
+))}
         </motion.div>
       </section>
 

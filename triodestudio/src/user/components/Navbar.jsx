@@ -132,21 +132,49 @@ const Navbar = () => {
       aria-label="Main navigation"
     >
       <div className={styles.navbarContainer}>
-        {/* Logo */}
-        <Link
-          to="/"
-          className={styles.navbarLogo}
-          onClick={closeMenu}
-          aria-label="Triode Studio Home"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            TRIODE STUDIO
-          </motion.div>
-        </Link>
+     {/* Logo */}
+<Link
+  to="/"
+  className={styles.navbarLogo}
+  onClick={closeMenu}
+  aria-label="Triode Studio Home"
+>
+  <motion.div
+    className={styles.logoContainer}
+    initial={{ opacity: 0, scale: 0, rotate: -180 }}
+    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+    transition={{ 
+      duration: 0.8, 
+      type: "spring", 
+      stiffness: 100,
+      delay: 0.2 
+    }}
+   
+  >
+    <img 
+      className={styles.logo} 
+      src="/favicon.svg" 
+      alt="Triode Studio Logo" 
+    />
+  </motion.div>
+  
+  <motion.div
+    className={styles.logoText}
+    initial={{ opacity: 0, x: -20 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ 
+      duration: 0.6, 
+      delay: 0.4,
+      ease: "easeOut" 
+    }}
+    whileHover={{ 
+      color: "var(--primary, #6366f1)",
+      transition: { duration: 0.3 }
+    }}
+  >
+    TRIODE STUDIO
+  </motion.div>
+</Link>
 
         {/* Desktop Links */}
         <div className={styles.navbarLinks} role="menubar">
