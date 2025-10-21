@@ -4,14 +4,14 @@
   border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   position: fixed;
-  width: calc(100% - 10px);
+  width: calc(100% - 20px);
   z-index: 100;
   top: 10px;
   left: 10px;
   font-family: 'Poppins', sans-serif;
   animation: slideDown 1s ease-in-out forwards;
-  border-radius: var(--radius-md);
-  margin: 0;
+  border-radius: 50px;
+  margin: 0px;
 }
 
 @keyframes slideDown {
@@ -277,7 +277,7 @@
   height: calc(100vh - 70px);
   background-color: var(--bg);
   box-shadow: var(--shadow-md);
-  padding: 0; /* full-width hover fix */
+  padding: 10px; /* full-width hover fix */
   display: flex;
   flex-direction: column;
   z-index: 999;
@@ -288,7 +288,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0; /* remove gaps so hover feels continuous */
+  gap: 5px; /* remove gaps so hover feels continuous */
 }
 
 .mobileLink {

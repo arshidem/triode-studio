@@ -10,36 +10,110 @@ import { useNavigate } from "react-router-dom";
 import Hero from "../../shared/Hero";
 import styles from "../styles/Home.module.css";
 
-// Page transition variants
+// Enhanced page transition variants
 const pageVariants = {
-  initial: { opacity: 0, y: 50 },
-  in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -50 },
+  initial: { 
+    opacity: 0, 
+    scale: 0.98,
+    filter: "blur(10px)"
+  },
+  in: { 
+    opacity: 1, 
+    scale: 1,
+    filter: "blur(0px)"
+  },
+  out: { 
+    opacity: 0, 
+    scale: 1.02,
+    filter: "blur(10px)"
+  },
 };
 
-const pageTransition = { type: "tween", duration: 0.6 };
+const pageTransition = { 
+  type: "spring", 
+  stiffness: 100,
+  damping: 20,
+  duration: 0.8 
+};
+
+// Floating animation for background elements
+const floatingAnimation = {
+  animate: {
+    y: [0, -20, 0],
+    transition: {
+      duration: 6,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
 
 const Home = () => {
   const navigate = useNavigate();
 
-  // Feature cards data
+  // Enhanced features data with media
   const features = [
     {
-      icon: "🎨",
-      title: "Premium Design",
-      description: "Stunning, modern interfaces that captivate and convert.",
+      mediaType: "video",
+      mediaSrc: "/assets/videos/features/api-development.mp4",
+      fallbackImage: "/assets/images/features/api-development-poster.jpg",
+      title: "API Development",
+      description: "RESTful & GraphQL APIs built for scalability and performance.",
+      color: "#6366f1"
     },
     {
-      icon: "⚡",
-      title: "Lightning Fast",
-      description: "Optimized performance for seamless user experiences.",
+      mediaType: "image", 
+      mediaSrc: "/assets/images/features/backend-systems.jpg",
+      title: "Backend Systems",
+      description: "Robust server architecture that handles millions of requests.",
+      color: "#10b981"
     },
     {
-      icon: "📱",
-      title: "Fully Responsive",
-      description: "Perfect on any device, from mobile to desktop.",
+      mediaType: "image",
+      mediaSrc: "/assets/images/features/integrations.jpg", 
+      title: "Integrations",
+      description: "Seamless third-party API integrations and microservices.",
+      color: "#f59e0b"
     },
+    {
+      mediaType: "video",
+      mediaSrc: "/assets/videos/features/deployment.mp4",
+      fallbackImage: "/assets/images/features/deployment-poster.jpg",
+      title: "Deployment",
+      description: "CI/CD pipelines and cloud infrastructure management.",
+      color: "#ef4444"
+    }
   ];
+
+  // Stagger animation for feature cards
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.8 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -50,71 +124,272 @@ const Home = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      {/* Hero Section */}
+      {/* Animated background elements */}
+      <motion.div 
+        className={styles.backgroundShape1}
+        variants={floatingAnimation}
+        animate="animate"
+      />
+      <motion.div 
+        className={styles.backgroundShape2}
+        variants={floatingAnimation}
+        animate="animate"
+        transition={{ delay: 2 }}
+      />
+
+      {/* Enhanced Hero Section */}
       <Hero
         title="We Build"
         highlightText="Digital Experiences"
-        subtitle="We craft modern websites, web apps, and UI/UX experiences that help brands grow online."
+        subtitle="Triode Studio crafts scalable web services, APIs, and backend systems that power modern businesses."
         ctaText="Start a Project"
         ctaAction={() => navigate("/contact")}
+        secondaryCtaText="View Our Work"
+        secondaryCtaAction={() => navigate("/portfolio")}
       />
 
-      {/* Features Section */}
-      <section className={styles.features} data-animate="fade-up">
-        <motion.h2
-          className={styles.featuresTitle}
-          initial={{ opacity: 0, y: 30 }}
+      {/* Enhanced Features Section with Media */}
+      <section className={styles.features}>
+        <motion.div
+          className={styles.featuresHeader}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, type: "spring" }}
         >
-          Why Choose Us
-        </motion.h2>
+          <h2 className={styles.featuresTitle}>
+            Why Choose <span className={styles.highlight}>Triode Studio</span>
+          </h2>
+          <p className={styles.featuresSubtitle}>
+            We specialize in the technical foundation that makes your digital products exceptional
+          </p>
+        </motion.div>
 
-        <div className={styles.featuresGrid}>
+        <motion.div
+          className={styles.featuresGrid}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {features.map((feature, index) => (
             <motion.div
               key={index}
               className={styles.featureCard}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={itemVariants}
               whileHover={{
-                y: -10,
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                y: -15,
+                scale: 1.05,
+                transition: { type: "spring", stiffness: 300 }
               }}
-              data-animate="fade-up"
+              whileTap={{ scale: 0.95 }}
+              style={{ 
+                '--accent-color': feature.color,
+              }}
             >
-              <div className={styles.featureIcon}>{feature.icon}</div>
+              <motion.div 
+                className={styles.featureMedia}
+                whileHover={{ 
+                  scale: 1.1,
+                  transition: { duration: 0.5 }
+                }}
+              >
+                {feature.mediaType === "video" ? (
+                  <video 
+                    className={styles.featureVideo}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    poster={feature.fallbackImage}
+                  >
+                    <source src={feature.mediaSrc} type="video/mp4" />
+                    {/* Fallback to image if video doesn't load */}
+                    <img 
+                      src={feature.fallbackImage} 
+                      alt={feature.title}
+                      className={styles.featureImage}
+                    />
+                  </video>
+                ) : (
+                  <img 
+                    src={feature.mediaSrc} 
+                    alt={feature.title}
+                    className={styles.featureImage}
+                  />
+                )}
+              </motion.div>
+              
               <h3 className={styles.featureTitle}>{feature.title}</h3>
               <p className={styles.featureDescription}>{feature.description}</p>
+              <motion.div 
+                className={styles.featureLine}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+                viewport={{ once: true }}
+              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* CTA Section */}
-      <section className={styles.ctaSection} data-animate="fade-up">
+      {/* Stats Section */}
+      <motion.section 
+        className={styles.statsSection}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className={styles.statsGrid}>
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <motion.h3 
+              className={styles.statNumber}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", delay: 0.3 }}
+            >
+              50+
+            </motion.h3>
+            <p>APIs Delivered</p>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.h3 
+              className={styles.statNumber}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", delay: 0.4 }}
+            >
+              99.9%
+            </motion.h3>
+            <p>Uptime Guarantee</p>
+          </motion.div>
+          
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <motion.h3 
+              className={styles.statNumber}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", delay: 0.5 }}
+            >
+              24/7
+            </motion.h3>
+            <p>Support</p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Enhanced CTA Section */}
+      <motion.section 
+        className={styles.ctaSection}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, type: "spring" }}
+      >
         <motion.div
           className={styles.ctaContent}
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h2>Ready to Start Your Project?</h2>
-          <p>Let's create something amazing together.</p>
-          <motion.button
-            className={styles.ctaButton}
-            onClick={() => navigate("/contact")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Get Started
-          </motion.button>
+            Ready to Build Something
+            <span className={styles.ctaHighlight}> Amazing?</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Let's discuss your project and create powerful web services that scale.
+          </motion.p>
+          <motion.div 
+            className={styles.ctaButtons}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <motion.button
+              className={styles.ctaButtonPrimary}
+              onClick={() => navigate("/contact")}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)"
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Your Project
+            </motion.button>
+            <motion.button
+              className={styles.ctaButtonSecondary}
+              onClick={() => navigate("/portfolio")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              View Case Studies
+            </motion.button>
+          </motion.div>
         </motion.div>
-      </section>
+        
+        {/* Floating elements for CTA section */}
+        <motion.div 
+          className={styles.ctaOrb1}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 10, 0],
+            transition: {
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
+        />
+        <motion.div 
+          className={styles.ctaOrb2}
+          animate={{
+            y: [0, 20, 0],
+            x: [0, -15, 0],
+            transition: {
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }
+          }}
+        />
+      </motion.section>
     </motion.div>
   );
 };
