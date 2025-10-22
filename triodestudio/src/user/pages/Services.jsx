@@ -9,12 +9,12 @@ import styles from "../styles/Services.module.css";
 
 // Page transition variants
 const pageVariants = {
-  initial: { opacity: 0, y: 50 },
+  initial: { opacity: 1, y: 50 },
   in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -50 },
+  out: { opacity: 1, y: -50 },
 };
 
-const pageTransition = { type: "tween", duration: 0.6 };
+const pageTransition = { type: "tween", duration: 0.1 };
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -163,10 +163,10 @@ const Services = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
+        transition={{ duration: 0.3, delay: index * 0.05 }}
         whileHover={{
           y: -8,
-          transition: { duration: 0.3 },
+          transition: { duration: 0.15 },
         }}
         onClick={() => openModal(service)}
       >
@@ -226,6 +226,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
             onClick={onClose}
           >
             {/* Modal Container with centered positioning */}
@@ -234,7 +235,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
               initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.2 }}
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
             >
                <div className={styles.modalInner}>
@@ -356,7 +357,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
         className={styles.servicesHeader}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3 }}
       >
         <div className={styles.headerContent}>
           <h1 className={styles.title}>Our Services</h1>
@@ -402,7 +403,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.3 }}
       >
         <div className={styles.ctaContent}>
           <h2>Ready to Transform Your Digital Presence?</h2>

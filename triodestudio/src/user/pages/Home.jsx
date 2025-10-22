@@ -13,19 +13,16 @@ import styles from "../styles/Home.module.css";
 // Enhanced page transition variants
 const pageVariants = {
   initial: { 
-    opacity: 0, 
+    opacity: 1, 
     scale: 0.98,
-    filter: "blur(10px)"
   },
   in: { 
     opacity: 1, 
     scale: 1,
-    filter: "blur(0px)"
   },
   out: { 
-    opacity: 0, 
+    opacity: 1, 
     scale: 1.02,
-    filter: "blur(10px)"
   },
 };
 
@@ -33,7 +30,7 @@ const pageTransition = {
   type: "spring", 
   stiffness: 100,
   damping: 20,
-  duration: 0.8 
+  duration: 0.2
 };
 
 // Floating animation for background elements
@@ -41,7 +38,7 @@ const floatingAnimation = {
   animate: {
     y: [0, -20, 0],
     transition: {
-      duration: 6,
+      duration: .1,
       repeat: Infinity,
       ease: "easeInOut"
     }
@@ -79,35 +76,31 @@ const Home = () => {
     }
   ];
 
-  // Stagger animation for feature cards
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
+// Simplified smooth animation
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
     }
-  };
+  }
+};
 
-  const itemVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 60,
-      scale: 0.8 
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
+const itemVariants = {
+  hidden: { 
+    opacity: 0,
+    y: 10  // Minimal movement
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
     }
-  };
+  }
+};
 
   // Handle image loading errors
   const handleImageError = (e, featureTitle) => {
@@ -135,7 +128,7 @@ const Home = () => {
         className={styles.backgroundShape2}
         variants={floatingAnimation}
         animate="animate"
-        transition={{ delay: 2 }}
+        transition={{ delay: 1 }}
       />
 
       {/* Enhanced Hero Section */}
@@ -156,7 +149,7 @@ const Home = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, type: "spring" }}
+          transition={{ duration: 0.4, type: "spring" }}
         >
           <h2 className={styles.featuresTitle}>
             Why Choose <span className={styles.highlight}>Triode Studio</span>
@@ -171,7 +164,7 @@ const Home = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-10px" }}
         >
           {features.map((feature, index) => (
             <motion.div
@@ -205,7 +198,7 @@ const Home = () => {
                 className={styles.featureContent}
                 whileHover={{ 
                   scale: 1.05,
-                  transition: { duration: 0.3 }
+                  transition: { duration: 0.15 }
                 }}
               >
                 <h3 className={styles.featureTitle}>{feature.title}</h3>
@@ -216,7 +209,7 @@ const Home = () => {
                 className={styles.featureLine}
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+                transition={{ delay: index * 0.05 + 0.25, duration: 0.25 }}
                 viewport={{ once: true }}
               />
             </motion.div>
@@ -230,7 +223,7 @@ const Home = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.4 }}
       >
         <div className={styles.statsGrid}>
           <motion.div 
@@ -238,14 +231,14 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.3, delay: 0.05 }}
           >
             <motion.h3 
               className={styles.statNumber}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.3 }}
+              transition={{ type: "spring", delay: 0.15 }}
             >
               50+
             </motion.h3>
@@ -257,14 +250,14 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
           >
             <motion.h3 
               className={styles.statNumber}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.4 }}
+              transition={{ type: "spring", delay: 0.2 }}
             >
               99.9%
             </motion.h3>
@@ -276,14 +269,14 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
           >
             <motion.h3 
               className={styles.statNumber}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              transition={{ type: "spring", delay: 0.5 }}
+              transition={{ type: "spring", delay: 0.25 }}
             >
               24/7
             </motion.h3>
@@ -298,20 +291,20 @@ const Home = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, type: "spring" }}
+        transition={{ duration: 0.4, type: "spring" }}
       >
         <motion.div
           className={styles.ctaContent}
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.3, delay: 0.15 }}
           >
             Ready to Build Something
             <span className={styles.ctaHighlight}> Amazing?</span>
@@ -320,7 +313,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
             Let's discuss your project and create powerful web services that scale.
           </motion.p>
@@ -329,7 +322,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.3, delay: 0.25 }}
           >
             <motion.button
               className={styles.ctaButtonPrimary}
@@ -360,7 +353,7 @@ const Home = () => {
             y: [0, -30, 0],
             x: [0, 10, 0],
             transition: {
-              duration: 8,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }
@@ -372,10 +365,10 @@ const Home = () => {
             y: [0, 20, 0],
             x: [0, -15, 0],
             transition: {
-              duration: 6,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: 1
+              delay: 0.5
             }
           }}
         />

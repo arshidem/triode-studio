@@ -16,7 +16,7 @@
 /* Animation only on desktop */
 @media (min-width: 769px) {
   .navbar {
-    animation: slideDown 1s ease-in-out forwards;
+    animation: slideDown 0.5s ease-in-out forwards;
   }
 }
 
@@ -55,7 +55,7 @@
   font-weight: 700;
   font-size: 1.25rem;
   padding: 0.5rem 1.5rem;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
   border-radius: 50px;
 }
 
@@ -74,7 +74,7 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-    transition: left 0.6s ease;
+    transition: left 0.3s ease;
   }
 
   .navbarLogo:hover::before {
@@ -104,7 +104,7 @@
   width: 32px;
   height: 32px;
   object-fit: contain;
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease;
   color: var(--text);
 }
 
@@ -124,7 +124,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 /* Mobile responsiveness */
@@ -173,7 +173,7 @@
 /* Desktop animations only */
 @media (min-width: 769px) {
   .navbarLinks {
-    animation: slideFromTopCenter 1.5s ease-in-out forwards;
+    animation: slideFromTopCenter 0.75s ease-in-out forwards;
   }
 }
 
@@ -201,7 +201,7 @@
   text-decoration: none;
   font-weight: 600 !important;
   padding: 0.5rem 0;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
 }
 
 /* Desktop hover only */
@@ -222,7 +222,7 @@
 /* Desktop animations only */
 @media (min-width: 769px) {
   .navbarIcons {
-    animation: slideFromLeftToRight 1.5s ease-in-out forwards;
+    animation: slideFromLeftToRight 0.75s ease-in-out forwards;
   }
 }
 
@@ -254,7 +254,7 @@
   font-weight: 600;
   font-size: 0.65rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   outline: none;
 }
 
@@ -282,7 +282,7 @@
   border: 1px solid var(--primary);
   background: var(--primary);
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .getInTouchText {
@@ -339,7 +339,7 @@
 /* Mobile animation only */
 @media (max-width: 768px) {
   .menuBtn {
-    animation: mobileIconSlideIn 1.5s ease-in-out forwards;
+    animation: mobileIconSlideIn 0.75s ease-in-out forwards;
   }
 }
 
@@ -359,7 +359,7 @@
   background-color: var(--text);
   height: 2px;
   border-radius: 2px;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .menuBtn.open .line:nth-child(1) {
@@ -393,6 +393,7 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 998;
+  cursor: pointer;
 }
 
 /* ---------- Mobile Menu ---------- */
@@ -425,7 +426,7 @@
   color: var(--text);
   font-weight: 600;
   padding: 12px 24px;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.15s ease, color 0.15s ease;
   border-radius: 10px;
   box-sizing: border-box;
 }
@@ -441,19 +442,33 @@
   background: var(--active-bg);
 }
 
-.mobileToggleWrapper {
+/* New bottom section for mobile */
+.mobileBottomSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
   border-top: 1px solid var(--border);
+}
+
+.mobileGetInTouch {
+  width: 100%;
+}
+
+.mobileToggleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
 }
 
 .toggleLabel {
   font-size: 0.9rem;
   color: var(--subtext);
   font-weight: 500;
+  flex: 1;
+  text-align: left;
 }
 
 /* ---------- Responsive Design ---------- */
@@ -496,7 +511,7 @@
   .navLink,
   .getInTouchBtn,
   .mobileLink {
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition: opacity 0.15s ease, color 0.15s ease;
   }
   
   /* Remove transform effects */
