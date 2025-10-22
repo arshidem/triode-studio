@@ -398,8 +398,8 @@
 /* ---------- Mobile Menu ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 55px;
-  right: 0px;
+  top: 70px;
+  right: 10px;
   width: 250px;
   height: calc(100vh - 70px);
   background-color: var(--bg);

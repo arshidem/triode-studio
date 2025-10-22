@@ -105,16 +105,21 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Quick Links</h3>
-          <div className={styles.linksList}>
-            {quickLinks.map((link) => (
-              <Link key={link.path} to={link.path} className={styles.footerLink}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+<div className={styles.footerSection}>
+  <h3 className={styles.sectionTitle}>Quick Links</h3>
+  <div className={styles.linksList}>
+    {quickLinks.map((link) => (
+      <Link 
+        key={link.path} 
+        to={link.path} 
+        className={styles.footerLink}
+        onClick={() => window.scrollTo(0, 0)}
+      >
+        {link.label}
+      </Link>
+    ))}
+  </div>
+</div>
 
         {/* Contact Info */}
         <div className={styles.footerSection}>

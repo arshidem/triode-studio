@@ -11,7 +11,7 @@
 /* Header Styles */
 .servicesHeader {
   max-width: 1000px;
-  margin: 0 auto 3rem;
+  margin: 20px auto 3rem 0;
   text-align: center;
 }
 
@@ -79,6 +79,7 @@
   overflow: hidden;
   transition: transform 0.2s ease;
   cursor: pointer;
+  
 }
 
 .dark .serviceCard {
@@ -171,6 +172,8 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+      backdrop-filter: blur(20px);
+
 }
 
 .modal {

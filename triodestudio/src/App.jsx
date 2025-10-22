@@ -15,6 +15,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 // Layout Components
 import Navbar from "./user/components/Navbar";
 import Footer from "./user/components/Footer";
+import ScrollToTop from "./user/components/ScrollToTop"; // Fixed: single import
 
 // Pages
 import Home from "./user/pages/Home";
@@ -66,9 +67,10 @@ const App = () => {
     <ThemeProvider>
       <Router>
         <div className="app">
+          <ScrollToTop /> {/* Handles smooth scroll after route change */}
           <Navbar />
           <main>
-            <AnimatedRoutes />
+            <AnimatedRoutes /> {/* Contains your motion page transitions */}
           </main>
           <Footer />
         </div>
