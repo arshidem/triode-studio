@@ -93,8 +93,15 @@
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
-  color: var(--text); /* This will work with inline SVG */
+  color: var(--text); /* The SVG will take this color because we used fill="currentColor" */
 }
+
+/* Optional hover animation */
+.logo:hover {
+  transform: scale(1.1);
+  color: var(--accent); /* change to your highlight color */
+}
+
 
 .logoContainer:hover .logo {
   transform: scale(1.1);
@@ -102,7 +109,7 @@
 
 .logoText {
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   letter-spacing: -0.5px;
   background: linear-gradient(135deg, var(--text), var(--text));
   -webkit-background-clip: text;
@@ -136,7 +143,7 @@
   }
   
   .logoText {
-    font-size: 1.15rem;
+    font-size: 1rem;
   }
 }
 
@@ -363,6 +370,7 @@
   .navbarLinks {
     display: none;
   }
+
 }
 
 /* ---------- Backdrop ---------- */
@@ -379,7 +387,7 @@
 /* ---------- Mobile Menu ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 50px;
+  top: 60px;
   right: 0px;
   width: 250px;
   height: calc(100vh - 70px);
@@ -389,7 +397,7 @@
   display: flex;
   flex-direction: column;
   z-index: 999;
-  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  border-radius: 20px;
 }
 
 .mobileLinks {

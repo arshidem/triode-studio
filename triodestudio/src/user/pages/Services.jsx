@@ -21,37 +21,91 @@ const pageTransition = { type: "tween", duration: 0.6 };
 const Services = () => {
   // Services data with icons and detailed descriptions
   const services = [
-    {
-      icon: "🎨",
-      title: "Web Design",
-      description: "Modern, responsive interfaces crafted with attention to detail. We create visually stunning designs that engage users and drive conversions.",
-    },
-    {
-      icon: "💻",
-      title: "Web Development",
-      description: "Full-stack web applications built with MERN stack. Scalable, secure, and performant solutions tailored to your business needs.",
-    },
-    {
-      icon: "🖌️",
-      title: "UI/UX Design",
-      description: "Beautiful and usable interfaces designed with user experience at the core. We blend aesthetics with functionality seamlessly.",
-    },
-    {
-      icon: "🛍️",
-      title: "E-Commerce Solutions",
-      description: "Custom online store solutions with secure payment integration. Boost your sales with optimized shopping experiences.",
-    },
-    {
-      icon: "📈",
-      title: "SEO Optimization",
-      description: "Improve your website's visibility and ranking on search engines. Drive organic traffic and grow your online presence.",
-    },
-    {
-      icon: "📱",
-      title: "Mobile Apps",
-      description: "Cross-platform mobile applications that deliver native performance. Reach your users wherever they are.",
-    },
-  ];
+  {
+    image: "/services/web-design.jpg", // Path to your image
+    title: "Web Design",
+    description: "Modern, responsive interfaces crafted with attention to detail. We create visually stunning designs that engage users and drive conversions.",
+    features: [
+      "Responsive Design",
+      "User-Centric Approach", 
+      "Modern UI Trends",
+      "Conversion Optimization",
+      "Brand Alignment"
+    ],
+    process: ["Discovery", "Wireframing", "Design", "Testing", "Delivery"],
+    startingPrice: "$1,200"
+  },
+  {
+    image: "/services/web-development.jpg",
+    title: "Web Development",
+    description: "Full-stack web applications built with MERN stack. Scalable, secure, and performant solutions tailored to your business needs.",
+    features: [
+      "MERN Stack Development",
+      "RESTful APIs",
+      "Database Design",
+      "Performance Optimization", 
+      "Security Implementation"
+    ],
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Firebase"],
+    startingPrice: "$2,500"
+  },
+  {
+    image: "/services/ui-ux-design.jpg",
+    title: "UI/UX Design",
+    description: "Beautiful and usable interfaces designed with user experience at the core. We blend aesthetics with functionality seamlessly.",
+    features: [
+      "User Research",
+      "Wireframes & Prototypes",
+      "Interaction Design",
+      "Usability Testing",
+      "Design Systems"
+    ],
+    tools: ["Figma", "Adobe XD", "Sketch", "InVision"],
+    startingPrice: "$1,500"
+  },
+  {
+    image: "/services/ecommerce.jpg", 
+    title: "E-Commerce Solutions",
+    description: "Custom online store solutions with secure payment integration. Boost your sales with optimized shopping experiences.",
+    features: [
+      "Payment Gateway Integration",
+      "Inventory Management",
+      "Order Processing",
+      "Security & SSL",
+      "Mobile Optimization"
+    ],
+    platforms: ["Shopify", "WooCommerce", "Magento", "Custom Solutions"],
+    startingPrice: "$3,000"
+  },
+  {
+    image: "/services/seo.jpg",
+    title: "SEO Optimization", 
+    description: "Improve your website's visibility and ranking on search engines. Drive organic traffic and grow your online presence.",
+    features: [
+      "Keyword Research",
+      "On-Page Optimization",
+      "Technical SEO",
+      "Content Strategy",
+      "Performance Analytics"
+    ],
+    deliverables: ["SEO Audit", "Keyword Map", "Optimization Report", "Monthly Tracking"],
+    startingPrice: "$800/month"
+  },
+  {
+    image: "/services/mobile-apps.jpg",
+    title: "Mobile Apps",
+    description: "Cross-platform mobile applications that deliver native performance. Reach your users wherever they are.",
+    features: [
+      "Cross-Platform Development",
+      "Native Performance",
+      "App Store Deployment",
+      "Push Notifications",
+      "Offline Functionality"
+    ],
+    technologies: ["React Native", "Flutter", "iOS", "Android"],
+    startingPrice: "$4,000"
+  }
+];
 
   return (
     <motion.div
