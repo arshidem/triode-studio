@@ -9,9 +9,15 @@
   top: 10px;
   left: 10px;
   font-family: 'Poppins', sans-serif;
-  animation: slideDown 1s ease-in-out forwards;
   border-radius: 50px;
   margin: 0px;
+}
+
+/* Animation only on desktop */
+@media (min-width: 769px) {
+  .navbar {
+    animation: slideDown 1s ease-in-out forwards;
+  }
 }
 
 @keyframes slideDown {
@@ -49,62 +55,65 @@
   font-weight: 700;
   font-size: 1.25rem;
   padding: 0.5rem 1.5rem;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
   border-radius: 50px;
-  position: relative;
-  overflow: hidden;
 }
 
-.navbarLogo::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-  transition: left 0.6s ease;
-}
+/* Desktop-only hover effects */
+@media (min-width: 769px) {
+  .navbarLogo {
+    position: relative;
+    overflow: hidden;
+  }
 
-.navbarLogo:hover::before {
-  left: 100%;
-}
+  .navbarLogo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+    transition: left 0.6s ease;
+  }
 
-.navbarLogo:hover {
-  transform: translateY(-1px);
+  .navbarLogo:hover::before {
+    left: 100%;
+  }
+
+  .navbarLogo:hover {
+    transform: translateY(-1px);
+  }
+
+  .navbarLogo:hover .logoText {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transform: translateX(5px);
+  }
 }
 
 .logoContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
 }
-
-
-
-
 
 .logo {
   width: 32px;
   height: 32px;
   object-fit: contain;
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
-  color: var(--text); /* The SVG will take this color because we used fill="currentColor" */
+  transition: transform 0.2s ease;
+  color: var(--text);
 }
 
-/* Optional hover animation */
-.logo:hover {
-  transform: scale(1.1);
-  color: var(--accent); /* change to your highlight color */
-}
-
-
-.logoContainer:hover .logo {
-  transform: scale(1.1);
+/* Desktop-only logo hover */
+@media (min-width: 769px) {
+  .logo:hover {
+    transform: scale(1.1);
+    color: var(--accent);
+  }
 }
 
 .logoText {
@@ -115,16 +124,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.navbarLogo:hover .logoText {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transform: translateX(5px);
+  transition: all 0.2s ease;
 }
 
 /* Mobile responsiveness */
@@ -163,24 +163,18 @@
   }
 }
 
-@keyframes slideFromLeft {
-  0% {
-    transform: translateX(-300%);
-  }
-  50% {
-    transform: translateX(-300%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 /* ---------- Desktop links ---------- */
 .navbarLinks {
   display: flex;
   gap: 20px;
-  animation: slideFromTopCenter 1.5s ease-in-out forwards;
   font-size: 12px;
+}
+
+/* Desktop animations only */
+@media (min-width: 769px) {
+  .navbarLinks {
+    animation: slideFromTopCenter 1.5s ease-in-out forwards;
+  }
 }
 
 @keyframes slideFromTopCenter {
@@ -207,12 +201,15 @@
   text-decoration: none;
   font-weight: 600 !important;
   padding: 0.5rem 0;
-  transition: color var(--transition-base);
+  transition: color 0.2s ease;
 }
 
-.navLink:hover,
-.navLink.active {
-  color: var(--primary);
+/* Desktop hover only */
+@media (min-width: 769px) {
+  .navLink:hover,
+  .navLink.active {
+    color: var(--primary);
+  }
 }
 
 /* ---------- Actions container ---------- */
@@ -220,7 +217,13 @@
   display: flex;
   gap: 16px;
   align-items: center;
-  animation: slideFromLeftToRight 1.5s ease-in-out forwards;
+}
+
+/* Desktop animations only */
+@media (min-width: 769px) {
+  .navbarIcons {
+    animation: slideFromLeftToRight 1.5s ease-in-out forwards;
+  }
 }
 
 .desktopActions {
@@ -251,14 +254,23 @@
   font-weight: 600;
   font-size: 0.65rem;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all 0.2s ease;
   outline: none;
 }
 
-.getInTouchBtn:hover {
-  background-color: var(--primary);
-  color: #fff;
-  transform: translateY(-1px);
+/* Desktop hover only */
+@media (min-width: 769px) {
+  .getInTouchBtn:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .getInTouchBtn:hover .arrowCircle {
+    background-color: var(--card-bg);
+    color: var(--primary);
+    transform: rotate(90deg);
+  }
 }
 
 .arrowCircle {
@@ -270,13 +282,7 @@
   border: 1px solid var(--primary);
   background: var(--primary);
   border-radius: 50%;
-  transition: all var(--transition-base);
-}
-
-.getInTouchBtn:hover .arrowCircle {
-  background-color: var(--card-bg);
-  color: var(--primary);
-  transform: rotate(90deg);
+  transition: all 0.2s ease;
 }
 
 .getInTouchText {
@@ -328,7 +334,13 @@
   margin-left: 5px;
   background: none;
   border: none;
-  animation: mobileIconSlideIn 1.5s ease-in-out forwards;
+}
+
+/* Mobile animation only */
+@media (max-width: 768px) {
+  .menuBtn {
+    animation: mobileIconSlideIn 1.5s ease-in-out forwards;
+  }
 }
 
 @keyframes mobileIconSlideIn {
@@ -347,7 +359,7 @@
   background-color: var(--text);
   height: 2px;
   border-radius: 2px;
-  transition: all var(--transition-base);
+  transition: all 0.2s ease;
 }
 
 .menuBtn.open .line:nth-child(1) {
@@ -370,7 +382,6 @@
   .navbarLinks {
     display: none;
   }
-
 }
 
 /* ---------- Backdrop ---------- */
@@ -393,7 +404,7 @@
   height: calc(100vh - 70px);
   background-color: var(--bg);
   box-shadow: var(--shadow-md);
-  padding: 10px; /* full-width hover fix */
+  padding: 10px;
   display: flex;
   flex-direction: column;
   z-index: 999;
@@ -404,7 +415,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px; /* remove gaps so hover feels continuous */
+  gap: 5px;
 }
 
 .mobileLink {
@@ -413,9 +424,9 @@
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
-  padding: 12px 24px; /* indent text cleanly */
-  transition: background var(--transition-base), color var(--transition-base);
-  border-radius: 10px; /* removes rounded edge gaps */
+  padding: 12px 24px;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -445,17 +456,15 @@
   font-weight: 500;
 }
 
-
 /* ---------- Responsive Design ---------- */
 @media (max-width: 500px) {
   .navbarLogo {
     display: flex;
   }
 
-.logoText {
-font-size: medium;
-}
-
+  .logoText {
+    font-size: medium;
+  }
 }
 
 @media (min-width: 769px) {
@@ -472,5 +481,27 @@ font-size: medium;
   .navbarIcons,
   .menuBtn {
     animation: none;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Disable complex effects on mobile */
+  .navbar {
+    backdrop-filter: none;
+  }
+  
+  /* Simplify transitions */
+  .navbarLogo,
+  .navLink,
+  .getInTouchBtn,
+  .mobileLink {
+    transition: opacity 0.2s ease, color 0.2s ease;
+  }
+  
+  /* Remove transform effects */
+  .navbarLogo:hover,
+  .getInTouchBtn:hover {
+    transform: none;
   }
 }
