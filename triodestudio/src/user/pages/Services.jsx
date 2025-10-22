@@ -231,7 +231,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             {/* Modal Container with centered positioning */}
             <motion.div
               className={styles.modal}
-              initial={{ opacity: 0, scale: 0.2, y: 50 }}
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 50 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}

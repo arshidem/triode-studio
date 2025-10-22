@@ -1,17 +1,17 @@
 /* src/user/styles/Services.module.css */
-/* Premium enhanced services page with modal functionality */
+/* Mobile-optimized services page */
 
 .services {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--bg) 0%, var(--card-bg) 100%);
-  padding: 6rem 2rem 4rem;
+  background: var(--bg);
+  padding: 4rem 1rem 2rem;
   position: relative;
 }
 
 /* Header Styles */
 .servicesHeader {
   max-width: 1000px;
-  margin: 0 auto 6rem;
+  margin: 0 auto 3rem;
   text-align: center;
 }
 
@@ -20,30 +20,26 @@
 }
 
 .title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.2;
 }
 
 .subtitle {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-size: 1rem;
   color: var(--subtext);
-  line-height: 1.7;
-  max-width: 700px;
-  margin: 0 auto 3rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 /* Stats */
 .stats {
   display: flex;
   justify-content: center;
-  gap: 4rem;
-  margin-top: 3rem;
+  gap: 2rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 }
 
@@ -54,60 +50,45 @@
 }
 
 .statNumber {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .statLabel {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--subtext);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 /* Services Grid */
 .servicesGrid {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 3rem;
-  margin-bottom: 6rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 /* Service Card */
 .serviceCard {
-  background: var(--card-bg, rgba(255, 255, 255, 0.05));
-  border-radius: 24px;
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
-  backdrop-filter: blur(20px);
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
   overflow: hidden;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: transform 0.2s ease;
   cursor: pointer;
 }
 
 .dark .serviceCard {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.serviceCard:hover {
-  border-color: var(--primary);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-}
-
-.dark .serviceCard:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Image Container */
 .imageContainer {
   position: relative;
-  height: 200px;
+  height: 160px;
   overflow: hidden;
 }
 
@@ -121,26 +102,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.serviceCard:hover .serviceImage {
-  transform: scale(1.05);
-}
-
-.imageOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.serviceCard:hover .imageOverlay {
-  opacity: 1;
 }
 
 .serviceBadge {
@@ -149,81 +110,54 @@
   right: 1rem;
   background: var(--primary);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.badgeText {
-  color: white;
 }
 
 /* Card Content */
 .cardContent {
-  padding: 2rem;
+  padding: 1.5rem;
   text-align: center;
 }
 
 .cardTitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text);
-  line-height: 1.3;
 }
 
 .cardDescription {
   color: var(--subtext);
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 /* View Details Button */
 .viewDetailsBtn {
   width: 100%;
-  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  background: var(--primary);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 16px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.viewDetailsBtn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.viewDetailsBtn:hover::before {
-  left: 100%;
-}
-
-.viewDetailsBtn:hover {
-  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
-  transform: translateY(-2px);
+  transition: background-color 0.2s ease;
 }
 
 .viewDetailsBtn:active {
-  transform: translateY(0);
+  background: var(--secondary);
 }
+
 /* Modal Styles */
 .modalBackdrop {
   position: fixed;
@@ -231,78 +165,74 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .modal {
   position: relative;
-  width: 90%;
-  max-width: 900px;
-  height: 90vh;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
   background: var(--card-bg);
-  border-radius: 24px;
+  border-radius: 20px;
   border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
   z-index: 1001;
   overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  margin: auto; /* Center the modal */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
+
 .modalInner {
-  padding: 2rem; /* now you can safely add padding */
+  padding: 1.5rem;
   overflow-y: auto;
-  max-height: 90vh; /* scrollable content */
+  max-height: 80vh;
 }
+
 .dark .modal {
   background: rgba(30, 30, 30, 0.95);
 }
 
 .closeButton {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 1rem;
+  right: 1rem;
   background: rgba(0, 0, 0, 0.2);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: var(--text);
   z-index: 1002;
-  transition: all 0.3s ease;
 }
 
-.closeButton:hover {
-  background: rgba(0, 0, 0, 0.3);
-  transform: rotate(90deg);
-}
 .modalContent {
-  padding: 3rem;
+  padding: 1.5rem 0;
 }
 
 /* Modal Header */
 .modalHeader {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .modalImageContainer {
-  width: 200px;
-  height: 150px;
-  border-radius: 16px;
+  width: 100%;
+  max-width: 300px;
+  height: 120px;
+  border-radius: 12px;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .modalImage {
@@ -311,98 +241,93 @@
   object-fit: cover;
 }
 
-.modalTitleSection {
-  flex: 1;
-}
-
 .modalTitle {
-  font-size: 2.5rem;
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text);
-  line-height: 1.1;
 }
 
 .modalSubtitle {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--subtext);
   margin-bottom: 1rem;
-  line-height: 1.4;
 }
 
 .deliveryBadge {
   display: inline-block;
   background: var(--primary);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
   font-weight: 600;
 }
 
 /* Modal Sections */
 .modalSection {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--text);
   border-bottom: 2px solid var(--primary);
   padding-bottom: 0.5rem;
 }
 
 .fullDescription {
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--subtext);
 }
 
 /* Features Grid */
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
 }
 
 .featureCard {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
   background: var(--bg);
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--border);
 }
 
 .featureIcon {
   color: var(--primary);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   flex-shrink: 0;
   margin-top: 0.1rem;
 }
 
 .featureText {
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.4;
+  font-size: 0.9rem;
 }
 
 /* Technologies */
 .technologiesGrid {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .techPill {
   background: var(--primary);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -410,18 +335,18 @@
 .processTimeline {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .processStep {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 
 .stepNumber {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background: var(--primary);
   color: white;
   border-radius: 50%;
@@ -430,65 +355,66 @@
   justify-content: center;
   font-weight: 700;
   flex-shrink: 0;
+  font-size: 0.9rem;
 }
 
 .stepContent {
   flex: 1;
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .stepTitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: var(--text);
 }
 
 .stepDescription {
   color: var(--subtext);
-  line-height: 1.5;
+  line-height: 1.4;
+  font-size: 0.9rem;
 }
 
 /* Modal CTA */
 .modalCTA {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
 }
 
 .modalCTA .ctaButton {
-  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  background: var(--primary);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .modalCTA .secondaryButton {
   background: transparent;
   color: var(--text);
   border: 2px solid var(--border);
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.modalCTA .ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+.modalCTA .ctaButton:active {
+  background: var(--secondary);
 }
 
-.modalCTA .secondaryButton:hover {
+.modalCTA .secondaryButton:active {
   border-color: var(--primary);
   background: rgba(74, 144, 226, 0.1);
 }
@@ -498,62 +424,52 @@
   max-width: 1000px;
   margin: 0 auto;
   text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(74, 144, 226, 0.1) 100%);
-  border-radius: 32px;
+  padding: 3rem 1.5rem;
+  background: var(--card-bg);
+  border-radius: 20px;
   border: 1px solid var(--border);
-  backdrop-filter: blur(20px);
-  position: relative;
-  overflow: hidden;
 }
 
 .ctaContent {
   position: relative;
-  z-index: 2;
 }
 
 .ctaSection h2 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 800;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text);
-  line-height: 1.2;
 }
 
 .ctaSection p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--subtext);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   line-height: 1.6;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .ctaButtons {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
 .ctaButton {
-  padding: 1rem 2.5rem;
-  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 50px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
   border: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  transition: background-color 0.2s ease;
 }
 
 .ctaButton.primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  background: var(--primary);
   color: white;
-  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
 }
 
 .ctaButton.secondary {
@@ -562,116 +478,164 @@
   border: 2px solid var(--border);
 }
 
-.ctaButton.primary:hover {
-  box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
-  transform: translateY(-2px);
+.ctaButton.primary:active {
+  background: var(--secondary);
 }
 
-.ctaButton.secondary:hover {
+.ctaButton.secondary:active {
   border-color: var(--primary);
   background: rgba(74, 144, 226, 0.1);
-  transform: translateY(-2px);
 }
 
-.ctaButton:active {
-  transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
+/* ===== DESKTOP-ONLY ENHANCEMENTS ===== */
+@media (min-width: 769px) {
   .services {
-    padding: 4rem 1.5rem 3rem;
-  }
-
-  .servicesHeader {
-    margin-bottom: 4rem;
-  }
-
-  .stats {
-    gap: 2rem;
-  }
-
-  .statNumber {
-    font-size: 2rem;
-  }
-
-  .servicesGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .modal {
-    width: 95%;
-    max-height: 95vh;
-  }
-
-  .modalContent {
-    padding: 2rem 1.5rem;
-  }
-
-  .modalHeader {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    text-align: center;
-  }
-
-  .modalImageContainer {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .modalTitle {
-    font-size: 2rem;
-  }
-
-  .featuresGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .modalCTA {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ctaSection {
-    padding: 3rem 1.5rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ctaButton {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .services {
-    padding: 3rem 1rem 2rem;
+    padding: 6rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--card-bg) 100%);
   }
 
   .title {
-    font-size: 2rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    margin-bottom: 3rem;
+  }
+
+  .stats {
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
   }
 
   .servicesGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 3rem;
+    margin-bottom: 6rem;
+  }
+
+  .serviceCard {
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+  }
+
+  .serviceCard:hover {
+    border-color: var(--primary);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+
+  .dark .serviceCard:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
 
   .imageContainer {
-    height: 160px;
+    height: 200px;
   }
 
-  .cardContent {
-    padding: 1.25rem;
+  .serviceCard:hover .serviceImage {
+    transform: scale(1.05);
+  }
+
+  .viewDetailsBtn {
+    background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+    padding: 1rem 2rem;
+  }
+
+  .viewDetailsBtn:hover {
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .modalBackdrop {
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+  }
+
+  .modal {
+    max-width: 900px;
+    max-height: 90vh;
+    backdrop-filter: blur(20px);
+  }
+
+  .modalInner {
+    padding: 2rem;
+    max-height: 90vh;
   }
 
   .modalContent {
-    padding: 1.5rem 1rem;
+    padding: 3rem;
+  }
+
+  .modalHeader {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .modalImageContainer {
+    width: 200px;
+    height: 150px;
+    margin: 0;
+  }
+
+  .modalTitle {
+    font-size: 2.5rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .modalCTA {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .ctaSection {
+    padding: 4rem 2rem;
+    backdrop-filter: blur(20px);
+  }
+
+  .ctaSection h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  }
+
+  .ctaButtons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .ctaButton {
+    width: auto;
+  }
+
+  .ctaButton.primary:hover {
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .ctaButton.secondary:hover {
+    border-color: var(--primary);
+    background: rgba(74, 144, 226, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+/* Large desktop enhancements */
+@media (min-width: 1200px) {
+  .servicesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
 }
