@@ -1,86 +1,575 @@
 /* src/user/styles/Services.module.css */
-/* Premium services page with grid layout */
+/* Premium enhanced services page with modal functionality */
 
 .services {
   min-height: 100vh;
-  background: var(--bg);
-  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--card-bg) 100%);
+  padding: 6rem 2rem 4rem;
+  position: relative;
 }
 
+/* Header Styles */
 .servicesHeader {
-  max-width: 800px;
-  margin: 0 auto 4rem;
+  max-width: 1000px;
+  margin: 0 auto 6rem;
   text-align: center;
 }
 
+.headerContent {
+  position: relative;
+}
+
 .title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
 }
 
 .subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   color: var(--subtext);
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 3rem;
 }
 
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Services Grid */
 .servicesGrid {
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  margin-bottom: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 3rem;
+  margin-bottom: 6rem;
 }
 
-/* CTA Section */
-.ctaSection {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 3rem 2rem;
+/* Service Card */
+.serviceCard {
   background: var(--card-bg, rgba(255, 255, 255, 0.05));
   border-radius: 24px;
   border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
 }
 
-.dark .ctaSection {
+.dark .serviceCard {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.ctaSection h2 {
-  font-size: clamp(1.5rem, 4vw, 2rem);
+.serviceCard:hover {
+  border-color: var(--primary);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.dark .serviceCard:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Container */
+.imageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.serviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .serviceImage {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.serviceCard:hover .imageOverlay {
+  opacity: 1;
+}
+
+.serviceBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.badgeText {
+  color: white;
+}
+
+/* Card Content */
+.cardContent {
+  padding: 2rem;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text);
+  line-height: 1.3;
+}
+
+.cardDescription {
+  color: var(--subtext);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* View Details Button */
+.viewDetailsBtn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.viewDetailsBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.viewDetailsBtn:hover::before {
+  left: 100%;
+}
+
+.viewDetailsBtn:hover {
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+  transform: translateY(-2px);
+}
+
+.viewDetailsBtn:active {
+  transform: translateY(0);
+}
+/* Modal Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  background: var(--card-bg);
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  z-index: 1001;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  margin: auto; /* Center the modal */
+}
+.modalInner {
+  padding: 2rem; /* now you can safely add padding */
+  overflow-y: auto;
+  max-height: 90vh; /* scrollable content */
+}
+.dark .modal {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  z-index: 1002;
+  transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.3);
+  transform: rotate(90deg);
+}
+.modalContent {
+  padding: 3rem;
+}
+
+/* Modal Header */
+.modalHeader {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  align-items: start;
+}
+
+.modalImageContainer {
+  width: 200px;
+  height: 150px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalTitleSection {
+  flex: 1;
+}
+
+.modalTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.modalSubtitle {
+  font-size: 1.2rem;
+  color: var(--subtext);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.deliveryBadge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Modal Sections */
+.modalSection {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.5rem;
+}
+
+.fullDescription {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--subtext);
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.featureCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.featureIcon {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.featureText {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Technologies */
+.technologiesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.techPill {
+  background: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Process Timeline */
+.processTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.processStep {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepContent {
+  flex: 1;
+  padding-top: 0.5rem;
+}
+
+.stepTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.stepDescription {
+  color: var(--subtext);
+  line-height: 1.5;
+}
+
+/* Modal CTA */
+.modalCTA {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.modalCTA .ctaButton {
+  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modalCTA .secondaryButton {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--border);
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modalCTA .ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+}
+
+.modalCTA .secondaryButton:hover {
+  border-color: var(--primary);
+  background: rgba(74, 144, 226, 0.1);
+}
+
+/* CTA Section */
+.ctaSection {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(74, 144, 226, 0.1) 100%);
+  border-radius: 32px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+}
+
+.ctaSection h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.2;
 }
 
 .ctaSection p {
-  font-size: 1.125rem;
+  font-size: 1.2rem;
   color: var(--subtext);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #4a90e2 0%, #667eea 100%);
-  color: white;
-  border: none;
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+  border: none;
   outline: none;
+  position: relative;
+  overflow: hidden;
 }
 
-.ctaButton:hover {
+.ctaButton.primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #667eea 100%);
+  color: white;
+  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+}
+
+.ctaButton.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--border);
+}
+
+.ctaButton.primary:hover {
   box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+  transform: translateY(-2px);
+}
+
+.ctaButton.secondary:hover {
+  border-color: var(--primary);
+  background: rgba(74, 144, 226, 0.1);
   transform: translateY(-2px);
 }
 
@@ -88,33 +577,101 @@
   transform: translateY(0);
 }
 
-.ctaButton:focus-visible {
-  outline: 2px solid var(--primary, #4a90e2);
-  outline-offset: 3px;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .services {
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem 3rem;
   }
 
   .servicesHeader {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .stats {
+    gap: 2rem;
+  }
+
+  .statNumber {
+    font-size: 2rem;
   }
 
   .servicesGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
-  .ctaSection {
+  .modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modalContent {
     padding: 2rem 1.5rem;
   }
 
+  .modalHeader {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .modalImageContainer {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .modalTitle {
+    font-size: 2rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalCTA {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ctaSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .ctaButton {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .imageContainer {
+    height: 160px;
+  }
+
+  .cardContent {
+    padding: 1.25rem;
+  }
+
+  .modalContent {
+    padding: 1.5rem 1rem;
   }
 }

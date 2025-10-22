@@ -387,7 +387,7 @@
 /* ---------- Mobile Menu ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 60px;
+  top: 55px;
   right: 0px;
   width: 250px;
   height: calc(100vh - 70px);
