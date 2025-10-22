@@ -10,102 +10,53 @@ import { useNavigate } from "react-router-dom";
 import Hero from "../../shared/Hero";
 import styles from "../styles/Home.module.css";
 
-// Enhanced page transition variants
+// Page transition variants
 const pageVariants = {
-  initial: { 
-    opacity: 1, 
-    scale: 0.98,
-  },
-  in: { 
-    opacity: 1, 
-    scale: 1,
-  },
-  out: { 
-    opacity: 1, 
-    scale: 1.02,
-  },
+  initial: { opacity: 1, y: 50 },
+  in: { opacity: 1, y: 0 },
+  out: { opacity: 1, y: -50 },
 };
 
-const pageTransition = { 
-  type: "spring", 
-  stiffness: 100,
-  damping: 20,
-  duration: 0.2
-};
-
-// Floating animation for background elements
-const floatingAnimation = {
-  animate: {
-    y: [0, -20, 0],
-    transition: {
-      duration: .1,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-};
+const pageTransition = { type: "tween", duration: 0.1 };
 
 const Home = () => {
   const navigate = useNavigate();
 
-  // SIMPLIFIED features data - only images
-  const features = [
-    {
-      image: "/assets/images/features/api-development.jpg",
-      title: "API Development",
-      description: "RESTful & GraphQL APIs built for scalability and performance.",
-      color: "#6366f1"
-    },
-    {
-      image: "/assets/images/features/backend-systems.jpg",
-      title: "Backend Systems", 
-      description: "Robust server architecture that handles millions of requests.",
-      color: "#10b981"
-    },
-    {
-      image: "/assets/images/features/integrations.jpg",
-      title: "Integrations",
-      description: "Seamless third-party API integrations and microservices.",
-      color: "#f59e0b"
-    },
-    {
-      image: "/assets/images/features/deployment.jpg",
-      title: "Deployment",
-      description: "CI/CD pipelines and cloud infrastructure management.",
-      color: "#ef4444"
-    }
-  ];
-
-// Simplified smooth animation
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { 
-    opacity: 0,
-    y: 10  // Minimal movement
+  // Features data
+ const features = [
+  {
+    image: "/assets/images/features/api-development.jpg",
+    title: "Scale Your Business",
+    description: "APIs that handle millions of requests daily, helping startups grow into enterprises",
+    proof: "50+ APIs delivered with 99.9% uptime",
+    color: "#6366f1"
   },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-      ease: "easeOut"
-    }
+  {
+    image: "/assets/images/features/backend-systems.jpg",
+    title: "Handle Massive Growth", 
+    description: "Server architecture that scales seamlessly as your user base explodes",
+    proof: "Systems supporting 1M+ concurrent users",
+    color: "#10b981"
+  },
+  {
+    image: "/assets/images/features/integrations.jpg",
+    title: "Connect Everything",
+    description: "Seamlessly integrate payment, analytics, and communication tools in days, not months",
+    proof: "100+ third-party services integrated",
+    color: "#f59e0b"
+  },
+  {
+    image: "/assets/images/features/deployment.jpg",
+    title: "Launch Faster, Sleep Better",
+    description: "Automated deployment pipelines that get your products to market 3x faster",
+    proof: "Zero-downtime deployments for 200+ projects",
+    color: "#ef4444"
   }
-};
+];
 
   // Handle image loading errors
   const handleImageError = (e, featureTitle) => {
     console.error(`Failed to load image for ${featureTitle}:`, e.target.src);
-    // You can set a fallback image here
     e.target.src = "https://via.placeholder.com/400x300/2a2a2a/ffffff?text=Image+Coming+Soon";
   };
 
@@ -118,19 +69,6 @@ const itemVariants = {
       variants={pageVariants}
       transition={pageTransition}
     >
-      {/* Animated background elements */}
-      <motion.div 
-        className={styles.backgroundShape1}
-        variants={floatingAnimation}
-        animate="animate"
-      />
-      <motion.div 
-        className={styles.backgroundShape2}
-        variants={floatingAnimation}
-        animate="animate"
-        transition={{ delay: 1 }}
-      />
-
       {/* Enhanced Hero Section */}
       <Hero
         title="We Build"
@@ -142,88 +80,98 @@ const itemVariants = {
         secondaryCtaAction={() => navigate("/portfolio")}
       />
 
-      {/* Enhanced Features Section with Media */}
-      <section className={styles.features}>
-        <motion.div
-          className={styles.featuresHeader}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.4, type: "spring" }}
-        >
-          <h2 className={styles.featuresTitle}>
-            Why Choose <span className={styles.highlight}>Triode Studio</span>
-          </h2>
-          <p className={styles.featuresSubtitle}>
-            We specialize in the technical foundation that makes your digital products exceptional
-          </p>
-        </motion.div>
+      {/* Features Section with Services-style animations */}
+<section className={styles.features}>
+  <motion.div
+    className={styles.featuresHeader}
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+  >
+    <h2 className={styles.featuresTitle}>
+      Why Choose <span className={styles.highlight}>Triode Studio</span>
+    </h2>
+    <p className={styles.featuresSubtitle}>
+      We specialize in the technical foundation that makes your digital products exceptional
+    </p>
+  </motion.div>
 
-        <motion.div
-          className={styles.featuresGrid}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10px" }}
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className={styles.featureCard}
-              variants={itemVariants}
-              whileHover={{
-                y: -15,
-                scale: 1.05,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{ 
-                '--accent-color': feature.color,
-              }}
-            >
-              {/* Background Media - SIMPLIFIED for images only */}
-              <div className={styles.featureBackgroundMedia}>
-                <img 
-                  src={feature.image} 
-                  alt={feature.title}
-                  className={styles.featureBackgroundImage}
-                  onError={(e) => handleImageError(e, feature.title)}
-                />
-                {/* Overlay for better text readability */}
-                <div className={styles.featureMediaOverlay}></div>
-              </div>
+  <div className={styles.featuresGrid}>
+    {features.map((feature, index) => (
+      <motion.div
+        key={index}
+        className={styles.featureCard}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.3, delay: index * 0.05 }}
+        whileHover={{
+          y: -8,
+          transition: { duration: 0.15 },
+        }}
+        style={{ 
+          '--accent-color': feature.color,
+        }}
+      >
+        {/* Image Section */}
+        <div className={styles.imageContainer}>
+          <div className={styles.imageWrapper}>
+            <img 
+              src={feature.image} 
+              alt={feature.title}
+              className={styles.featureImage}
+              onError={(e) => handleImageError(e, feature.title)}
+            />
+            <div className={styles.imageOverlay} />
+          </div>
+          <div className={styles.featureBadge}>
+            <span className={styles.badgeText}>Feature</span>
+          </div>
+        </div>
 
-              {/* Content */}
-              <motion.div 
-                className={styles.featureContent}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.15 }
-                }}
-              >
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDescription}>{feature.description}</p>
-              </motion.div>
-
-              <motion.div 
-                className={styles.featureLine}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: index * 0.05 + 0.25, duration: 0.25 }}
-                viewport={{ once: true }}
+        {/* Content Section */}
+        <div className={styles.cardContent}>
+          <h3 className={styles.cardTitle}>{feature.title}</h3>
+          <p className={styles.cardDescription}>{feature.description}</p>
+          
+          {/* Proof Section */}
+          {feature.proof && (
+            <div className={styles.proofSection}>
+              <div className={styles.proofIcon}>✓</div>
+              <span className={styles.proofText}>{feature.proof}</span>
+            </div>
+          )}
+          
+          {/* Learn More Button */}
+          <motion.button
+            className={styles.learnMoreBtn}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span>Learn More</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
+            </svg>
+          </motion.button>
+        </div>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
-      {/* Stats Section */}
+    {/* Simple Stats Section - Just showing what we do */}
       <motion.section 
         className={styles.statsSection}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.3 }}
       >
         <div className={styles.statsGrid}>
           <motion.div 
@@ -240,9 +188,9 @@ const itemVariants = {
               viewport={{ once: true }}
               transition={{ type: "spring", delay: 0.15 }}
             >
-              50+
+              Fast
             </motion.h3>
-            <p>APIs Delivered</p>
+            <p>Development</p>
           </motion.div>
           
           <motion.div 
@@ -259,9 +207,9 @@ const itemVariants = {
               viewport={{ once: true }}
               transition={{ type: "spring", delay: 0.2 }}
             >
-              99.9%
+              Scalable
             </motion.h3>
-            <p>Uptime Guarantee</p>
+            <p>Solutions</p>
           </motion.div>
           
           <motion.div 
@@ -278,59 +226,34 @@ const itemVariants = {
               viewport={{ once: true }}
               transition={{ type: "spring", delay: 0.25 }}
             >
-              24/7
+              Modern
             </motion.h3>
-            <p>Support</p>
+            <p>Technology</p>
           </motion.div>
         </div>
       </motion.section>
 
-      {/* Enhanced CTA Section */}
+
+      {/* CTA Section */}
       <motion.section 
         className={styles.ctaSection}
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.4, type: "spring" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
       >
-        <motion.div
-          className={styles.ctaContent}
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.15 }}
-          >
-            Ready to Build Something
+        <div className={styles.ctaContent}>
+          <h2>Ready to Build Something
             <span className={styles.ctaHighlight}> Amazing?</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.2 }}
-          >
+          </h2>
+          <p>
             Let's discuss your project and create powerful web services that scale.
-          </motion.p>
-          <motion.div 
-            className={styles.ctaButtons}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.25 }}
-          >
+          </p>
+          <div className={styles.ctaButtons}>
             <motion.button
               className={styles.ctaButtonPrimary}
               onClick={() => navigate("/contact")}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 10px 30px rgba(99, 102, 241, 0.4)"
-              }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Start Your Project
@@ -343,35 +266,8 @@ const itemVariants = {
             >
               View Case Studies
             </motion.button>
-          </motion.div>
-        </motion.div>
-        
-        {/* Floating elements for CTA section */}
-        <motion.div 
-          className={styles.ctaOrb1}
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 10, 0],
-            transition: {
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }
-          }}
-        />
-        <motion.div 
-          className={styles.ctaOrb2}
-          animate={{
-            y: [0, 20, 0],
-            x: [0, -15, 0],
-            transition: {
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }
-          }}
-        />
+          </div>
+        </div>
       </motion.section>
     </motion.div>
   );

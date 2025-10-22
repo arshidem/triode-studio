@@ -316,9 +316,6 @@ const Navbar = () => {
                 {/* Theme toggle */}
                 <div className={styles.mobileToggleWrapper}>
                   <ThemeToggle />
-                  <span className={styles.toggleLabel}>
-                    {isDarkMode ? "Light Mode" : "Dark Mode"}
-                  </span>
                 </div>
               </motion.div>
             </motion.div>

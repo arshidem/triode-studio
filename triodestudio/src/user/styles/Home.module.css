@@ -1,5 +1,5 @@
 /* src/user/styles/Home.module.css */
-/* Enhanced Home Page with Modern Animations & Background Media Support */
+/* Updated Home Page - Clean Startup Version */
 
 .home {
   min-height: 100vh;
@@ -75,176 +75,90 @@
   line-height: 1.6;
 }
 
+/* Features Grid - Clean Version */
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-/* Background Media Feature Cards */
 .featureCard {
-  background: var(--card-bg, rgba(255, 255, 255, 0.05));
-  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
-  border-radius: 24px;
-  padding: 3rem 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  position: relative;
+  background: var(--card-bg);
+  border-radius: 20px;
   overflow: hidden;
-  z-index: 1;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.featureCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--accent-color, #6366f1), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-
-.featureCard:hover::before {
-  opacity: 0.1;
-}
-
-.dark .featureCard {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Background Media Styles */
-.featureBackgroundMedia {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-.featureBackgroundVideo,
-.featureBackgroundImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-.featureBackgroundVideo {
-  filter: brightness(0.4) saturate(1.2);
-  transition: filter 0.3s ease;
-}
-
-.featureBackgroundImage {
-  filter: brightness(0.5) saturate(1.1);
-  transition: filter 0.3s ease;
-}
-
-.featureCard:hover .featureBackgroundVideo {
-  filter: brightness(0.6) saturate(1.3);
-}
-
-.featureCard:hover .featureBackgroundImage {
-  filter: brightness(0.7) saturate(1.2);
-}
-
-.featureMediaOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  border-radius: 24px;
-  transition: background 0.3s ease;
-}
-
-.featureCard:hover .featureMediaOverlay {
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
-}
-
-.featureContent {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  position: relative;
 }
 
-.featureCard:hover .featureContent {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.2);
+.featureCard:hover {
+  box-shadow: var(--shadow-md);
   transform: translateY(-5px);
 }
 
-.featureTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.featureDescription {
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
-  font-size: 1.05rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.featureLine {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-color, #6366f1), rgba(255, 255, 255, 0.8));
-  margin: 1.5rem auto 0;
-  transform-origin: left;
-  border-radius: 2px;
+/* Image Section */
+.imageContainer {
   position: relative;
-  z-index: 2;
+  height: 200px;
+  overflow: hidden;
 }
 
-/* Remove the old featureMedia styles since we're using background now */
-.featureMedia {
-  display: none;
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-/* Dark mode adjustments */
-.dark .featureContent {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.05);
+.featureImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.dark .featureCard:hover .featureContent {
-  background: rgba(0, 0, 0, 0.4);
-  border-color: rgba(255, 255, 255, 0.1);
+.featureCard:hover .featureImage {
+  transform: scale(1.05);
 }
 
-/* Stats Section */
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* Content Section */
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.cardDescription {
+  color: var(--subtext);
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Stats Section - Simple */
 .statsSection {
   max-width: 1200px;
   margin: 0 auto;
@@ -260,10 +174,20 @@
   text-align: center;
 }
 
+.statItem {
+  padding: 2rem 1rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  transition: transform 0.2s ease;
+}
 
+.statItem:hover {
+  transform: translateY(-2px);
+}
 
 .statNumber {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   background: linear-gradient(135deg, #6366f1, #10b981);
   -webkit-background-clip: text;
@@ -383,33 +307,6 @@
   transform: translateY(-2px);
 }
 
-/* CTA Floating Orbs */
-.ctaOrb1,
-.ctaOrb2 {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(20px);
-  opacity: 0.3;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.ctaOrb1 {
-  width: 120px;
-  height: 120px;
-  background: linear-gradient(135deg, #10b981, #059669);
-  top: -30px;
-  right: 10%;
-}
-
-.ctaOrb2 {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  bottom: -20px;
-  left: 15%;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .features {
@@ -417,25 +314,8 @@
   }
 
   .featuresGrid {
-    grid-template-columns: 2fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .featureCard {
-    padding: 2rem 1.5rem;
-    min-height: 300px;
-  }
-
-  .featureContent {
-    padding: 1.5rem;
-  }
-
-  .featureTitle {
-    font-size: 1.3rem;
-  }
-
-  .featureDescription {
-    font-size: 1rem;
   }
 
   .statsSection {
@@ -446,17 +326,12 @@
     gap: 2rem;
   }
 
-  .statItem {
-    padding: 1.5rem 1rem;
-  }
-
   .ctaSection {
     margin: 4rem auto 0;
   }
 
   .ctaContent {
     padding: 3rem 1.5rem;
-    border-radius: 24px;
   }
 
   .ctaButtons {
@@ -476,53 +351,4 @@
   .backgroundShape2 {
     display: none;
   }
-}
-
-/* Loading states for background media */
-.featureBackgroundMedia.loading::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 24px;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .backgroundShape1,
-  .backgroundShape2,
-  .ctaOrb1,
-  .ctaOrb2 {
-    animation: none !important;
-  }
-  
-  .featureCard,
-  .ctaButtonPrimary,
-  .ctaButtonSecondary,
-  .featureContent {
-    transition: none !important;
-  }
-  
-  .featureBackgroundVideo {
-    animation: none !important;
-  }
-}
-
-/* Dark mode loading states */
-.dark .featureBackgroundMedia.loading::after {
-  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
 }
