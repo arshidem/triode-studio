@@ -399,10 +399,10 @@
 /* ---------- Mobile Menu ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 70px;
+  top: 10px;
   right: 10px;
   width: 250px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 140px);
   background-color: var(--bg);
   box-shadow: var(--shadow-md);
   padding: 10px;
@@ -413,6 +413,7 @@
 }
 
 .mobileLinks {
+  margin-top: 40px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -448,20 +449,51 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1rem 0;
   border-top: 1px solid var(--border);
+  padding: 1rem 1px;
+
 }
 
 .mobileGetInTouch {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.mobileToggleWrapper {
+
+
+ .mobileGetInTouchBtn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+  padding: 2px 2px;
+  font-weight: 600;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+.mobileArrowCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  border-radius: 50%;
+}
+.mobileGetInTouchText {
+ font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  padding-right: 5px;
+  color: var(--text);
 }
 
 .toggleLabel {

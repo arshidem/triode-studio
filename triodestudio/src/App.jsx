@@ -23,6 +23,7 @@ import Services from "./user/pages/Services";
 import Testimonials from "./user/pages/Testimonials";
 import About from "./user/pages/About";
 import Contact from "./user/pages/Contact";
+import Portfolio from "./user/pages/Portfolio";
 
 // Styles and Animations
 import "./styles/global.css";
@@ -50,7 +51,8 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/portfolio" element={<Portfolio />}/>
+
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

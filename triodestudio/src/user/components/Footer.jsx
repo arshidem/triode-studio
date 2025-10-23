@@ -12,53 +12,96 @@ const Footer = () => {
       name: "Instagram",
       url: "https://www.instagram.com/triodestudio",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.3 2.4.5.6.2 1 .5 1.4 1 .4.4.8.8 1 1.4.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.9-.5 2.4-.2.6-.5 1-.9 1.4-.4.4-.8.8-1.4.9-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.3-2.4-.5-.6-.2-1-.5-1.4-.9-.4-.4-.8-.8-.9-1.4-.2-.5-.4-1.2-.5-2.4-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.9.5-2.4.2-.6.5-1 .9-1.4.4-.4.8-.8 1.4-.9.5-.2 1.2-.4 2.4-.5 1.3-.1 1.7-.1 4.9-.1M12 0C8.7 0 8.3 0 7 .1 5.6.2 4.5.4 3.7.7 2.8 1 2.1 1.5 1.4 2.2.8 2.8.3 3.5 0 4.3c-.3.8-.5 1.9-.6 3.3C-.1 8 0 8.4 0 11.7s-.1 3.7.1 5c.1 1.4.3 2.5.6 3.3.3.8.8 1.5 1.4 2.1.7.7 1.4 1.2 2.3 1.5.8.3 1.9.5 3.3.6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.4-.1 2.5-.3 3.3-.6.8-.3 1.5-.8 2.1-1.4.7-.7 1.2-1.4 1.5-2.3.3-.8.5-1.9.6-3.3.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.4-.3-2.5-.6-3.3-.3-.8-.8-1.5-1.5-2.1C22.5 1.5 21.8 1 21 0.7c-.8-.3-1.9-.5-3.3-.6C15.7 0 15.3 0 12 0zM12 5.8a6.2 6.2 0 1 0 0 12.4A6.2 6.2 0 0 0 12 5.8zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-10.9a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/>
-        </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 128 128" id="instagram">
+  <defs>
+    <clipPath id="b">
+      <circle cx="64" cy="64" r="64" fill="none"></circle>
+    </clipPath>
+    <clipPath id="c">
+      <path fill="none" d="M104-163H24a24.07 24.07 0 0 0-24 24v80a24.07 24.07 0 0 0 24 24h80a24.07 24.07 0 0 0 24-24v-80a24.07 24.07 0 0 0-24-24Zm16 104a16 16 0 0 1-16 16H24A16 16 0 0 1 8-59v-80a16 16 0 0 1 16-16h80a16 16 0 0 1 16 16Z"></path>
+    </clipPath>
+    <clipPath id="e">
+      <circle cx="82" cy="209" r="5" fill="none"></circle>
+    </clipPath>
+    <clipPath id="g">
+      <path fill="none" d="M64-115a16 16 0 0 0-16 16 16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-16-16Zm0 24a8 8 0 0 1-8-8 8 8 0 0 1 8-8 8 8 0 0 1 8 8 8 8 0 0 1-8 8Z"></path>
+    </clipPath>
+    <clipPath id="h">
+      <path fill="none" d="M84-63H44a16 16 0 0 1-16-16v-40a16 16 0 0 1 16-16h40a16 16 0 0 1 16 16v40a16 16 0 0 1-16 16Zm-40-64a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8Z"></path>
+    </clipPath>
+    <clipPath id="i">
+      <circle cx="82" cy="-117" r="5" fill="none"></circle>
+    </clipPath>
+    <radialGradient id="a" cx="27.5" cy="121.5" r="137.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd676"></stop>
+      <stop offset=".25" stop-color="#f2a454"></stop>
+      <stop offset=".38" stop-color="#f05c3c"></stop>
+      <stop offset=".7" stop-color="#c22f86"></stop>
+      <stop offset=".96" stop-color="#6666ad"></stop>
+      <stop offset=".99" stop-color="#5c6cb2"></stop>
+    </radialGradient>
+    <radialGradient xlink:href="#a" id="d" cx="27.5" cy="-41.5" r="148.5"></radialGradient>
+    <radialGradient xlink:href="#a" id="f" cx="13.87" cy="303.38" r="185.63"></radialGradient>
+    <radialGradient xlink:href="#a" id="j" cx="13.87" cy="-22.62" r="185.63"></radialGradient>
+  </defs>
+  <g clip-path="url(#b)">
+    <circle cx="27.5" cy="121.5" r="137.5" fill="url(#a)"></circle>
+  </g>
+  <g clip-path="url(#c)">
+    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+  </g>
+  <g clip-path="url(#e)">
+    <circle cx="13.87" cy="303.38" r="185.63" fill="url(#f)"></circle>
+  </g>
+  <g clip-path="url(#g)">
+    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+  </g>
+  <g clip-path="url(#h)">
+    <circle cx="27.5" cy="-41.5" r="148.5" fill="url(#d)"></circle>
+  </g>
+  <g clip-path="url(#i)">
+    <circle cx="13.87" cy="-22.62" r="185.63" fill="url(#j)"></circle>
+  </g>
+  <circle cx="82" cy="46" r="5" fill="#fff"></circle>
+  <path fill="#fff" d="M64 48a16 16 0 1 0 16 16 16 16 0 0 0-16-16Zm0 24a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"></path>
+  <rect width="64" height="64" x="32" y="32" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="8" rx="12" ry="12"></rect>
+</svg>
+
       ),
     },
     {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/company-triode-studio",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 
-          0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.27
-          c-.96 0-1.73-.78-1.73-1.73s.77-1.73 1.73-1.73 1.73.78 1.73 1.73-.78
-          1.73-1.73 1.73zm13.25 12.27h-3v-5.6c0-1.34-.03-3.08-1.88-3.08-1.88 
-          0-2.17 1.47-2.17 2.98v5.7h-3v-11h2.89v1.5h.04c.4-.75 1.38-1.55 
-          2.84-1.55 3.04 0 3.6 2 3.6 4.59v6.46z"/>
-        </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" id="linkedin">
+  <circle cx="64" cy="64" r="64" fill="#0177b5"></circle>
+  <path fill="#fff" d="M92 32H36a4 4 0 0 0-4 4v56a4 4 0 0 0 4 4h56a4 4 0 0 0 4-4V36a4 4 0 0 0-4-4ZM52 86H42V56h10Zm-5-34a6 6 0 1 1 6-6 6 6 0 0 1-6 6Zm39 34H76V66c0-1.66-2.24-3-5-3-4 0-5 5.34-5 7v16H56V56h10v7c0-5 4.48-7 10-7a10 10 0 0 1 10 10Z"></path>
+</svg>
+
+
+
       ),
     },
     {
       name: "WhatsApp",
       url: "https://wa.me/918157875032?text=Hello!%20I%20need%20web%20development%20services%20for%20my%20business.%20Are%20you%20available%20for%20a%20consultation?",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.37 0 0 4.96 0 11.09c0 2.19.69 4.21 1.88 
-          5.9L.13 24l7.1-2.23a12.5 12.5 0 0 0 4.77.93C18.63 22.7 
-          24 17.74 24 11.61 24 5.48 18.63 0 12 0zm0 21.06a9.94 9.94 
-          0 0 1-4.27-.98l-.31-.15-4.2 1.3 1.38-3.97-.26-.36a8.85 8.85 
-          0 0 1-1.68-5.33C2.66 6.33 6.86 2.46 12 2.46s9.34 3.87 
-          9.34 8.71-4.2 8.7-9.34 8.7zm4.96-6.57c-.27-.14-1.57-.77-1.81-.86s-.42-.14-.6.14-.69.86-.84 1.04c-.15.17-.31.2-.58.07a8.17 8.17 0 0 1-2.41-1.44 8.83 8.83 0 0 1-1.64-2.02c-.17-.29 0-.45.13-.59.14-.13.29-.34.44-.5.15-.16.2-.28.3-.47s.05-.36-.02-.5c-.07-.14-.6-1.43-.82-1.96s-.44-.45-.6-.46h-.5c-.16 0-.5.07-.77.36s-1 1-1 2.45 1.03 2.84 1.18 3.04c.15.21 2.04 3.12 4.95 4.27.69.3 1.23.47 1.65.6.69.22 1.32.19 1.82.12.56-.09 1.57-.64 1.8-1.26.22-.63.22-1.16.16-1.27-.07-.12-.24-.19-.51-.33z"/>
-        </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48" id="whatsapp">
+  <rect width="48" height="48" fill="#0DC143" rx="24"></rect>
+  <path fill="#fff" d="M34.7507 13.2115C32.1777 10.5628 28.621 9.125 24.9885 9.125C17.2696 9.125 11.0642 15.4061 11.1399 23.0493C11.1399 25.4709 11.821 27.8169 12.9561 29.9358L10.9885 37.125L18.3291 35.2331C20.3723 36.3682 22.6426 36.898 24.9128 36.898C32.5561 36.898 38.7615 30.6169 38.7615 22.9736C38.7615 19.2655 37.3237 15.7845 34.7507 13.2115ZM24.9885 34.552C22.9453 34.552 20.902 34.0223 19.1615 32.9628L18.7074 32.7358L14.3183 33.8709L15.4534 29.5574L15.1507 29.1034C11.821 23.7304 13.4101 16.6169 18.8588 13.2872C24.3074 9.95743 31.3453 11.5466 34.675 16.9953C38.0047 22.4439 36.4156 29.4818 30.9669 32.8115C29.2264 33.9466 27.1074 34.552 24.9885 34.552ZM31.648 26.152L30.8156 25.7736C30.8156 25.7736 29.6047 25.2439 28.848 24.8655C28.7723 24.8655 28.6966 24.7899 28.621 24.7899C28.3939 24.7899 28.2426 24.8655 28.0912 24.9412C28.0912 24.9412 28.0156 25.0169 26.9561 26.2277C26.8804 26.3791 26.7291 26.4547 26.5777 26.4547H26.502C26.4264 26.4547 26.275 26.3791 26.1993 26.3034L25.821 26.152C24.9885 25.7736 24.2318 25.3196 23.6264 24.7142C23.475 24.5628 23.248 24.4115 23.0966 24.2601C22.5669 23.7304 22.0372 23.125 21.6588 22.4439L21.5831 22.2926C21.5074 22.2169 21.5074 22.1412 21.4318 21.9899C21.4318 21.8385 21.4318 21.6872 21.5074 21.6115C21.5074 21.6115 21.8101 21.2331 22.0372 21.0061C22.1885 20.8547 22.2642 20.6277 22.4156 20.4764C22.5669 20.2493 22.6426 19.9466 22.5669 19.7196C22.4912 19.3412 21.5831 17.298 21.3561 16.8439C21.2047 16.6169 21.0534 16.5412 20.8264 16.4655H20.5993C20.448 16.4655 20.221 16.4655 19.9939 16.4655C19.8426 16.4655 19.6912 16.5412 19.5399 16.5412L19.4642 16.6169C19.3128 16.6926 19.1615 16.8439 19.0101 16.9196C18.8588 17.0709 18.7831 17.2223 18.6318 17.3736C18.102 18.0547 17.7993 18.8872 17.7993 19.7196C17.7993 20.325 17.9507 20.9304 18.1777 21.4601L18.2534 21.6872C18.9345 23.125 19.8426 24.4115 21.0534 25.5466L21.3561 25.8493C21.5831 26.0764 21.8101 26.2277 21.9615 26.4547C23.5507 27.8169 25.3669 28.8007 27.4101 29.3304C27.6372 29.4061 27.9399 29.4061 28.1669 29.4818C28.3939 29.4818 28.6966 29.4818 28.9237 29.4818C29.302 29.4818 29.7561 29.3304 30.0588 29.1791C30.2858 29.0277 30.4372 29.0277 30.5885 28.8764L30.7399 28.725C30.8912 28.5736 31.0426 28.498 31.1939 28.3466C31.3453 28.1953 31.4966 28.0439 31.5723 27.8926C31.7237 27.5899 31.7993 27.2115 31.875 26.8331C31.875 26.6818 31.875 26.4547 31.875 26.3034C31.875 26.3034 31.7993 26.2277 31.648 26.152Z"></path>
+</svg>
+
       ),
     },
     {
       name: "Facebook",
       url: "https://www.facebook.com/share/14QskoHRe87/",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M22.675 0h-21.35C.597 0 0 .597 
-          0 1.333v21.333C0 23.403.597 24 1.325 
-          24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 
-          1.893-4.788 4.659-4.788 1.325 0 2.463.098 
-          2.794.142v3.24h-1.917c-1.504 0-1.795.716-1.795 
-          1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.728 
-          0 1.325-.597 1.325-1.334V1.333C24 
-          .597 23.403 0 22.675 0z"/>
-        </svg>
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" id="facebook">
+  <path fill="#1877f2" d="M1024,512C1024,229.23016,794.76978,0,512,0S0,229.23016,0,512c0,255.554,187.231,467.37012,432,505.77777V660H302V512H432V399.2C432,270.87982,508.43854,200,625.38922,200,681.40765,200,740,210,740,210V336H675.43713C611.83508,336,592,375.46667,592,415.95728V512H734L711.3,660H592v357.77777C836.769,979.37012,1024,767.554,1024,512Z"></path>
+  <path fill="#fff" d="M711.3,660,734,512H592V415.95728C592,375.46667,611.83508,336,675.43713,336H740V210s-58.59235-10-114.61078-10C508.43854,200,432,270.87982,432,399.2V512H302V660H432v357.77777a517.39619,517.39619,0,0,0,160,0V660Z"></path>
+</svg>
+
       ),
     },
   ];
@@ -66,6 +109,7 @@ const Footer = () => {
   const quickLinks = [
     { path: "/", label: "Home" },
     { path: "/services", label: "Services" },
+    { path: "/portfolio", label: "Portfolio" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
   ];
@@ -120,16 +164,43 @@ const Footer = () => {
     ))}
   </div>
 </div>
-
         {/* Contact Info */}
-        <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Get in Touch</h3>
-          <div className={styles.contactInfo}>
-            <p>Email: hello@triodestudio.com</p>
-            <p>Phone: +91 81578 75032</p>
-            <p>Location: Palakkad, Kerala, India</p>
-          </div>
-        </div>
+<div className={styles.footerSection}>
+  <h3 className={styles.sectionTitle}>Get in Touch</h3>
+  <div className={styles.contactInfo}>
+    <div className={styles.contactItem}>
+      <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <div className={styles.emailOptions}>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=triodeuiux@gmail.com&su=Contact%20from%20Website&body=Hello,%20I%20would%20like%20to%20get%20in%20touch..." 
+           className={styles.contactLink} target="_blank" rel="noopener noreferrer">
+          triodeuiux@gmail.com
+        </a>
+      </div>
+    </div>
+    
+    <div className={styles.contactItem}>
+      <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 16.92V19.92C22 20.52 21.53 21.02 20.94 21.07C20.47 21.11 19.98 21.14 19.49 21.16C17.17 21.3 14.88 20.84 12.81 19.82C10.06 18.47 7.78 16.34 6.24 13.68C5.23 11.89 4.65 9.92 4.51 7.89C4.44 6.87 4.49 5.85 4.66 4.84C4.75 4.26 5.25 3.81 5.84 3.81H8.84C9.41 3.81 9.91 4.22 10.02 4.78C10.22 5.82 10.56 6.83 11.02 7.78C11.18 8.11 11.13 8.5 10.88 8.78L9.82 9.99C10.93 12.38 12.69 14.31 14.89 15.55L16.09 14.47C16.38 14.21 16.78 14.15 17.12 14.3C18.05 14.74 19.05 15.07 20.07 15.27C20.65 15.39 21.09 15.89 21.09 16.48V16.92H22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <a href="tel:+918157875032" className={styles.contactLink}>
+        +91 81578 75032
+      </a>
+    </div>
+    
+    <div className={styles.contactItem}>
+      <svg className={styles.contactIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <span className={styles.contactText}>
+        Palakkad, Kerala, India
+      </span>
+    </div>
+  </div>
+</div>
       </div>
 
       <div className={styles.footerBottom}>

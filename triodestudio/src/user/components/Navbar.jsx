@@ -58,13 +58,13 @@ const Navbar = () => {
   };
 
   /* Nav link data */
-  const links = [
-    { path: "/", label: "Home" },
-    { path: "/services", label: "Services" },
-    { path: "/testimonials", label: "Testimonials" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-  ];
+const links = [
+  { path: "/", label: "Home" },
+  { path: "/services", label: "Services" },
+  { path: "/portfolio", label: "Portfolio" }, // Changed from Testimonials
+  { path: "/about", label: "About" },
+  { path: "/contact", label: "Contact" },
+];
 
   /* Animation variants for mobile sidebar (slide from right) */
   const sidebarVariants = {
@@ -305,11 +305,11 @@ const Navbar = () => {
               >
                 {/* Get In Touch Button */}
                 <div className={styles.mobileGetInTouch}>
-                  <button className={styles.getInTouchBtn}>
-                    <span className={styles.arrowCircle}>
+                  <button className={styles.mobileGetInTouchBtn}>
+                    <span className={styles.mobileArrowCircle}>
                       <IoIosArrowForward size={22} />
                     </span>
-                    <span className={styles.getInTouchText}>Get In Touch</span>
+                    <span className={styles.mobileGetInTouchText}>Get In Touch</span>
                   </button>
                 </div>
 
