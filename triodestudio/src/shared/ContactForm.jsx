@@ -1,12 +1,6 @@
-// src/shared/ContactForm.jsx
-/**
- * ContactForm Component - Premium contact form with validation
- * Features: Name, email, message fields, submit button, form validation
- * Animated focus states and error handling
- */
-
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from 'emailjs-com';
 import styles from "./ContactForm.module.css";
 
 const ContactForm = () => {
@@ -19,77 +13,89 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  // Handle input changes
+  // EmailJS configuration (get these from emailjs.com)
+  const EMAILJS_SERVICE_ID = 'service_bx11iti';
+  const EMAILJS_TEMPLATE_ID = 'template_q1s2a3b';
+  const EMAILJS_USER_ID = 'yVl3lnyuuBXGHuhnP';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
         [name]: "",
       }));
     }
+    // Clear any previous errors
+    setSubmitError("");
   };
 
-  // Validate form
   const validate = () => {
     const newErrors = {};
-
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     }
-
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
-
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters";
     }
-
     return newErrors;
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const newErrors = validate();
-    
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
     setIsSubmitting(true);
+    setSubmitError("");
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setIsSubmitting(false);
+    try {
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'triodeuiux@gmail.com',
+        reply_to: formData.email
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_USER_ID
+      );
+
       setSubmitSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
       
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
-      });
-
-      // Hide success message after 3 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
-      }, 3000);
-    }, 1500);
+      }, 5000);
+      
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitError("Failed to send message. Please try again or contact us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -99,9 +105,8 @@ const ContactForm = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      data-animate="fade-up"
     >
-      {/* Name Field */}
+      {/* Form fields remain the same */}
       <div className={styles.formGroup}>
         <label htmlFor="name" className={styles.label}>
           Name <span className={styles.required}>*</span>
@@ -118,7 +123,6 @@ const ContactForm = () => {
         {errors.name && <span className={styles.errorText}>{errors.name}</span>}
       </div>
 
-      {/* Email Field */}
       <div className={styles.formGroup}>
         <label htmlFor="email" className={styles.label}>
           Email <span className={styles.required}>*</span>
@@ -135,7 +139,6 @@ const ContactForm = () => {
         {errors.email && <span className={styles.errorText}>{errors.email}</span>}
       </div>
 
-      {/* Message Field */}
       <div className={styles.formGroup}>
         <label htmlFor="message" className={styles.label}>
           Message <span className={styles.required}>*</span>
@@ -169,9 +172,19 @@ const ContactForm = () => {
           className={styles.successMessage}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
         >
-          ✓ Message sent successfully! We'll get back to you soon.
+          ✓ Message sent successfully! We'll get back to you within 24 hours.
+        </motion.div>
+      )}
+
+      {/* Error Message */}
+      {submitError && (
+        <motion.div
+          className={styles.errorMessage}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          ⚠ {submitError}
         </motion.div>
       )}
     </motion.form>
