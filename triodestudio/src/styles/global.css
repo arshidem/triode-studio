@@ -4,7 +4,7 @@
 /* ===== CSS VARIABLES ===== */
 :root {
   /* Light Mode Colors */
-  --bg: #0000003a;
+  --bg: #fff4f4;
   --bg-secondary: rgba(74, 144, 226, 0.05);
   --bg-blur: rgba(240, 241, 245, 0.95);
   --text: #052659;
