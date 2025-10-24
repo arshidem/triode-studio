@@ -544,22 +544,13 @@
 
 /* ===== DESKTOP-ONLY ENHANCEMENTS ===== */
 @media (min-width: 769px) {
-  .about {
-    padding: 6rem 2rem 4rem;
-    background: linear-gradient(135deg, var(--bg) 0%, var(--card-bg) 100%);
-  }
 
   .title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    background: linear-gradient(135deg, var(--text) 0%, var(--primary) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2.5rem;
   }
 
   .subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-    margin-bottom: 3rem;
+    font-size: 1.1rem;
   }
 
   .stats {
@@ -1144,7 +1135,13 @@
   .teamGrid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+  .title {
+    font-size: 2.5rem;
+  }
 
+  .subtitle {
+    font-size: 1.1rem;
+  }
   .teamCard:hover {
     border-color: var(--primary);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);

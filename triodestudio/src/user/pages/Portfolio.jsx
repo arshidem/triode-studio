@@ -30,12 +30,14 @@ const Portfolio = () => {
       image3: "/assets/images/portfolio/nike-redesign3.jpg",
       title: "Nike E-commerce Redesign",
       category: "Full-Stack Development",
-      shortDescription: "Complete Nike store redesign with admin dashboard, payment integration, and real-time analytics.",
+      shortDescription:
+        "Complete Nike store redesign with admin dashboard, payment integration, and real-time analytics.",
       status: "Live Demo Available",
       badge: "Featured",
-      
+
       // Modal Details
-      fullDescription: "A comprehensive e-commerce platform featuring a complete redesign of Nike's online shopping experience. Built with modern web technologies and featuring a robust admin dashboard for complete store management.",
+      fullDescription:
+        "A comprehensive e-commerce platform featuring a complete redesign of Nike's online shopping experience. Built with modern web technologies and featuring a robust admin dashboard for complete store management.",
       features: [
         "User Authentication with JWT & Email Verification",
         "Product Catalog with Advanced Filtering & Search",
@@ -45,14 +47,24 @@ const Portfolio = () => {
         "Admin Dashboard with Analytics & Charts",
         "Coupon Code System & Promotions",
         "Product & Stock Management",
-        "Order Export (PDF/Word) Functionality"
+        "Order Export (PDF/Word) Functionality",
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Razorpay", "JWT", "Redux"],
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express",
+        "Razorpay",
+        "JWT",
+        "Redux",
+      ],
       liveLink: "https://nike-redesign-six.vercel.app",
       projectDuration: "6 weeks",
       yourRole: "Full-Stack Developer & UI Designer",
-      challenges: "Implementing secure payment integration while maintaining smooth user experience and building a comprehensive admin dashboard with real-time analytics.",
-      solutions: "Used Razorpay for reliable payments, JWT for secure authentication, and Chart.js for interactive analytics in the admin panel."
+      challenges:
+        "Implementing secure payment integration while maintaining smooth user experience and building a comprehensive admin dashboard with real-time analytics.",
+      solutions:
+        "Used Razorpay for reliable payments, JWT for secure authentication, and Chart.js for interactive analytics in the admin panel.",
     },
     {
       id: 2,
@@ -61,12 +73,14 @@ const Portfolio = () => {
       image3: "/assets/images/portfolio/fund-management3.jpg",
       title: "Fund Management System",
       category: "Full-Stack Web Application",
-      shortDescription: "Multi-user financial management platform with real-time chat, event management, and admin controls.",
+      shortDescription:
+        "Multi-user financial management platform with real-time chat, event management, and admin controls.",
       status: "Case Study",
       badge: "Enterprise",
-      
+
       // Modal Details
-      fullDescription: "A sophisticated fund management system designed for communities and organizations to manage events, contributions, expenses, and participant communications securely.",
+      fullDescription:
+        "A sophisticated fund management system designed for communities and organizations to manage events, contributions, expenses, and participant communications securely.",
       features: [
         "Multi-level User Authentication & Admin Approval",
         "Event Creation & Management System",
@@ -75,14 +89,25 @@ const Portfolio = () => {
         "Participant Management & Invitations",
         "Balance Tracking & Financial Reporting",
         "Notification System & Alerts",
-        "Admin Dashboard with Full Controls"
+        "Admin Dashboard with Full Controls",
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS", "Socket.io", "JWT"],
+      technologies: [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Express",
+        "Tailwind CSS",
+        "Socket.io",
+        "JWT",
+      ],
       projectDuration: "8 weeks",
       yourRole: "Full-Stack Developer",
-      challenges: "Building secure multi-level authentication and real-time communication features while maintaining data integrity for financial operations.",
-      solutions: "Implemented admin approval workflow, WebSocket-based real-time chat, and robust financial transaction tracking with proper validation.",
-      accessNote: "Demo access requires admin approval due to sensitive financial data and security protocols."
+      challenges:
+        "Building secure multi-level authentication and real-time communication features while maintaining data integrity for financial operations.",
+      solutions:
+        "Implemented admin approval workflow, WebSocket-based real-time chat, and robust financial transaction tracking with proper validation.",
+      accessNote:
+        "Demo access requires admin approval due to sensitive financial data and security protocols.",
     },
     {
       id: 3,
@@ -91,12 +116,14 @@ const Portfolio = () => {
       image3: "/assets/images/portfolio/book-swap3.jpg",
       title: "Book Swap Mobile App",
       category: "UI/UX Design",
-      shortDescription: "Mobile app design for book sharing community with intuitive user flows and modern interface.",
+      shortDescription:
+        "Mobile app design for book sharing community with intuitive user flows and modern interface.",
       status: "UI Design",
       badge: "Mobile Design",
-      
+
       // Modal Details
-      fullDescription: "A mobile application UI design for a community-based book swapping platform. Focused on creating seamless user experiences for book discovery, swapping, and community engagement.",
+      fullDescription:
+        "A mobile application UI design for a community-based book swapping platform. Focused on creating seamless user experiences for book discovery, swapping, and community engagement.",
       features: [
         "Book Discovery & Search Interface",
         "User Profile & Book Collection Management",
@@ -105,36 +132,38 @@ const Portfolio = () => {
         "Location-based Book Availability",
         "Rating & Review System",
         "Notification Center",
-        "Chat Interface for User Communication"
+        "Chat Interface for User Communication",
       ],
       technologies: ["Figma", "Adobe XD", "Prototyping", "User Research"],
       figmaLink: "https://figma.com/your-prototype-link",
       projectDuration: "3 weeks",
       yourRole: "UI/UX Designer",
-      challenges: "Creating intuitive user flows for book swapping while maintaining visual appeal and ensuring smooth mobile interactions.",
-      solutions: "Conducted user research to understand pain points, created wireframes for key flows, and developed high-fidelity prototypes with interactive elements."
-    }
+      challenges:
+        "Creating intuitive user flows for book swapping while maintaining visual appeal and ensuring smooth mobile interactions.",
+      solutions:
+        "Conducted user research to understand pain points, created wireframes for key flows, and developed high-fidelity prototypes with interactive elements.",
+    },
   ];
 
   const openModal = (project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProject(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   const ProjectCard = ({ project, index }) => {
     const handleLiveDemoClick = (e, project) => {
       e.stopPropagation(); // Prevent opening modal when clicking Live Demo
       if (project.liveLink) {
-        window.open(project.liveLink, '_blank', 'noopener,noreferrer');
+        window.open(project.liveLink, "_blank", "noopener,noreferrer");
       } else if (project.figmaLink) {
-        window.open(project.figmaLink, '_blank', 'noopener,noreferrer');
+        window.open(project.figmaLink, "_blank", "noopener,noreferrer");
       }
     };
 
@@ -170,7 +199,7 @@ const Portfolio = () => {
         {/* Content Section */}
         <div className={styles.cardContent}>
           <h3 className={styles.cardTitle}>{project.title}</h3>
-          
+
           {/* Action Buttons */}
           <div className={styles.cardActions}>
             {/* Live Demo Button */}
@@ -181,9 +210,7 @@ const Portfolio = () => {
                 whileTap={{ scale: 0.98 }}
                 onClick={(e) => handleLiveDemoClick(e, project)}
               >
-                <span>
-                  {project.liveLink ? 'Live Demo' : 'View Prototype'}
-                </span>
+                <span>{project.liveLink ? "Live Demo" : "View Prototype"}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"
@@ -195,7 +222,7 @@ const Portfolio = () => {
                 </svg>
               </motion.button>
             )}
-            
+
             {/* View Case Study Button */}
             <motion.button
               className={styles.viewDetailsBtn}
@@ -241,7 +268,12 @@ const Portfolio = () => {
                 initial={{ opacity: 0, scale: 0.8, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300, duration: 0.2 }}
+                transition={{
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 300,
+                  duration: 0.2,
+                }}
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className={styles.modalInner}>
@@ -270,10 +302,14 @@ const Portfolio = () => {
                         />
                       </div>
                       <div className={styles.modalTitleSection}>
-                        <div className={styles.projectCategory}>{project.category}</div>
+                        <div className={styles.projectCategory}>
+                          {project.category}
+                        </div>
                         <h2 className={styles.modalTitle}>{project.title}</h2>
-                        <p className={styles.modalSubtitle}>{project.shortDescription}</p>
-                        
+                        <p className={styles.modalSubtitle}>
+                          {project.shortDescription}
+                        </p>
+
                         {/* Demo Button at Top */}
                         <div className={styles.modalDemoSection}>
                           {project.liveLink && (
@@ -286,7 +322,12 @@ const Portfolio = () => {
                               whileTap={{ scale: 0.98 }}
                             >
                               <span>View Live Demo</span>
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                              >
                                 <path
                                   d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"
                                   stroke="currentColor"
@@ -314,11 +355,15 @@ const Portfolio = () => {
                         <div className={styles.projectMeta}>
                           <div className={styles.metaItem}>
                             <span className={styles.metaLabel}>Role:</span>
-                            <span className={styles.metaValue}>{project.yourRole}</span>
+                            <span className={styles.metaValue}>
+                              {project.yourRole}
+                            </span>
                           </div>
                           <div className={styles.metaItem}>
                             <span className={styles.metaLabel}>Duration:</span>
-                            <span className={styles.metaValue}>{project.projectDuration}</span>
+                            <span className={styles.metaValue}>
+                              {project.projectDuration}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -327,20 +372,28 @@ const Portfolio = () => {
                     {/* Full Description */}
                     <div className={styles.modalSection}>
                       <h3 className={styles.sectionTitle}>Project Overview</h3>
-                      <p className={styles.fullDescription}>{project.fullDescription}</p>
+                      <p className={styles.fullDescription}>
+                        {project.fullDescription}
+                      </p>
                     </div>
 
                     {/* Challenges & Solutions */}
                     <div className={styles.modalSection}>
-                      <h3 className={styles.sectionTitle}>Challenge & Solution</h3>
+                      <h3 className={styles.sectionTitle}>
+                        Challenge & Solution
+                      </h3>
                       <div className={styles.challengeGrid}>
                         <div className={styles.challengeCard}>
                           <h4 className={styles.challengeTitle}>Challenge</h4>
-                          <p className={styles.challengeText}>{project.challenges}</p>
+                          <p className={styles.challengeText}>
+                            {project.challenges}
+                          </p>
                         </div>
                         <div className={styles.solutionCard}>
                           <h4 className={styles.solutionTitle}>Solution</h4>
-                          <p className={styles.solutionText}>{project.solutions}</p>
+                          <p className={styles.solutionText}>
+                            {project.solutions}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -352,7 +405,9 @@ const Portfolio = () => {
                         {project.features.map((feature, index) => (
                           <div key={index} className={styles.featureCard}>
                             <div className={styles.featureIcon}>✓</div>
-                            <span className={styles.featureText}>{feature}</span>
+                            <span className={styles.featureText}>
+                              {feature}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -360,7 +415,9 @@ const Portfolio = () => {
 
                     {/* Technologies */}
                     <div className={styles.modalSection}>
-                      <h3 className={styles.sectionTitle}>Technologies & Tools</h3>
+                      <h3 className={styles.sectionTitle}>
+                        Technologies & Tools
+                      </h3>
                       <div className={styles.technologiesGrid}>
                         {project.technologies.map((tech, index) => (
                           <span key={index} className={styles.techPill}>
@@ -418,8 +475,9 @@ const Portfolio = () => {
         <div className={styles.headerContent}>
           <h1 className={styles.title}>Our Portfolio</h1>
           <p className={styles.subtitle}>
-            Explore our latest projects and case studies. Each project represents 
-            our commitment to quality, innovation, and delivering exceptional digital experiences.
+            Explore our latest projects and case studies. Each project
+            represents our commitment to quality, innovation, and delivering
+            exceptional digital experiences.
           </p>
           <div className={styles.stats}>
             <div className={styles.stat}>
@@ -446,10 +504,10 @@ const Portfolio = () => {
       </div>
 
       {/* Project Modal */}
-      <ProjectModal 
-        project={selectedProject} 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
       />
 
       {/* CTA Section */}
@@ -463,8 +521,8 @@ const Portfolio = () => {
         <div className={styles.ctaContent}>
           <h2>Ready to Start Your Project?</h2>
           <p>
-            Let's collaborate to bring your ideas to life with the same level 
-            of quality and attention to detail showcased in our portfolio.
+            Let's collaborate to bring your ideas to life with the same level of
+            quality and attention to detail showcased in our portfolio.
           </p>
           <div className={styles.ctaButtons}>
             <motion.button
@@ -474,15 +532,16 @@ const Portfolio = () => {
             >
               Start Your Project
             </motion.button>
-            <Link to="/services">
-            <motion.button
-              className={`${styles.ctaButton} ${styles.secondary}`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Services
-            </motion.button>
-            </Link>
+         <Link to="/services" style={{ width: "100%", maxWidth: "250px" }}>
+  <motion.button
+    className={`${styles.ctaButton} ${styles.secondary}`}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    View Services
+  </motion.button>
+</Link>
+
           </div>
         </div>
       </motion.div>

@@ -4,13 +4,13 @@
 /* ===== CSS VARIABLES ===== */
 :root {
   /* Light Mode Colors */
-  --bg: #f0f1f5;
+  --bg: #0000003a;
   --bg-secondary: rgba(74, 144, 226, 0.05);
   --bg-blur: rgba(240, 241, 245, 0.95);
   --text: #052659;
   --subtext: #5f6a7d;
   --border: rgba(0, 0, 0, 0.1);
-  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.489);
   --input-bg: rgba(255, 255, 255, 0.9);
   --hover-bg: rgba(74, 144, 226, 0.1);
   --active-bg: rgba(74, 144, 226, 0.15);

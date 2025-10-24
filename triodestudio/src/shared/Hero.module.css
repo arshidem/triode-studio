@@ -83,6 +83,7 @@
     #f59e0b 75%,
     #ef4444 100%
   );
+  font-size: 8vw;
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
