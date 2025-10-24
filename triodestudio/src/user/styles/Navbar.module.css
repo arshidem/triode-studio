@@ -402,7 +402,7 @@
   top: 10px;
   right: 10px;
   width: 250px;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 220px);
   background-color: var(--bg);
   box-shadow: var(--shadow-md);
   padding: 10px;

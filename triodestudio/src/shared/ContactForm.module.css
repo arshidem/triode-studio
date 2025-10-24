@@ -1,91 +1,113 @@
-/* src/shared/ContactForm.module.css */
-/* Premium contact form with modern styling and validation states */
+/* src/styles/ContactForm.module.css */
+/* Simplified Contact Form Styles */
 
-.contactForm {
+/* ===== FORM CONTAINER ===== */
+.contactSection {
   max-width: 600px;
-  width: 100%;
+  margin: 0 auto;
 }
 
+
+
+/* ===== FORM LAYOUT ===== */
+.contactForm {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+}
+
+.contactForm:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* ===== FORM GROUPS ===== */
 .formGroup {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
-.label {
-  display: block;
-  font-size: 0.95rem;
+.formLabel {
   font-weight: 600;
-  margin-bottom: 0.5rem;
   color: var(--text);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 .required {
-  color: #ef4444;
+  color: var(--error);
+  font-size: 1.2em;
 }
 
-.input,
-.textarea {
+/* ===== FORM INPUTS ===== */
+.formInput,
+.formTextarea {
   width: 100%;
-  padding: 1rem 1.25rem;
-  font-size: 1rem;
-  border: 2px solid var(--border, rgba(0, 0, 0, 0.1));
-  border-radius: 12px;
-  background: var(--input-bg, rgba(255, 255, 255, 0.05));
-  color: var(--text);
+  padding: var(--spacing-sm);
+  background: var(--input-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
   font-family: inherit;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: var(--text);
+  transition: all var(--transition-base);
+  resize: vertical;
+}
+
+.formInput:focus,
+.formTextarea:focus {
   outline: none;
-}
-
-.dark .input,
-.dark .textarea {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-.input:focus,
-.textarea:focus {
-  border-color: var(--primary, #4a90e2);
+  border-color: var(--primary);
+  background: var(--card-bg);
   box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
 }
 
-.textarea {
-  resize: vertical;
-  min-height: 120px;
+.formInput:hover,
+.formTextarea:hover {
+  border-color: var(--primary);
 }
 
-.inputError {
-  border-color: #ef4444;
+.formTextarea {
+  min-height: 140px;
+  line-height: 1.5;
 }
 
-.inputError:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.errorText {
-  display: block;
-  color: #ef4444;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-}
-
+/* ===== SUBMIT BUTTON ===== */
 .submitButton {
   width: 100%;
-  padding: 1rem 2rem;
+  padding:1rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
   font-size: 1.1rem;
   font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #4a90e2 0%, #667eea 100%);
-  color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
-  outline: none;
+  transition: all var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
 }
 
 .submitButton:hover:not(:disabled) {
-  box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: var(--gradient-secondary);
 }
 
 .submitButton:active:not(:disabled) {
@@ -95,33 +117,132 @@
 .submitButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
-.submitButton:focus-visible {
-  outline: 2px solid var(--primary, #4a90e2);
-  outline-offset: 3px;
+.submitButtonLoading {
+  opacity: 0.8;
+  cursor: wait;
 }
 
+/* ===== LOADING ANIMATION ===== */
+.loadingSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== SUCCESS MESSAGE ===== */
 .successMessage {
-  padding: 1rem 1.5rem;
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  border-radius: 12px;
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-xl);
   text-align: center;
-  margin-top: 1rem;
-  font-weight: 500;
+  margin-top: var(--spacing-lg);
+  animation: fadeIn 0.5s ease;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .input,
-  .textarea {
-    padding: 0.875rem 1rem;
-    font-size: 0.95rem;
-  }
+.successIcon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
 
+.successTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+}
+
+.successText {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* ===== ERROR STATES ===== */
+.formInput.error,
+.formTextarea.error {
+  border-color: var(--error);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.errorMessage {
+  color: var(--error);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.errorIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .contactForm {
+    padding: var(--spacing-lg);
+    margin: 0 var(--spacing-sm);
+  }
+  
+  .contactTitle {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+  
+  .contactSubtitle {
+    font-size: 1.1rem;
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .contactForm {
+    padding: var(--spacing-md);
+    border-radius: var(--radius-xl);
+  }
+  
+  .formInput,
+  .formTextarea {
+    padding: var(--spacing-sm);
+  }
+  
   .submitButton {
-    padding: 0.875rem 1.5rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
     font-size: 1rem;
   }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .contactForm,
+  .submitButton,
+  .formInput,
+  .formTextarea {
+    transition: none;
+  }
+  
+  .loadingSpinner {
+    animation: none;
+  }
+}
+
+/* ===== DARK MODE ENHANCEMENTS ===== */
+.dark .formInput:focus,
+.dark .formTextarea:focus {
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }

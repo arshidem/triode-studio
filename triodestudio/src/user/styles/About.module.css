@@ -4,8 +4,15 @@
 .about {
   min-height: 100vh;
   background: var(--bg);
-  padding: 4rem 1rem 2rem;
   position: relative;
+  top: 60px;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+    background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Header Styles */
@@ -65,7 +72,6 @@
 .sectionContent {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 
 .sectionTitle {
@@ -152,6 +158,48 @@
   font-size: 1.2rem;
 }
 
+.viewProfile {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+ .viewProfileBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+  padding: 2px 2px;
+  font-weight: 600;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+  margin: auto;
+}
+.ArrowCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  border-radius: 50%;
+}
+.viewProfileText {
+ font-size: 0.65rem;
+  letter-spacing: 0.3px;
+  padding-right: 5px;
+  color: var(--text);
+}
 .memberInfo {
   flex: 1;
 }

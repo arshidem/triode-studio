@@ -1,6 +1,7 @@
 .footer {
-  background: var(--footer-bg);
-  border-top: 1px solid var(--border);
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
   position: relative;
   bottom: 0;
   padding: 2rem var(--spacing-md);

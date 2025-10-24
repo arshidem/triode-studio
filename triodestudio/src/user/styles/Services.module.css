@@ -4,8 +4,14 @@
 .services {
   min-height: 100vh;
   background: var(--bg);
-  padding: 4rem 1rem 2rem;
   position: relative;
+  top: 60px;
+  margin: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+    background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Header Styles */
@@ -68,7 +74,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin-bottom: 3rem;
+    padding: 10px 10px;
+
 }
 
 /* Service Card */
@@ -138,27 +145,67 @@
 }
 
 /* View Details Button */
+/* View Details Button */
 .viewDetailsBtn {
-  width: 100%;
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.875rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
+  width: 50%;
+  margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 5px 5px;
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
   gap: 0.5rem;
-  transition: background-color 0.2s ease;
+}
+
+.viewDetailsBtn:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .viewDetailsBtn:active {
   background: var(--secondary);
+  transform: translateY(0);
 }
 
+.viewDetailsBtn:hover .arrowCircle {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+.viewDetailsBtn:hover .viewDetailsText {
+  color: white;
+}
+
+.arrowCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.viewDetailsText {
+  font-size: 0.875rem;
+  margin-left: 10px;
+  letter-spacing: 0.3px;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
 /* Modal Styles */
 .modalBackdrop {
   position: fixed;
@@ -424,8 +471,8 @@
 
 /* CTA Section */
 .ctaSection {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 100vw;
+  margin: 0px 10px 10px 10px;
   text-align: center;
   padding: 3rem 1.5rem;
   background: var(--card-bg);
