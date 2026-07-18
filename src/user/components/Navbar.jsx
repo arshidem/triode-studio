@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
 
@@ -10,15 +10,29 @@ import styles from "../styles/Navbar.module.css";
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
 
   const menuId = "mobile-menu";
 
-  /* Scroll background */
+  /* Scroll background + hide/show on direction */
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 50);
+
+      // Only hide after scrolling past 80px to avoid flicker at top
+      if (currentY > 80) {
+        setHidden(currentY > lastScrollY.current);
+      } else {
+        setHidden(false);
+      }
+
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -72,7 +86,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""} ${hidden ? styles.hidden : ""}`}
       role="navigation"
       aria-label="Main navigation"
     >

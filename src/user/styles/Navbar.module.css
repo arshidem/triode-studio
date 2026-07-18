@@ -10,7 +10,15 @@
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   font-family: 'Inter', sans-serif;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  /* Smooth slide transition — transform is GPU-composited for 60fps */
+  transition: background 0.3s ease, box-shadow 0.3s ease,
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Slide navbar up when scrolling down */
+.hidden {
+  transform: translateY(-100%);
 }
 
 .scrolled {

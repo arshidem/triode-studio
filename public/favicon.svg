@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Rounded square off-white background to match the new light off-white theme -->
+  <rect width="128" height="128" rx="32" fill="#FDFDFB" />
+  <!-- Embedded PNG logo in the center -->
+  <image href="/assets/services/Triode Studio Logo PNG.png" x="14" y="14" width="100" height="100" />
+</svg>
