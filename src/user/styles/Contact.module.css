@@ -1,0 +1,98 @@
+/* Contact.module.css — Black & White Minimal Premium */
+
+.contact {
+  padding: 8rem 2rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contactHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--subtext);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 5rem;
+}
+
+.infoTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+}
+
+.infoCards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoCard {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.cardInfoTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--subtext);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.infoLink {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.infoText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 6rem 1.5rem 4rem;
+  }
+}

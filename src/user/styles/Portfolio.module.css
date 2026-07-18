@@ -1,0 +1,284 @@
+/* Portfolio.module.css — Black & White Minimal Premium */
+
+.portfolio {
+  padding: 8rem 2rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolioHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--subtext);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.projectCard {
+  background: var(--bg);
+  padding: 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.projectCard:hover {
+  background: var(--hover-bg);
+}
+
+.projectCategory {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--subtext);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  color: var(--subtext);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 3rem;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.status {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--subtext);
+}
+
+.viewLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ===== Project Modal ===== */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  position: relative;
+  box-shadow: var(--shadow-xl);
+}
+
+.modalInner {
+  padding: 3rem 2.5rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.modalHeader {
+  margin-bottom: 2.5rem;
+}
+
+.modalCategory {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--subtext);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.modalSubtitle {
+  color: var(--subtext);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.modalMeta {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  color: var(--subtext);
+}
+
+.primaryLink {
+  display: inline-block;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+.modalSection {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.fullDescription {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.challengeGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.subSubTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.descText {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--subtext);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.featureCard {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--subtext);
+  line-height: 1.5;
+}
+
+.bullet {
+  font-weight: bold;
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.techPill {
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--hover-bg);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .portfolio {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectCard {
+    padding: 2.5rem 2rem;
+  }
+
+  .challengeGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalInner {
+    padding: 2.5rem 1.5rem;
+  }
+}

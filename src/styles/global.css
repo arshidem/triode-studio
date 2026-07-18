@@ -1,0 +1,180 @@
+/* src/styles/global.css */
+/* Triode Studio — Black & White Minimal Premium Theme */
+
+/* ===== Google Fonts ===== */
+/* Poppins: Clean, geometric, and friendly sans-serif that balances beautifully with the custom rounded shapes of your logo */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Monochrome Palette */
+  --bg: #f5f5f0;
+  --bg-secondary: #eeede8;
+  --bg-blur: rgba(245, 245, 240, 0.95);
+  --text: #0a0a0a;
+  --subtext: #555555;
+  --border: rgba(10, 10, 10, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --hover-bg: rgba(10, 10, 10, 0.04);
+  --active-bg: rgba(10, 10, 10, 0.08);
+  --social-bg: rgba(10, 10, 10, 0.05);
+  --hover-border: rgba(10, 10, 10, 0.2);
+  --footer-bg: rgba(10, 10, 10, 0.02);
+  
+  /* Brand Colors — Monochrome */
+  --primary: #0a0a0a;
+  --secondary: #333333;
+  --accent: #0a0a0a;
+  --success: #0a0a0a;
+  --error: #0a0a0a;
+  --warning: #0a0a0a;
+  
+  /* Shadows — Subtle */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.1);
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+
+p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--subtext);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.15);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 10, 10, 0.3);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+::-moz-selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+/* ===== FOCUS STATES ===== */
+:focus-visible {
+  outline: 1.5px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ===== RESPONSIVE BASE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}

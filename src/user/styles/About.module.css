@@ -1,0 +1,226 @@
+/* About.module.css — Black & White Minimal Premium */
+
+.about {
+  padding: 8rem 2rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aboutHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--subtext);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 2.5rem;
+}
+
+/* Our Story */
+.storySection {
+  margin-bottom: 6rem;
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.storyDescription {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--subtext);
+}
+
+.storyAside {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-left: 1px solid var(--border);
+  padding-left: 2rem;
+}
+
+.asideBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.asideTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--subtext);
+  letter-spacing: 0.05em;
+}
+
+.asideValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Process */
+.processSection {
+  margin-bottom: 6rem;
+}
+
+.processGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.processCard {
+  border: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepNum {
+  font-family: 'Inter', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--subtext);
+  margin-bottom: 1.5rem;
+}
+
+.stepTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.stepDesc {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  line-height: 1.6;
+}
+
+/* Values */
+.valuesSection {
+  margin-bottom: 6rem;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.valueCard {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.valueTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.valueDesc {
+  font-size: 0.95rem;
+  color: var(--subtext);
+  line-height: 1.6;
+}
+
+/* CTA */
+.ctaSection {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px solid var(--border);
+}
+
+.ctaTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.ctaSubtitle {
+  color: var(--subtext);
+  margin-bottom: 2rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.15s ease;
+}
+
+.ctaButton:hover {
+  opacity: 0.85;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .storyAside {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding-left: 0;
+    padding-top: 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .processGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 6rem 1.5rem 4rem;
+  }
+
+  .processGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .storyAside {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

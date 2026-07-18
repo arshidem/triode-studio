@@ -1,0 +1,59 @@
+/* LogoLoader.module.css — Full-screen splash screen */
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #f5f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  transition: opacity 0.6s ease;
+}
+
+.loader.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logoWrapper {
+  opacity: 0;
+  transform: scale(0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.logoWrapper.init {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.logoWrapper.fadeIn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logoWrapper.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logoWrapper.fadeOutLogo {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.logoImage {
+  width: auto;
+  height: clamp(50px, 10vw, 85px);
+  max-width: 80vw;
+  object-fit: contain;
+  display: block;
+}

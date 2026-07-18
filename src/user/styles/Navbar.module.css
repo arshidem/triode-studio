@@ -1,0 +1,282 @@
+/* Navbar.module.css — Clean, non-animated, B&W minimal */
+
+/* ---------- Base navbar ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scrolled {
+  background: var(--bg-blur);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Container ---------- */
+.navbarContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------- Logo ---------- */
+.navbarLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+  height: 100%;
+}
+
+.logoImage {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: opacity 0.15s ease;
+}
+
+.navbarLogo:hover .logoImage {
+  opacity: 0.7;
+}
+
+/* ---------- Desktop links ---------- */
+.navbarLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navLink {
+  position: relative;
+  color: var(--subtext);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  transition: color 0.15s ease;
+  letter-spacing: -0.01em;
+}
+
+.navLink:hover {
+  color: var(--text);
+  opacity: 1;
+}
+
+.navLink.active {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.navLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 1px;
+}
+
+/* ---------- Actions ---------- */
+.navbarActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ---------- Get In Touch ---------- */
+.getInTouchBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.getInTouchBtn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* ---------- Hamburger ---------- */
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 14px;
+  cursor: pointer;
+  z-index: 1100;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.menuBtn .line {
+  background-color: var(--text);
+  height: 1.5px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.menuBtn.open .line:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+
+.menuBtn.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtn.open .line:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* ---------- Backdrop ---------- */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.3);
+  z-index: 998;
+  cursor: pointer;
+}
+
+/* ---------- Mobile Menu ---------- */
+.navbarMobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  padding: 5rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.mobileLinks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileLink {
+  display: block;
+  text-decoration: none;
+  color: var(--subtext);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.875rem 1rem;
+  transition: color 0.15s ease, background 0.15s ease;
+  border-radius: var(--radius-sm);
+  letter-spacing: -0.01em;
+}
+
+.mobileLink:hover {
+  color: var(--text);
+  background: var(--hover-bg);
+  opacity: 1;
+}
+
+.mobileLink.activeMobile {
+  color: var(--text);
+  font-weight: 600;
+  background: var(--active-bg);
+}
+
+/* ---------- Mobile Bottom ---------- */
+.mobileBottom {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.mobileGetInTouchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.875rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .navbarContainer {
+    padding: 0 1.5rem;
+    height: 56px;
+  }
+
+  .navbarLinks {
+    display: none;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .getInTouchBtn {
+    display: none;
+  }
+
+  .logoImage {
+    height: 22px;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbarMobileMenu {
+    display: none;
+  }
+
+  .backdrop {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navLink,
+  .getInTouchBtn,
+  .mobileLink {
+    transition: none;
+  }
+}
