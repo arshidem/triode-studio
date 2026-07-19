@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
+import { useNavbarLogo } from "../context/NavbarLogoContext";
 
 /**
  * Navbar Component — Clean, non-animated, black & white minimal
@@ -14,6 +15,7 @@ const Navbar = () => {
   const lastScrollY = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
+  const { navbarLogoRef, loaderDone } = useNavbarLogo() || {};
 
   const menuId = "mobile-menu";
 
@@ -99,9 +101,14 @@ const Navbar = () => {
           aria-label="Triode Studio Home"
         >
           <img
+            ref={navbarLogoRef}
             src="/assets/logo/Triode SVG.svg"
             alt="triode logo"
             className={styles.logoImage}
+            style={{
+              opacity: loaderDone ? 1 : 0,
+              transition: "none",
+            }}
           />
         </Link>
 

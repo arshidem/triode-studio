@@ -8,45 +8,41 @@
   align-items: center;
   justify-content: center;
   background: var(--bg, #FDFDFB);
-  opacity: 1;
-  transition: opacity 0.8s ease;
-}
-
-.fadeOut {
-  opacity: 0;
+  transition: background 0.4s ease;
   pointer-events: none;
 }
 
+/* When flying: background goes transparent so the navbar is visible beneath */
+.loaderFly {
+  background: transparent;
+}
+
+/* ── Logo wrapper ─────────────────────────────────────────────────────── */
 .logoWrapper {
   width: min(60vw, 420px);
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 
-.init {
-  opacity: 0;
-}
+.hidden  { opacity: 0; }
 
-.fadeIn {
+.fadeIn  {
   opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
-.visible {
-  opacity: 1;
-}
+.visible { opacity: 1; }
 
-.fadeOutLogo {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
+/* ── SVG ──────────────────────────────────────────────────────────────── */
 .logoSvg {
   width: 100%;
   height: auto;
   overflow: visible;
+  display: block;
 }
 
-/* Each letter starts fully hidden: no stroke drawn, no fill */
+/* ── Per-letter draw animation ────────────────────────────────────────── */
 .letter {
   fill: transparent;
   stroke: #000000;
@@ -56,34 +52,28 @@
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation:
-    draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards,
-    fillIn 0.6s ease forwards;
+    draw   0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+    fillIn 0.35s ease forwards;
   animation-play-state: paused;
 }
 
-/* Animation only actually runs once the parent group has this class,
-   which is toggled on in JS the moment the fade-in phase begins. */
 .drawGroup .letter {
   animation-play-state: running;
 }
 
-/* Stagger order: T → R → I → O → D → E */
-.drawGroup .letter:nth-child(1) { animation-delay: 1.2s, 2.6s; } /* E */
-.drawGroup .letter:nth-child(2) { animation-delay: 1.0s, 2.4s; } /* D */
-.drawGroup .letter:nth-child(3) { animation-delay: 0.8s, 2.2s; } /* O */
-.drawGroup .letter:nth-child(4) { animation-delay: 0.4s, 1.8s; } /* I dot */
-.drawGroup .letter:nth-child(5) { animation-delay: 0.4s, 1.8s; } /* I stem */
-.drawGroup .letter:nth-child(6) { animation-delay: 0.2s, 1.6s; } /* R */
-.drawGroup .letter:nth-child(7) { animation-delay: 0s,   1.4s; } /* T */
+/* All draw together, fill cascades left → right */
+.drawGroup .letter:nth-child(1) { animation-delay: 0s, 0.95s; } /* T */
+.drawGroup .letter:nth-child(2) { animation-delay: 0s, 1.05s; } /* R */
+.drawGroup .letter:nth-child(3) { animation-delay: 0s, 1.15s; } /* I dot */
+.drawGroup .letter:nth-child(4) { animation-delay: 0s, 1.15s; } /* I stem */
+.drawGroup .letter:nth-child(5) { animation-delay: 0s, 1.25s; } /* O */
+.drawGroup .letter:nth-child(6) { animation-delay: 0s, 1.35s; } /* D */
+.drawGroup .letter:nth-child(7) { animation-delay: 0s, 1.45s; } /* E */
 
 @keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
+  to { stroke-dashoffset: 0; }
 }
 
 @keyframes fillIn {
-  to {
-    fill: #000000;
-  }
+  to { fill: #000000; }
 }

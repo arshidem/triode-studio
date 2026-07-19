@@ -18,11 +18,15 @@ import {
   FiBox,
   FiCpu,
   FiZap,
-  FiTerminal,
   FiTrendingUp,
   FiImage,
-  FiGitBranch
 } from "react-icons/fi";
+
+// Shared fade-up variant for staggered left column children
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show:   { opacity: 1, y: 0 },
+};
 
 const HomeHero = () => {
   const navigate = useNavigate();
@@ -30,7 +34,7 @@ const HomeHero = () => {
   const rightColumnRef = useRef(null);
   const heroRef = useRef(null);
 
-  // Cycle through 8 scenes (0 to 7) every 2 seconds
+  // Cycle through 8 scenes every 2 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentScene((prev) => (prev + 1) % 8);
@@ -38,7 +42,6 @@ const HomeHero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Static tag definitions (icon JSX stored outside state to avoid re-render issues)
   const tagDefs = [
     { id: 0, text: "UI Design",  icon: <FiLayers    size={11} color="#3B82F6" />, initialX: "5%",  initialY: "15%" },
     { id: 1, text: "React",      icon: <FiBox       size={11} color="#10B981" />, initialX: "75%", initialY: "8%"  },
@@ -48,15 +51,9 @@ const HomeHero = () => {
     { id: 5, text: "AI Node",    icon: <FiCpu       size={11} color="#EC4899" />, initialX: "82%", initialY: "48%" },
   ];
 
-  // Collision displacement offsets (separate from the dragged element's own position)
   const [offsets, setOffsets] = useState(() => tagDefs.map(() => ({ x: 0, y: 0 })));
-
-  // DOM references to track real-time pixel coordinates
   const tagsRef = useRef([]);
 
-  // --- Collision Resolver ---
-  // Computes the EXACT minimum offset from natural position to clear the dragged element.
-  // Uses SET not ADD — so elements return to 0 when no longer colliding, no drift.
   const handleDrag = (dragIndex) => {
     const draggedEl = tagsRef.current[dragIndex];
     if (!draggedEl || !heroRef.current) return;
@@ -68,30 +65,24 @@ const HomeHero = () => {
     setOffsets((prev) => {
       let changed = false;
       const next = prev.map((off, idx) => {
-        if (idx === dragIndex) return off; // Never touch the dragged element's offset
-
+        if (idx === dragIndex) return off;
         const el = tagsRef.current[idx];
         if (!el) return off;
 
         const er = el.getBoundingClientRect();
-
-        // Compute the element's NATURAL center (without any collision offset applied)
         const baseCx = (er.left + er.width / 2) - off.x;
         const baseCy = (er.top + er.height / 2) - off.y;
-
         const dx = baseCx - dc.x;
         const dy = baseCy - dc.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const minDist = 80; // collision radius in px
+        const minDist = 80;
 
         if (dist < minDist && dist > 0.5) {
-          // Set offset to exactly the overlap needed from the natural position — no accumulation
           const overlap = minDist - dist;
           let px = (dx / dist) * overlap;
           let py = (dy / dist) * overlap;
 
-          // Strict viewport clamp — nothing exits the screen
-          const newLeft  = er.left  - off.x + px;
+          const newLeft  = er.left   - off.x + px;
           const newRight = er.right  - off.x + px;
           const newTop   = er.top    - off.y + py;
           const newBot   = er.bottom - off.y + py;
@@ -102,14 +93,10 @@ const HomeHero = () => {
           if (newBot   > heroRect.bottom) py -= newBot   - heroRect.bottom;
 
           changed = true;
-          return { x: px, y: py }; // SET — not off.x + px
+          return { x: px, y: py };
         }
 
-        // Not colliding — spring back to natural position
-        if (off.x !== 0 || off.y !== 0) {
-          changed = true;
-          return { x: 0, y: 0 };
-        }
+        if (off.x !== 0 || off.y !== 0) { changed = true; return { x: 0, y: 0 }; }
         return off;
       });
       return changed ? next : prev;
@@ -119,260 +106,279 @@ const HomeHero = () => {
   return (
     <div ref={heroRef} style={{ position: "relative" }}>
       <div className={styles.heroContainer}>
-      <div className={styles.layoutColumns}>
-        
-        {/* Left Column — Text & Actions */}
-        <div className={styles.leftColumn}>
-          <div className={styles.badge}>Product Studio</div>
-          <h1 className={styles.heading}>
-            Crafting Digital Products <span className={styles.italic}>That Drive Growth.</span>
-          </h1>
-          <p className={styles.description}>
-            From strategy and design to development, branding, AI, and marketing—we build digital experiences that help businesses grow.
-          </p>
-          <div className={styles.ctaContainer}>
-            <button 
-              className={styles.ctaPrimary}
-              onClick={() => navigate("/contact")}
+        <div className={styles.layoutColumns}>
+
+          {/* ── Left Column — staggered fade-up ───────────────────────── */}
+          <motion.div
+            className={styles.leftColumn}
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } } }}
+          >
+          
+
+            <motion.h1
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className={styles.heading}
             >
-              Start Your Project
-              <IoIosArrowForward size={14} />
-            </button>
-            <button 
-              className={styles.ctaSecondary}
-              onClick={() => navigate("/portfolio")}
+              Crafting Digital Products{" "}
+              <span className={styles.italic}>That Drive Growth.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className={styles.description}
             >
-              View Our Work
-            </button>
-          </div>
-        </div>
+              From strategy and design to development, branding, AI, and
+              marketing—we build digital experiences that help businesses grow.
+            </motion.p>
 
-        {/* Right Column — Creative Canvas */}
-        <div className={styles.rightColumn} ref={rightColumnRef}>
-          <div className={styles.canvasWrapper}>
-            <div className={styles.dotGrid}></div>
+            <motion.div
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className={styles.ctaContainer}
+            >
+              <button
+                className={styles.ctaPrimary}
+                onClick={() => navigate("/contact")}
+              >
+                Start Your Project
+                <IoIosArrowForward size={14} />
+              </button>
+              <button
+                className={styles.ctaSecondary}
+                onClick={() => navigate("/portfolio")}
+              >
+                View Our Work
+              </button>
+            </motion.div>
+          </motion.div>
 
-            {/* Layout Guides */}
-            <div className={styles.guideLineH} style={{ top: "33%" }} />
-            <div className={styles.guideLineH} style={{ top: "66%" }} />
-            <div className={styles.guideLineV} style={{ left: "33%" }} />
-            <div className={styles.guideLineV} style={{ left: "66%" }} />
+          {/* ── Right Column — single fade-up, slight delay ───────────── */}
+          <motion.div
+            className={styles.rightColumn}
+            ref={rightColumnRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.28 }}
+          >
+            <div className={styles.canvasWrapper}>
+              <div className={styles.dotGrid}></div>
 
-            <div className={styles.sceneContainer}>
-              <AnimatePresence mode="wait">
-                
-                {/* Scene 1: Fading Grid */}
-                {currentScene === 0 && (
-                  <motion.div
-                    key="scene-grid"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%", height: "100%" }}
-                  >
-                    {[...Array(6)].map((_, i) => (
-                      <div key={i} className={styles.gridBlock}>
-                        BLOCK_0{i + 1}
+              <div className={styles.guideLineH} style={{ top: "33%" }} />
+              <div className={styles.guideLineH} style={{ top: "66%" }} />
+              <div className={styles.guideLineV} style={{ left: "33%" }} />
+              <div className={styles.guideLineV} style={{ left: "66%" }} />
+
+              <div className={styles.sceneContainer}>
+                <AnimatePresence mode="wait">
+
+                  {currentScene === 0 && (
+                    <motion.div
+                      key="scene-grid"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                      style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%", height: "100%" }}
+                    >
+                      {[...Array(6)].map((_, i) => (
+                        <div key={i} className={styles.gridBlock}>BLOCK_0{i + 1}</div>
+                      ))}
+                    </motion.div>
+                  )}
+
+                  {currentScene === 1 && (
+                    <motion.div
+                      key="scene-wire"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.wireframeContainer}
+                    >
+                      <div className={styles.wireframeHeader}>
+                        <div className={styles.wireframeCircle} />
+                        <div className={styles.wireframeCircle} />
+                        <div className={styles.wireframeLineShort} />
                       </div>
-                    ))}
-                  </motion.div>
-                )}
-
-                {/* Scene 2: Wireframes */}
-                {currentScene === 1 && (
-                  <motion.div
-                    key="scene-wire"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.wireframeContainer}
-                  >
-                    <div className={styles.wireframeHeader}>
-                      <div className={styles.wireframeCircle} />
-                      <div className={styles.wireframeCircle} />
-                      <div className={styles.wireframeLineShort} />
-                    </div>
-                    <div className={styles.wireframeHero}>
-                      <div className={styles.wireframeTitleBox} />
-                      <div className={styles.wireframeDescBox} />
-                      <div className={styles.wireframeButtonBox} />
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Scene 3: Polished UI */}
-                {currentScene === 2 && (
-                  <motion.div
-                    key="scene-ui"
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.polishedContainer}
-                  >
-                    <div className={styles.polishedHeader}>
-                      <div className={styles.polishedLogo}>TRIODE</div>
-                      <div className={styles.polishedNav}>
-                        <div className={styles.polishedNavLink} />
-                        <div className={styles.polishedNavLink} />
+                      <div className={styles.wireframeHero}>
+                        <div className={styles.wireframeTitleBox} />
+                        <div className={styles.wireframeDescBox} />
+                        <div className={styles.wireframeButtonBox} />
                       </div>
-                    </div>
-                    <div className={styles.polishedBody}>
-                      <div className={styles.polishedLeft}>
-                        <h4 className={styles.polishedHeading}>Design Identity</h4>
-                        <div className={styles.polishedDesc} />
-                        <div className={styles.polishedDesc} />
-                        <div className={styles.polishedButton}>Explore</div>
-                      </div>
-                      <div className={styles.polishedRight}>
-                        <FiLayers size={36} color="rgba(0,0,0,0.1)" />
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
+                    </motion.div>
+                  )}
 
-                {/* Scene 4: Code snippets */}
-                {currentScene === 3 && (
-                  <motion.div
-                    key="scene-code"
-                    initial={{ opacity: 0, x: -15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 15 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.codeCard}
-                  >
-                    <div className={styles.codeHeader}>
-                      <div className={styles.codeTabs}>
-                        <span className={styles.codeDot} />
-                        <span className={styles.codeDot} />
+                  {currentScene === 2 && (
+                    <motion.div
+                      key="scene-ui"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.polishedContainer}
+                    >
+                      <div className={styles.polishedHeader}>
+                        <div className={styles.polishedLogo}>TRIODE</div>
+                        <div className={styles.polishedNav}>
+                          <div className={styles.polishedNavLink} />
+                          <div className={styles.polishedNavLink} />
+                        </div>
                       </div>
-                      <span>App.jsx</span>
-                    </div>
-                    <div className={styles.codeContent}>
-                      <span className={styles.codeBlue}>const</span> <span className={styles.codePurple}>Triode</span> = () =&gt; &#123;<br />
-                      &nbsp;&nbsp;<span className={styles.codeBlue}>return</span> (<br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className={styles.codeGreen}>BuildSystem</span><br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.codeOrange}>engine</span>=<span className={styles.codePurple}>"React"</span><br />
-                      &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
-                      &nbsp;&nbsp;);<br />
-                      &#125;;
-                    </div>
-                    <div className={styles.deployBadge}>Deploy Successful ✓</div>
-                  </motion.div>
-                )}
-
-                {/* Scene 5: Brand guidelines */}
-                {currentScene === 4 && (
-                  <motion.div
-                    key="scene-brand"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.brandContainer}
-                  >
-                    <div className={styles.brandGrid}>
-                      <div className={styles.brandLogoBox}>T</div>
-                      <div className={styles.brandColors}>
-                        <div className={styles.colorSwatch} style={{ background: "#0A0A0A" }} />
-                        <div className={styles.colorSwatch} style={{ background: "#F5F3EF" }} />
-                        <div className={styles.colorSwatch} style={{ background: "#3B82F6" }} />
+                      <div className={styles.polishedBody}>
+                        <div className={styles.polishedLeft}>
+                          <h4 className={styles.polishedHeading}>Design Identity</h4>
+                          <div className={styles.polishedDesc} />
+                          <div className={styles.polishedDesc} />
+                          <div className={styles.polishedButton}>Explore</div>
+                        </div>
+                        <div className={styles.polishedRight}>
+                          <FiLayers size={36} color="rgba(0,0,0,0.1)" />
+                        </div>
                       </div>
-                    </div>
-                    <div className={styles.brandCard}>
-                      <span style={{ fontSize: "8px", fontWeight: 700, color: "rgba(0,0,0,0.4)" }}>CARD MOCKUP</span>
-                      <span style={{ fontSize: "14px", fontWeight: 800 }}>Triode Studio</span>
-                    </div>
-                  </motion.div>
-                )}
+                    </motion.div>
+                  )}
 
-                {/* Scene 6: Marketing metrics */}
-                {currentScene === 5 && (
-                  <motion.div
-                    key="scene-marketing"
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.marketingContainer}
-                  >
-                    <div className={styles.metricCard}>
-                      <span className={styles.metricLabel}>SEO Rank</span>
-                      <span className={styles.metricValue}>#1</span>
-                      <span className={styles.growthIndicator}>+12.4%</span>
-                    </div>
-                    <div className={styles.metricCard}>
-                      <span className={styles.metricLabel}>Conversion</span>
-                      <span className={styles.metricValue}>4.8%</span>
-                      <span className={styles.growthIndicator}>+22.1%</span>
-                    </div>
-                    <div className={styles.chartBox}>
-                      <div className={styles.chartBars}>
-                        <div className={styles.chartBar} style={{ height: "30%" }} />
-                        <div className={styles.chartBar} style={{ height: "50%" }} />
-                        <div className={styles.chartBar} style={{ height: "45%" }} />
-                        <div className={styles.chartBar} style={{ height: "85%" }} />
+                  {currentScene === 3 && (
+                    <motion.div
+                      key="scene-code"
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 15 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.codeCard}
+                    >
+                      <div className={styles.codeHeader}>
+                        <div className={styles.codeTabs}>
+                          <span className={styles.codeDot} />
+                          <span className={styles.codeDot} />
+                        </div>
+                        <span>App.jsx</span>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Scene 7: AI prompting */}
-                {currentScene === 6 && (
-                  <motion.div
-                    key="scene-ai"
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.02 }}
-                    transition={{ duration: 0.4 }}
-                    className={styles.aiContainer}
-                  >
-                    <div className={styles.aiChatBox}>
-                      <div className={`${styles.aiBubble} ${styles.aiBubbleUser}`}>Generate UI layout</div>
-                      <div className={`${styles.aiBubble} ${styles.aiBubbleBot}`}>Layout generated successfully</div>
-                    </div>
-                    <div className={styles.aiGeneration}>
-                      <div className={styles.aiGenThumbnail} style={{ background: "rgba(59, 130, 246, 0.1)" }} />
-                      <div className={styles.aiGenThumbnail} style={{ background: "rgba(16, 185, 129, 0.1)" }} />
-                      <div className={styles.aiGenThumbnail} style={{ background: "rgba(139, 92, 246, 0.1)" }} />
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Scene 8: Merged Finished Product */}
-                {currentScene === 7 && (
-                  <motion.div
-                    key="scene-finished"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className={styles.finishedProduct}
-                  >
-                    <div className={styles.polishedHeader}>
-                      <div className={styles.polishedLogo}>FINISHED WORKSPACE</div>
-                    </div>
-                    <div style={{ display: "flex", gap: "10px", padding: "10px" }}>
-                      <div style={{ width: "30px", height: "30px", background: "#3B82F6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: "10px" }}>✓</div>
-                      <div>
-                        <span style={{ fontSize: "12px", fontWeight: "bold" }}>Production Ready</span>
-                        <p style={{ fontSize: "9px", opacity: 0.6, margin: "2px 0 0" }}>All services consolidated</p>
+                      <div className={styles.codeContent}>
+                        <span className={styles.codeBlue}>const</span>{" "}
+                        <span className={styles.codePurple}>Triode</span> = () =&gt; &#123;<br />
+                        &nbsp;&nbsp;<span className={styles.codeBlue}>return</span> (<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className={styles.codeGreen}>BuildSystem</span><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.codeOrange}>engine</span>=<span className={styles.codePurple}>"React"</span><br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
+                        &nbsp;&nbsp;);<br />
+                        &#125;;
                       </div>
-                    </div>
-                    <div style={{ width: "100%", height: "4px", background: "#10b981", borderRadius: "2px" }} />
-                  </motion.div>
-                )}
+                      <div className={styles.deployBadge}>Deploy Successful ✓</div>
+                    </motion.div>
+                  )}
 
-              </AnimatePresence>
+                  {currentScene === 4 && (
+                    <motion.div
+                      key="scene-brand"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.brandContainer}
+                    >
+                      <div className={styles.brandGrid}>
+                        <div className={styles.brandLogoBox}>T</div>
+                        <div className={styles.brandColors}>
+                          <div className={styles.colorSwatch} style={{ background: "#0A0A0A" }} />
+                          <div className={styles.colorSwatch} style={{ background: "#F5F3EF" }} />
+                          <div className={styles.colorSwatch} style={{ background: "#3B82F6" }} />
+                        </div>
+                      </div>
+                      <div className={styles.brandCard}>
+                        <span style={{ fontSize: "8px", fontWeight: 700, color: "rgba(0,0,0,0.4)" }}>CARD MOCKUP</span>
+                        <span style={{ fontSize: "14px", fontWeight: 800 }}>Triode Studio</span>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {currentScene === 5 && (
+                    <motion.div
+                      key="scene-marketing"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.marketingContainer}
+                    >
+                      <div className={styles.metricCard}>
+                        <span className={styles.metricLabel}>SEO Rank</span>
+                        <span className={styles.metricValue}>#1</span>
+                        <span className={styles.growthIndicator}>+12.4%</span>
+                      </div>
+                      <div className={styles.metricCard}>
+                        <span className={styles.metricLabel}>Conversion</span>
+                        <span className={styles.metricValue}>4.8%</span>
+                        <span className={styles.growthIndicator}>+22.1%</span>
+                      </div>
+                      <div className={styles.chartBox}>
+                        <div className={styles.chartBars}>
+                          <div className={styles.chartBar} style={{ height: "30%" }} />
+                          <div className={styles.chartBar} style={{ height: "50%" }} />
+                          <div className={styles.chartBar} style={{ height: "45%" }} />
+                          <div className={styles.chartBar} style={{ height: "85%" }} />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {currentScene === 6 && (
+                    <motion.div
+                      key="scene-ai"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.aiContainer}
+                    >
+                      <div className={styles.aiChatBox}>
+                        <div className={`${styles.aiBubble} ${styles.aiBubbleUser}`}>Generate UI layout</div>
+                        <div className={`${styles.aiBubble} ${styles.aiBubbleBot}`}>Layout generated successfully</div>
+                      </div>
+                      <div className={styles.aiGeneration}>
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(59, 130, 246, 0.1)" }} />
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(16, 185, 129, 0.1)" }} />
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(139, 92, 246, 0.1)" }} />
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {currentScene === 7 && (
+                    <motion.div
+                      key="scene-finished"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      className={styles.finishedProduct}
+                    >
+                      <div className={styles.polishedHeader}>
+                        <div className={styles.polishedLogo}>FINISHED WORKSPACE</div>
+                      </div>
+                      <div style={{ display: "flex", gap: "10px", padding: "10px" }}>
+                        <div style={{ width: "30px", height: "30px", background: "#3B82F6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: "10px" }}>✓</div>
+                        <div>
+                          <span style={{ fontSize: "12px", fontWeight: "bold" }}>Production Ready</span>
+                          <p style={{ fontSize: "9px", opacity: 0.6, margin: "2px 0 0" }}>All services consolidated</p>
+                        </div>
+                      </div>
+                      <div style={{ width: "100%", height: "4px", background: "#10b981", borderRadius: "2px" }} />
+                    </motion.div>
+                  )}
+
+                </AnimatePresence>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
-
       </div>
-      {/* Floating Context Labels — outside heroContainer to escape overflow:hidden */}
+
+      {/* Floating Context Labels */}
       <div className={styles.floatingLabels}>
         {tagDefs.map((tag, i) => (
           <motion.div
@@ -395,7 +401,6 @@ const HomeHero = () => {
           </motion.div>
         ))}
       </div>
-    </div>
     </div>
   );
 };
