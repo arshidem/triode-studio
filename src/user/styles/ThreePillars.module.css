@@ -1,0 +1,287 @@
+/* src/user/styles/ThreePillars.module.css */
+
+.sectionWrapper {
+  position: relative;
+  width: 100%;
+  padding: 8rem 2rem;
+  background: #050505;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 2;
+}
+
+.titleArea {
+  text-align: center;
+  margin-bottom: 4rem;
+  z-index: 10;
+}
+
+.tagline {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #10B981;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 1rem;
+}
+
+/* --- Orbital Layout --- */
+.orbitWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px; /* Space for the orbit */
+  position: relative;
+  z-index: 10;
+}
+
+.orbitContainer {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Pause animations when hovering anywhere in the container */
+.orbitContainer:hover .orbitTrack {
+  animation-play-state: paused;
+}
+.orbitContainer:hover .serviceNode {
+  animation-play-state: paused;
+}
+
+.orbitRing {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Central Core */
+.coreCenter {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.coreGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  animation: corePulse 3s infinite ease-in-out;
+}
+
+.coreRingPulse {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: rippleOut 3s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.coreContent {
+  width: 80px;
+  height: 80px;
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 10px rgba(255,255,255,0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.coreLogo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -1px;
+}
+
+/* Orbiting Elements */
+.orbitSystem {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none; /* Let clicks pass through except on nodes */
+}
+
+/* The track spins the wrapper around the center */
+.orbitTrack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: center;
+  animation: orbitSpin 30s linear infinite;
+  pointer-events: none; 
+}
+
+/* The connection line going from center to the top node position */
+.connectionLine {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 1px;
+  height: 200px; /* Radius */
+  background: linear-gradient(to top, rgba(255,255,255,0), rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.3));
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+}
+
+/* The service node sits at the very top of the track and counter-spins */
+.serviceNode {
+  position: absolute;
+  top: 15px; /* (500/2) - radius(200) - half-height(35) */
+  left: 50%;
+  width: 160px;
+  height: 70px;
+  margin-left: -80px; /* Center horizontally */
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable pointer events for hover/click */
+  
+  /* Counter-spin so text remains upright */
+  transform-origin: center center;
+  animation: orbitCounterSpin 30s linear infinite;
+  transition: all 0.3s ease;
+}
+
+.serviceNode:hover {
+  transform: scale(1.05) !important; /* Will slightly override the counter spin scale but it's fine for hover */
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+  z-index: 20;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.nodeTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Colors and Delays */
+.colorEng { border-bottom: 2px solid #10B981; }
+.colorEng .iconWrapper { color: #10B981; }
+
+.colorDesign { border-bottom: 2px solid #3B82F6; }
+.colorDesign .iconWrapper { color: #3B82F6; }
+
+.colorMarketing { border-bottom: 2px solid #8B5CF6; }
+.colorMarketing .iconWrapper { color: #8B5CF6; }
+
+/* 30s animation divided by 3 nodes = 10s offset */
+.delay1 { animation-delay: 0s; }
+.delay1 .serviceNode { animation-delay: 0s; }
+
+.delay2 { animation-delay: -10s; }
+.delay2 .serviceNode { animation-delay: -10s; }
+
+.delay3 { animation-delay: -20s; }
+.delay3 .serviceNode { animation-delay: -20s; }
+
+/* --- Keyframes --- */
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitCounterSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes corePulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes rippleOut {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+  .orbitWrapper {
+    height: 400px;
+  }
+  .orbitContainer {
+    transform: scale(0.65);
+  }
+}
+
+@media (max-width: 480px) {
+  .orbitWrapper {
+    height: 350px;
+  }
+  .orbitContainer {
+    transform: scale(0.55);
+  }
+}

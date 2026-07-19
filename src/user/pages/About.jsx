@@ -21,38 +21,38 @@ const About = () => {
   const processSteps = [
     {
       step: "01",
-      title: "Discovery & Blueprinting",
-      description: "Analyzing business requirements, drafting UI schematics, mapping target demographics, and planning video assets.",
+      title: "Planning & Research",
+      description: "We study your business goals, sketch layout designs, figure out who your target audience is, and plan what to make.",
     },
     {
       step: "02",
-      title: "Design & Copywriting",
-      description: "Formulating layouts for websites, mobile applications, visual poster concepts, and advertising scripts.",
+      title: "Designing & Writing",
+      description: "We create layouts for your website, phone app, poster designs, and write simple, clear text for your ads.",
     },
     {
       step: "03",
-      title: "Development & Media Generation",
-      description: "Coding web systems and mobile apps, launching search engines indexing, and rendering AI ad layouts.",
+      title: "Building & Creating",
+      description: "We write clean code to build your website or app, set up search engine optimization, and create AI-powered ads.",
     },
     {
       step: "04",
-      title: "Optimization & Launch",
-      description: "A/B testing ad copy, launching applications, automated deployment configurations, and funnel optimization.",
+      title: "Testing & Launching",
+      description: "We test different ads to see what works best, launch your product, and tweak everything to get you the best results.",
     },
   ];
 
   const values = [
     {
-      title: "Technical Rigor",
-      description: "Building scalable web & mobile architectures utilizing structured, high-grade development standards.",
+      title: "High Quality Work",
+      description: "We build websites and mobile apps using clean, high-quality coding standards so they run fast and stay secure.",
     },
     {
-      title: "Aesthetic Precision",
-      description: "Designing high-end minimal poster layouts and ad structures that command attention with visual balance.",
+      title: "Beautiful Design",
+      description: "We design simple, modern posters and ads that look beautiful, neat, and catch people's eye.",
     },
     {
-      title: "Funnel Conversion",
-      description: "Directing search optimization, paid media campaigns, and AI ad generation to drive concrete conversion metrics.",
+      title: "Real Results",
+      description: "We set up online search, run ad campaigns, and use AI tools to help you get more customers and sales.",
     },
   ];
 
@@ -69,7 +69,7 @@ const About = () => {
       <div className={styles.aboutHeader}>
         <h1 className={styles.title}>About Triode Studio</h1>
         <p className={styles.subtitle}>
-          A multi-disciplinary studio bridging scalable software systems, design identities, and AI generative marketing campaigns.
+          A digital studio that builds websites, designs brands, and creates marketing campaigns.
         </p>
       </div>
 
@@ -79,10 +79,10 @@ const About = () => {
         <div className={styles.storyGrid}>
           <div className={styles.storyText}>
             <p className={styles.storyDescription}>
-              Triode Studio is a digital studio specializing in web and mobile app development, digital marketing, poster design, and AI-assisted ad video generation. We focus on building highly functional systems and high-converting creative media that scale modern companies.
+              Triode Studio is a digital design and development studio. We build websites, mobile apps, logos, and advertisements. We focus on making products that work well and help businesses find more customers.
             </p>
             <p className={styles.storyDescription}>
-              <strong>Why "Triode"?</strong> Inspired by the triode valve's function to control and amplify electronic signals, we control all architectural details while amplifying your brand’s reach, conversions, and product capabilities.
+              <strong>Why "Triode"?</strong> Just like a triode valve controls and strengthens electronic signals, we take care of all the small details to make your brand stronger and help your business grow.
             </p>
           </div>
           <div className={styles.storyAside}>

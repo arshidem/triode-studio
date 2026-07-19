@@ -79,36 +79,105 @@
 
 /* ===== Stats Section ===== */
 .statsSection {
-  padding: 4rem 2rem;
+  padding: 6rem 2rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.statsHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.statsTag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--subtext);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.statsHeading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  color: var(--text);
 }
 
 .statsGrid {
-  display: flex;
-  justify-content: center;
-  gap: 6rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.statItem {
-  text-align: center;
+.statCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01);
+  backdrop-filter: blur(10px);
 }
 
-.statValue {
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--text);
+.statCard:hover {
+  border-color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.statIconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
+
+:global(.dark-mode) .statIconWrapper {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.statPillarInfo {
+  margin-bottom: 1rem;
+}
+
+.statPillarValue {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--subtext);
+  display: block;
   margin-bottom: 0.25rem;
 }
 
-.statLabel {
-  font-size: 0.9rem;
+.statPillarLabel {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin: 0;
+}
+
+.statDesc {
+  font-size: 0.95rem;
   color: var(--subtext);
-  font-weight: 400;
-  letter-spacing: 0.02em;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* ===== CTA Section ===== */
@@ -198,9 +267,8 @@
   }
 
   .statsGrid {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .ctaSection {

@@ -163,10 +163,10 @@
   z-index: 1;
   overflow: hidden;
   clip-path: polygon(
-    35.8% 21.5%,  /* top-left */
-    85.8% 22.5%,  /* top-right */
-    82.2% 73.4%,  /* bottom-right */
-    31.0% 67.0%   /* bottom-left */
+    36.5% 22.5%,  /* top-left inset */
+    85.0% 23.2%,  /* top-right inset */
+    81.5% 72.5%,  /* bottom-right inset */
+    31.8% 66.2%   /* bottom-left inset */
   );
 }
 

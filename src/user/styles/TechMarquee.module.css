@@ -1,0 +1,69 @@
+.marqueeSection {
+  padding: 4rem 0 6rem 0;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  z-index: 10;
+  position: relative;
+}
+
+.marqueeTitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.marqueeWrapper {
+  width: 100%;
+  overflow: hidden;
+  /* Premium fade on edges */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 40s linear infinite;
+  gap: 4rem;
+  padding: 1rem 0;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+/* Dim all items by default on track hover */
+.marqueeTrack:hover .techItem {
+  opacity: 0.2;
+}
+
+.techItem {
+  font-size: 2rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  letter-spacing: -0.02em;
+}
+
+/* Highlight the hovered item */
+.marqueeTrack .techItem:hover {
+  opacity: 1;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  transform: scale(1.1) translateY(-2px);
+}
+
+@keyframes scrollMarquee {
+  from { transform: translateX(0); }
+  /* -50% shifts exactly half the list, plus we need to account for half a gap to stitch perfectly, but flex handles the box. */
+  to { transform: translateX(calc(-50% - 2rem)); } 
+}

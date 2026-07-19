@@ -25,10 +25,10 @@ const Portfolio = () => {
       id: 1,
       title: "Nike E-commerce Redesign",
       category: "Web Development",
-      shortDescription: "Complete Nike store redesign with admin dashboard, payment integration, and real-time analytics.",
+      shortDescription: "A redesign of the Nike online store with a clean management page, easy payment setups, and sales tracking.",
       status: "Live Demo Available",
       badge: "Featured",
-      fullDescription: "A comprehensive e-commerce platform featuring a complete redesign of Nike's online shopping experience. Built with modern web technologies and featuring a robust admin dashboard for complete store management.",
+      fullDescription: "A full online shopping website for Nike products. It includes an easy-to-use shopping system and a store owner dashboard to manage items and track sales easily.",
       features: [
         "User Authentication with JWT & Email Verification",
         "Product Catalog with Advanced Filtering & Search",
@@ -37,52 +37,56 @@ const Portfolio = () => {
         "Admin Dashboard with Analytics & Charts",
       ],
       technologies: ["React", "Node.js", "MongoDB", "Express", "Razorpay", "JWT", "Redux"],
-      liveLink: "https://nike-redesign-six.vercel.app",
+      liveLink: "https://nike-redesign-delta.vercel.app",
       projectDuration: "6 weeks",
       yourRole: "Full-Stack Developer",
-      challenges: "Implementing secure payment integration while maintaining smooth user experience and building a comprehensive admin dashboard with real-time analytics.",
-      solutions: "Used Razorpay for reliable payments, JWT for secure authentication, and Chart.js for interactive analytics in the admin panel.",
+      challenges: "Setting up safe payment systems that work smoothly and building a simple dashboard to show sales data.",
+      solutions: "We used Razorpay for payments, secure logins to protect user data, and clean charts to show sales information.",
+      bentoClass: "bentoLarge",
     },
     {
       id: 2,
-      title: "Fund Management System",
+      title: "KoFund",
       category: "Mobile App Development",
-      shortDescription: "Multi-user financial management app with real-time chat, event tracking, and admin approvals.",
-      status: "Case Study",
-      badge: "Enterprise",
-      fullDescription: "A sophisticated fund management app designed for communities and organizations to manage events, contributions, expenses, and participant communications securely.",
+      shortDescription: "A community fund management platform to track shared contributions and expenses transparently.",
+      status: "Live App",
+      badge: "Community",
+      fullDescription: "KoFund digitizes community fund management. It replaces notebooks and spreadsheets with a centralized system where admins can manage collections and expenses, and members can monitor fund activity with full transparency.",
       features: [
-        "Multi-level User Authentication & Admin Approval",
-        "Event Creation & Management System",
-        "Financial Tracking (Contributions & Expenses)",
-        "Real-time Chat with Text & Audio Messages",
-        "Participant Management & Invitations",
+        "Community & Role-based Access Management",
+        "Program & Target Goal Creation",
+        "Transparent Contribution Tracking",
+        "Detailed Expense Management",
+        "Real-time Fund Transparency & Dashboards",
       ],
-      technologies: ["React Native", "Expo", "Node.js", "MongoDB", "Socket.io", "JWT"],
-      projectDuration: "8 weeks",
-      yourRole: "Mobile Developer",
-      challenges: "Building secure multi-level authentication and real-time communication features while maintaining data integrity for financial operations.",
-      solutions: "Implemented admin approval workflow, WebSocket-based real-time chat, and robust financial transaction tracking with proper validation.",
+      technologies: ["Flutter", "Firebase Authentication", "Cloud Firestore", "Firebase Storage"],
+      liveLink: "https://drive.google.com/file/d/1jQEGYyfAZjnt9L8PPqYpANaizGaq0gq0/view?usp=sharing",
+      projectDuration: "Ongoing",
+      yourRole: "Lead Developer",
+      challenges: "Ensuring 100% transparency for community members while keeping admin management simple and offline-friendly.",
+      solutions: "Built a centralized ledger using Firebase for real-time synchronization and transparent dashboards for all members.",
+      bentoClass: "bentoMedium",
     },
     {
       id: 3,
       title: "Meta Ads Cinematic Campaign",
       category: "AI Video & Marketing",
-      shortDescription: "Generative AI-assisted advertising visual campaign generating 3.5x higher conversion rate.",
+      shortDescription: "An advertising campaign using AI video tools that helped get 3.5 times more customer actions.",
       status: "Completed Case Study",
       badge: "Marketing",
-      fullDescription: "An AI-powered video advertising campaign targeting high-growth conversions. Designed and assembled custom scripts, virtual voiceovers, and cinematic scenes.",
+      fullDescription: "A video advertising campaign created with the help of AI. We wrote the story, generated realistic voiceovers, and made beautiful video clips.",
       features: [
-        "AI-assisted screenplay composition",
-        "Dynamic high-fidelity scenes production",
-        "Targeted audience funnel optimization",
-        "High-retention video layouts configuration",
+        "Writing stories using AI tools",
+        "Creating high-quality video scenes",
+        "Finding the right audience for the ads",
+        "Designing videos that keep people watching",
       ],
       technologies: ["Midjourney", "Runway Gen-2", "ElevenLabs", "Premiere Pro", "Meta Ads"],
       projectDuration: "3 weeks",
       yourRole: "Marketing Campaign Lead",
-      challenges: "Creating highly engaging short-form advertising videos using AI tools that stay perfectly consistent with brand identity.",
-      solutions: "Assembled a dedicated image-to-video workflow using Runway to retain strict styling parameters across all visual scenes.",
+      challenges: "Making short, engaging ad videos with AI that match the look and feel of the brand.",
+      solutions: "We created a step-by-step video system using Runway to keep the colors and style the same in all videos.",
+      bentoClass: "bentoWide",
     },
   ];
 
@@ -101,7 +105,7 @@ const Portfolio = () => {
   const ProjectCard = ({ project, index }) => {
     return (
       <motion.div
-        className={styles.projectCard}
+        className={`${styles.projectCard} ${styles[project.bentoClass]}`}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -231,7 +235,7 @@ const Portfolio = () => {
       <div className={styles.portfolioHeader}>
         <h1 className={styles.title}>Our Portfolio</h1>
         <p className={styles.subtitle}>
-          A curated selection of our technical works, app layouts, digital marketing campaigns, and AI generative media.
+          A handpicked selection of our websites, mobile apps, marketing campaigns, and AI video creations.
         </p>
       </div>
 

@@ -108,9 +108,8 @@ const ServicesShowcase = () => {
       id: 1,
       number: "01",
       label: "UI/UX Design",
-      title: "Interactive Prototyping & Systems",
-      description: "Designing intuitive experiences that people love. We craft custom design systems, component blueprints, and pixel-perfect layouts.",
-      cta: "Explore Design System",
+      title: "Easy-to-use Designs & Prototypes",
+      description: "Designing simple, easy-to-use screens and layouts that people love. We build clear mockups and clean design templates.",
       screenImage: "/assets/services/uiux.png",
       icon: <FiLayers size={22} color="#3B82F6" />,
       floatingCards: [
@@ -124,9 +123,8 @@ const ServicesShowcase = () => {
       id: 2,
       number: "02",
       label: "Web Development",
-      title: "Full-Stack System Engineering",
-      description: "Clean code. Modern technologies. Scalable solutions. We build robust React and Next.js projects deployed on production infrastructure.",
-      cta: "Inspect Source Code",
+      title: "Building Websites & Apps",
+      description: "We write clean code using modern tools. We build fast, reliable websites and apps that grow with your business.",
       screenImage: "/assets/services/webdev.png",
       icon: <FiCpu size={22} color="#10B981" />,
       floatingCards: [
@@ -140,9 +138,8 @@ const ServicesShowcase = () => {
       id: 3,
       number: "03",
       label: "Branding & Identity",
-      title: "Strong Brands. Clear Identities.",
-      description: "Strong brands. Clear identities. Lasting impressions. Logo construction, typography, color palette, and brand guidelines.",
-      cta: "View Guidelines",
+      title: "Memorable Branding & Logos",
+      description: "We help your brand stand out. We design clear logos, choose beautiful colors, and create guidelines to keep your look consistent.",
       screenImage: "/assets/services/branding.png",
       icon: <FiLayout size={22} color="#8B5CF6" />,
       floatingCards: [
@@ -156,9 +153,8 @@ const ServicesShowcase = () => {
       id: 4,
       number: "04",
       label: "Digital Marketing",
-      title: "Campaign Performance Analytics",
-      description: "Data-driven strategies that grow brands and drive results. Real-time analytics, SEO, social media, and conversion optimization.",
-      cta: "Launch Campaign",
+      title: "Marketing & Growing Your Audience",
+      description: "We use smart ways to help your business find more customers online. We handle search engine ranking (SEO), social media, and online ads.",
       screenImage: "/assets/services/marketing.png",
       icon: <FiTrendingUp size={22} color="#10B981" />,
       floatingCards: [
@@ -172,9 +168,8 @@ const ServicesShowcase = () => {
       id: 5,
       number: "05",
       label: "AI Solutions",
-      title: "Generative Automation & Code",
-      description: "Intelligent solutions powered by AI to accelerate your business. Generate websites, content, and automate workflows.",
-      cta: "Try AI Assistant",
+      title: "Smart AI & Automation Tools",
+      description: "We use smart AI tools to speed up your work. We help you automate daily tasks, write content, and build things faster.",
       screenImage: "/assets/services/ai.png",
       icon: <FiTerminal size={22} color="#EC4899" />,
       floatingCards: [
@@ -362,10 +357,6 @@ const ServicesShowcase = () => {
                     <p className={styles.description}>
                       {servicesData[activeStep].description}
                     </p>
-                    <button className={styles.ctaButton}>
-                      {servicesData[activeStep].cta}
-                      <IoIosArrowForward size={14} />
-                    </button>
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -477,10 +468,6 @@ const ServicesShowcase = () => {
             </div>
             <h2 className={styles.mobileTitle}>{service.title}</h2>
             <p className={styles.mobileDesc}>{service.description}</p>
-            <button className={styles.mobileCtaButton}>
-              {service.cta}
-              <IoIosArrowForward size={14} />
-            </button>
           </div>
         ))}
       </div>
