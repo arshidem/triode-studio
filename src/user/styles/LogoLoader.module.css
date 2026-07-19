@@ -1,59 +1,89 @@
-/* LogoLoader.module.css — Full-screen splash screen */
+/* src/user/styles/LogoLoader.module.css */
 
 .loader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #f5f5f0;
+  inset: 0;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10000;
-  transition: opacity 0.6s ease;
+  background: #0e0e10;
+  opacity: 1;
+  transition: opacity 0.8s ease;
 }
 
-.loader.fadeOut {
+.fadeOut {
   opacity: 0;
   pointer-events: none;
 }
 
 .logoWrapper {
+  width: min(60vw, 420px);
   opacity: 0;
-  transform: scale(0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.6s ease;
 }
 
-.logoWrapper.init {
+.init {
   opacity: 0;
-  transform: scale(0.95);
 }
 
-.logoWrapper.fadeIn {
+.fadeIn {
   opacity: 1;
-  transform: scale(1);
 }
 
-.logoWrapper.visible {
+.visible {
   opacity: 1;
-  transform: scale(1);
 }
 
-.logoWrapper.fadeOutLogo {
+.fadeOutLogo {
   opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease;
 }
 
-.logoImage {
-  width: auto;
-  height: clamp(50px, 10vw, 85px);
-  max-width: 80vw;
-  object-fit: contain;
-  display: block;
+.logoSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Each letter starts fully hidden: no stroke drawn, no fill */
+.letter {
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+    fillIn 0.6s ease forwards;
+  animation-play-state: paused;
+}
+
+/* Animation only actually runs once the parent group has this class,
+   which is toggled on in JS the moment the fade-in phase begins. */
+.drawGroup .letter {
+  animation-play-state: running;
+}
+
+/* Stagger order: T → R → I → O → D → E */
+.drawGroup .letter:nth-child(1) { animation-delay: 1.2s, 2.6s; } /* E */
+.drawGroup .letter:nth-child(2) { animation-delay: 1.0s, 2.4s; } /* D */
+.drawGroup .letter:nth-child(3) { animation-delay: 0.8s, 2.2s; } /* O */
+.drawGroup .letter:nth-child(4) { animation-delay: 0.4s, 1.8s; } /* I dot */
+.drawGroup .letter:nth-child(5) { animation-delay: 0.4s, 1.8s; } /* I stem */
+.drawGroup .letter:nth-child(6) { animation-delay: 0.2s, 1.6s; } /* R */
+.drawGroup .letter:nth-child(7) { animation-delay: 0s,   1.4s; } /* T */
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillIn {
+  to {
+    fill: #ffffff;
+  }
 }
