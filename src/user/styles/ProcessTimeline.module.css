@@ -1,5 +1,5 @@
 .timelineSection {
-  padding: 8rem 2rem;
+  padding: 4rem 2rem;
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
@@ -9,14 +9,14 @@
 
 .header {
   text-align: center;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 }
 
 .tagline {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #10B981;
+  color: var(--subtext);
   font-weight: 700;
   display: block;
   margin-bottom: 0.5rem;
@@ -50,9 +50,9 @@
   top: 0;
   left: 50%;
   width: 2px;
-  background: linear-gradient(to bottom, #3B82F6, #10B981);
+  background: var(--text);
   transform: translateX(-50%);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 15px rgba(10, 10, 10, 0.1);
   transform-origin: top;
 }
 
@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
   width: 100%;
 }
 

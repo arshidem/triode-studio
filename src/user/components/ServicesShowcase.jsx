@@ -111,12 +111,12 @@ const ServicesShowcase = () => {
       title: "Easy-to-use Designs & Prototypes",
       description: "Designing simple, easy-to-use screens and layouts that people love. We build clear mockups and clean design templates.",
       screenImage: "/assets/services/uiux.png",
-      icon: <FiLayers size={22} color="#3B82F6" />,
+      icon: <FiLayers size={22} color="#0a0a0a" />,
       floatingCards: [
-        { text: "Design System", x: "-12%", y: "5%", delay: 0, icon: <FiLayers size={14} color="#3B82F6" /> },
-        { text: "Components", x: "85%", y: "0%", delay: 0.05, icon: <FiBox size={14} color="#10B981" /> },
-        { text: "Auto Layout", x: "-15%", y: "60%", delay: 0.1, icon: <FiGrid size={14} color="#8B5CF6" /> },
-        { text: "Prototyping", x: "82%", y: "65%", delay: 0.15, icon: <FiLink size={14} color="#EC4899" /> }
+        { text: "Design System", x: "-12%", y: "5%", delay: 0, icon: <FiLayers size={14} color="#0a0a0a" /> },
+        { text: "Components", x: "85%", y: "0%", delay: 0.05, icon: <FiBox size={14} color="#0a0a0a" /> },
+        { text: "Auto Layout", x: "-15%", y: "60%", delay: 0.1, icon: <FiGrid size={14} color="#0a0a0a" /> },
+        { text: "Prototyping", x: "82%", y: "65%", delay: 0.15, icon: <FiLink size={14} color="#0a0a0a" /> }
       ]
     },
     {
@@ -126,12 +126,12 @@ const ServicesShowcase = () => {
       title: "Building Websites & Apps",
       description: "We write clean code using modern tools. We build fast, reliable websites and apps that grow with your business.",
       screenImage: "/assets/services/webdev.png",
-      icon: <FiCpu size={22} color="#10B981" />,
+      icon: <FiCpu size={22} color="#0a0a0a" />,
       floatingCards: [
-        { text: "Performance 98/100", x: "-15%", y: "2%", delay: 0.05, icon: <FiZap size={14} color="#F59E0B" /> },
-        { text: "Deploy Successful", x: "80%", y: "-3%", delay: 0.1, icon: <FiCpu size={14} color="#10B981" /> },
-        { text: "main ← 2", x: "-10%", y: "62%", delay: 0.15, icon: <FiGitBranch size={14} color="#6B7280" /> },
-        { text: "Production Live", x: "85%", y: "58%", delay: 0.2, icon: <FiServer size={14} color="#3B82F6" /> }
+        { text: "Performance 98/100", x: "-15%", y: "2%", delay: 0.05, icon: <FiZap size={14} color="#0a0a0a" /> },
+        { text: "Deploy Successful", x: "80%", y: "-3%", delay: 0.1, icon: <FiCpu size={14} color="#0a0a0a" /> },
+        { text: "main ← 2", x: "-10%", y: "62%", delay: 0.15, icon: <FiGitBranch size={14} color="#0a0a0a" /> },
+        { text: "Production Live", x: "85%", y: "58%", delay: 0.2, icon: <FiServer size={14} color="#0a0a0a" /> }
       ]
     },
     {
@@ -141,12 +141,12 @@ const ServicesShowcase = () => {
       title: "Memorable Branding & Logos",
       description: "We help your brand stand out. We design clear logos, choose beautiful colors, and create guidelines to keep your look consistent.",
       screenImage: "/assets/services/branding.png",
-      icon: <FiLayout size={22} color="#8B5CF6" />,
+      icon: <FiLayout size={22} color="#0a0a0a" />,
       floatingCards: [
-        { text: "Logo Variations", x: "-10%", y: "0%", delay: 0.05, icon: <FiLayout size={14} color="#8B5CF6" /> },
-        { text: "Brand Assets", x: "88%", y: "5%", delay: 0.1, icon: <FiImage size={14} color="#EC4899" /> },
-        { text: "Color Palette", x: "-18%", y: "55%", delay: 0.15, icon: <FiDroplet size={14} color="#3B82F6" /> },
-        { text: "Guidelines", x: "80%", y: "62%", delay: 0.2, icon: <FiBookOpen size={14} color="#F59E0B" /> }
+        { text: "Logo Variations", x: "-10%", y: "0%", delay: 0.05, icon: <FiLayout size={14} color="#0a0a0a" /> },
+        { text: "Brand Assets", x: "88%", y: "5%", delay: 0.1, icon: <FiImage size={14} color="#0a0a0a" /> },
+        { text: "Color Palette", x: "-18%", y: "55%", delay: 0.15, icon: <FiDroplet size={14} color="#0a0a0a" /> },
+        { text: "Guidelines", x: "80%", y: "62%", delay: 0.2, icon: <FiBookOpen size={14} color="#0a0a0a" /> }
       ]
     },
     {
@@ -156,12 +156,12 @@ const ServicesShowcase = () => {
       title: "Marketing & Growing Your Audience",
       description: "We use smart ways to help your business find more customers online. We handle search engine ranking (SEO), social media, and online ads.",
       screenImage: "/assets/services/marketing.png",
-      icon: <FiTrendingUp size={22} color="#10B981" />,
+      icon: <FiTrendingUp size={22} color="#0a0a0a" />,
       floatingCards: [
-        { text: "SEO Ranking #1", x: "-14%", y: "-2%", delay: 0.05, icon: <FiTrendingUp size={14} color="#10B981" /> },
-        { text: "Ads Active", x: "82%", y: "2%", delay: 0.1, icon: <FiVolume2 size={14} color="#3B82F6" /> },
-        { text: "Instagram Reach", x: "-18%", y: "55%", delay: 0.15, icon: <FiInstagram size={14} color="#EC4899" /> },
-        { text: "Conversion 4.8%", x: "80%", y: "60%", delay: 0.2, icon: <FiPieChart size={14} color="#8B5CF6" /> }
+        { text: "SEO Ranking #1", x: "-14%", y: "-2%", delay: 0.05, icon: <FiTrendingUp size={14} color="#0a0a0a" /> },
+        { text: "Ads Active", x: "82%", y: "2%", delay: 0.1, icon: <FiVolume2 size={14} color="#0a0a0a" /> },
+        { text: "Instagram Reach", x: "-18%", y: "55%", delay: 0.15, icon: <FiInstagram size={14} color="#0a0a0a" /> },
+        { text: "Conversion 4.8%", x: "80%", y: "60%", delay: 0.2, icon: <FiPieChart size={14} color="#0a0a0a" /> }
       ]
     },
     {
@@ -171,12 +171,12 @@ const ServicesShowcase = () => {
       title: "Smart AI & Automation Tools",
       description: "We use smart AI tools to speed up your work. We help you automate daily tasks, write content, and build things faster.",
       screenImage: "/assets/services/ai.png",
-      icon: <FiTerminal size={22} color="#EC4899" />,
+      icon: <FiTerminal size={22} color="#0a0a0a" />,
       floatingCards: [
-        { text: "AI Workflow", x: "-12%", y: "0%", delay: 0.05, icon: <FiCpu size={14} color="#3B82F6" /> },
-        { text: "Content Gen", x: "85%", y: "-5%", delay: 0.1, icon: <FiEdit3 size={14} color="#F59E0B" /> },
-        { text: "Image Generator", x: "-16%", y: "58%", delay: 0.15, icon: <FiCompass size={14} color="#EC4899" /> },
-        { text: "Code Generator", x: "82%", y: "63%", delay: 0.2, icon: <FiTerminal size={14} color="#10B981" /> }
+        { text: "AI Workflow", x: "-12%", y: "0%", delay: 0.05, icon: <FiCpu size={14} color="#0a0a0a" /> },
+        { text: "Content Gen", x: "85%", y: "-5%", delay: 0.1, icon: <FiEdit3 size={14} color="#0a0a0a" /> },
+        { text: "Image Generator", x: "-16%", y: "58%", delay: 0.15, icon: <FiCompass size={14} color="#0a0a0a" /> },
+        { text: "Code Generator", x: "82%", y: "63%", delay: 0.2, icon: <FiTerminal size={14} color="#0a0a0a" /> }
       ]
     }
   ];

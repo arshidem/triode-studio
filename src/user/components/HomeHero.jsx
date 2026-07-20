@@ -43,12 +43,12 @@ const HomeHero = () => {
   }, []);
 
   const tagDefs = [
-    { id: 0, text: "UI Design",  icon: <FiLayers    size={11} color="#3B82F6" />, initialX: "5%",  initialY: "15%" },
-    { id: 1, text: "React",      icon: <FiBox       size={11} color="#10B981" />, initialX: "75%", initialY: "8%"  },
-    { id: 2, text: "Brand",      icon: <FiImage     size={11} color="#8B5CF6" />, initialX: "12%", initialY: "78%" },
-    { id: 3, text: "SEO",        icon: <FiTrendingUp size={11} color="#10B981" />, initialX: "78%", initialY: "82%" },
-    { id: 4, text: "Analytics",  icon: <FiZap       size={11} color="#F59E0B" />, initialX: "2%",  initialY: "45%" },
-    { id: 5, text: "AI Node",    icon: <FiCpu       size={11} color="#EC4899" />, initialX: "82%", initialY: "48%" },
+    { id: 0, text: "UI Design",  icon: <FiLayers    size={11} color="#0a0a0a" />, initialX: "5%",  initialY: "15%" },
+    { id: 1, text: "React",      icon: <FiBox       size={11} color="#0a0a0a" />, initialX: "75%", initialY: "8%"  },
+    { id: 2, text: "Brand",      icon: <FiImage     size={11} color="#0a0a0a" />, initialX: "12%", initialY: "78%" },
+    { id: 3, text: "SEO",        icon: <FiTrendingUp size={11} color="#0a0a0a" />, initialX: "78%", initialY: "82%" },
+    { id: 4, text: "Analytics",  icon: <FiZap       size={11} color="#0a0a0a" />, initialX: "2%",  initialY: "45%" },
+    { id: 5, text: "AI Node",    icon: <FiCpu       size={11} color="#0a0a0a" />, initialX: "82%", initialY: "48%" },
   ];
 
   const [offsets, setOffsets] = useState(() => tagDefs.map(() => ({ x: 0, y: 0 })));
@@ -286,7 +286,7 @@ const HomeHero = () => {
                         <div className={styles.brandColors}>
                           <div className={styles.colorSwatch} style={{ background: "#0A0A0A" }} />
                           <div className={styles.colorSwatch} style={{ background: "#F5F3EF" }} />
-                          <div className={styles.colorSwatch} style={{ background: "#3B82F6" }} />
+                          <div className={styles.colorSwatch} style={{ background: "#555555" }} />
                         </div>
                       </div>
                       <div className={styles.brandCard}>
@@ -340,9 +340,9 @@ const HomeHero = () => {
                         <div className={`${styles.aiBubble} ${styles.aiBubbleBot}`}>Layout generated successfully</div>
                       </div>
                       <div className={styles.aiGeneration}>
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(59, 130, 246, 0.1)" }} />
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(16, 185, 129, 0.1)" }} />
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(139, 92, 246, 0.1)" }} />
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.06)" }} />
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.1)" }} />
+                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.04)" }} />
                       </div>
                     </motion.div>
                   )}
@@ -360,13 +360,13 @@ const HomeHero = () => {
                         <div className={styles.polishedLogo}>FINISHED WORKSPACE</div>
                       </div>
                       <div style={{ display: "flex", gap: "10px", padding: "10px" }}>
-                        <div style={{ width: "30px", height: "30px", background: "#3B82F6", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: "10px" }}>✓</div>
+                        <div style={{ width: "30px", height: "30px", background: "#0a0a0a", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: "10px" }}>✓</div>
                         <div>
                           <span style={{ fontSize: "12px", fontWeight: "bold" }}>Production Ready</span>
                           <p style={{ fontSize: "9px", opacity: 0.6, margin: "2px 0 0" }}>All services consolidated</p>
                         </div>
                       </div>
-                      <div style={{ width: "100%", height: "4px", background: "#10b981", borderRadius: "2px" }} />
+                      <div style={{ width: "100%", height: "4px", background: "#0a0a0a", borderRadius: "2px" }} />
                     </motion.div>
                   )}
 

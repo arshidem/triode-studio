@@ -44,13 +44,13 @@ const ProcessTimeline = () => {
           const bgColor = useTransform(
             scrollYProgress, 
             [stepThreshold - 0.05, stepThreshold + 0.05], 
-            ['#E5E5E5', '#10B981']
+            ['#E5E5E5', '#0a0a0a']
           );
           
           const glowShadow = useTransform(
             scrollYProgress, 
             [stepThreshold - 0.05, stepThreshold + 0.05], 
-            ['0 0 0px rgba(16, 185, 129, 0)', '0 0 20px rgba(16, 185, 129, 0.8)']
+            ['0 0 0px rgba(10, 10, 10, 0)', '0 0 20px rgba(10, 10, 10, 0.3)']
           );
           
           const scaleVal = useTransform(

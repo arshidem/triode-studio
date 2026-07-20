@@ -1,8 +1,8 @@
 .ctaSection {
   position: relative;
-  padding: 10rem 2rem;
-  background: #050505;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 5rem 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +42,7 @@
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 1.5rem;
 }
 
@@ -50,12 +50,12 @@
   font-style: italic;
   font-family: serif;
   font-weight: 400;
-  color: #10B981;
+  color: var(--text);
 }
 
 .ctaSubtitle {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--subtext);
   line-height: 1.6;
   margin-bottom: 3rem;
   max-width: 600px;
@@ -74,8 +74,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #fff;
-  color: #000;
+  background: var(--text);
+  color: var(--bg);
   padding: 1rem 2rem;
   border-radius: 50px;
   font-size: 1rem;
@@ -87,19 +87,19 @@
 
 .ctaSecondary {
   background: transparent;
-  color: #fff;
+  color: var(--text);
   padding: 1rem 2rem;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .ctaSecondary:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: var(--hover-bg);
+  border-color: var(--hover-border);
 }
 
 @media (max-width: 768px) {
