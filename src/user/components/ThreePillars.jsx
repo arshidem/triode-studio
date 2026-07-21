@@ -1,76 +1,118 @@
-import React from "react";
-import { FiCpu, FiLayers, FiTrendingUp } from "react-icons/fi";
+import { motion } from "framer-motion";
+import {
+  FiArrowUpRight,
+  FiCompass,
+  FiPenTool,
+  FiCode,
+} from "react-icons/fi";
 import styles from "../styles/ThreePillars.module.css";
 
-const nodes = [
+const pillars = [
   {
-    id: "eng",
-    title: "Engineering",
-    icon: <FiCpu size={24} />,
-    colorClass: styles.colorEng,
-    delayClass: styles.delay1
+    id: 1,
+    number: "01",
+    icon: <FiCompass />,
+    title: "Strategy",
+    subtitle: "Research • Planning • Product Thinking",
+    description:
+      "Every successful product begins with understanding your users, business goals, and market opportunities. We create a roadmap before writing a single line of code.",
   },
   {
-    id: "design",
-    title: "Visual Design",
-    icon: <FiLayers size={24} />,
-    colorClass: styles.colorDesign,
-    delayClass: styles.delay2
+    id: 2,
+    number: "02",
+    icon: <FiPenTool />,
+    title: "Design",
+    subtitle: "UI • UX • Branding",
+    description:
+      "Beautiful interfaces, meaningful interactions, and modern visual systems that create memorable digital experiences.",
   },
   {
-    id: "marketing",
-    title: "Marketing",
-    icon: <FiTrendingUp size={24} />,
-    colorClass: styles.colorMarketing,
-    delayClass: styles.delay3
-  }
+    id: 3,
+    number: "03",
+    icon: <FiCode />,
+    title: "Development",
+    subtitle: "Web • Mobile • Backend",
+    description:
+      "High-performance websites and applications engineered with scalability, reliability, and long-term maintainability.",
+  },
 ];
 
-const ThreePillars = () => {
+export default function ThreePillars() {
   return (
-    <div className={styles.sectionWrapper}>
-      {/* Background Noise */}
-      <div className={styles.noise} />
-      
-      <div className={styles.titleArea}>
-        <span className={styles.tagline}>Core Vision</span>
-        <h2 className={styles.heading}>The Triode Ecosystem</h2>
-        <p className={styles.subtitle}>Three disciplines revolving around one central vision.</p>
-      </div>
+    <section className={styles.sectionWrapper}>
+      <div className={styles.backgroundGlow} />
 
-      {/* Orbital Layout */}
-      <div className={styles.orbitWrapper}>
-        <div className={styles.orbitContainer}>
-          {/* Faint connecting rings */}
-          <div className={styles.orbitRing} />
-          
-          {/* Central Core */}
-          <div className={styles.coreCenter}>
-            <div className={styles.coreGlow} />
-            <div className={styles.coreRingPulse} />
-            <div className={styles.coreContent}>
-              <span className={styles.coreLogo}>TS</span>
-            </div>
-          </div>
+      <div className={styles.gridPattern} />
 
-          {/* Orbiting Tracks */}
-          <div className={styles.orbitSystem}>
-            {nodes.map((node) => (
-              <div key={node.id} className={`${styles.orbitTrack} ${node.delayClass}`}>
-                {/* Connection line from center to node */}
-                <div className={styles.connectionLine} />
-                <div className={`${styles.serviceNode} ${node.colorClass}`}>
-                  <div className={styles.iconWrapper}>{node.icon}</div>
-                  <span className={styles.nodeTitle}>{node.title}</span>
-                </div>
+      <motion.div
+        className={styles.titleArea}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
+        <span className={styles.tagline}>
+          OUR PROCESS
+        </span>
+
+        <h2 className={styles.heading}>
+          Three pillars behind
+          <br />
+          exceptional digital products.
+        </h2>
+
+        <p className={styles.subtitle}>
+          Every project follows a thoughtful process—from discovering the
+          problem to designing meaningful experiences and engineering reliable
+          solutions.
+        </p>
+      </motion.div>
+
+      <div className={styles.cards}>
+        {pillars.map((pillar, index) => (
+          <motion.div
+            key={pillar.id}
+            className={styles.card}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.15,
+            }}
+          >
+            <div className={styles.cardHeader}>
+              <span className={styles.number}>
+                {pillar.number}
+              </span>
+
+              <div className={styles.arrow}>
+                <FiArrowUpRight />
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+
+            <div className={styles.icon}>
+              {pillar.icon}
+            </div>
+
+            <h3>{pillar.title}</h3>
+
+            <span className={styles.smallText}>
+              {pillar.subtitle}
+            </span>
+
+            <p>{pillar.description}</p>
+
+            <div className={styles.bottom}>
+              <div className={styles.line} />
+
+              <span className={styles.learnMore}>
+                Learn More
+              </span>
+            </div>
+          </motion.div>
+        ))}
       </div>
-
-    </div>
+    </section>
   );
-};
-
-export default ThreePillars;
+}

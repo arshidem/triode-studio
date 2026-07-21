@@ -22,11 +22,22 @@ import {
   FiImage,
 } from "react-icons/fi";
 
+const TRIODE_LOGO = "/assets/logo/Triode SVG.svg";
+
 // Shared fade-up variant for staggered left column children
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  show:   { opacity: 1, y: 0 },
+  show: { opacity: 1, y: 0 },
 };
+
+const BrowserBar = ({ url }) => (
+  <div className={styles.browserBar}>
+    <span className={`${styles.browserDot} ${styles.browserDotRed}`} />
+    <span className={`${styles.browserDot} ${styles.browserDotYellow}`} />
+    <span className={`${styles.browserDot} ${styles.browserDotGreen}`} />
+    <div className={styles.browserUrl}>{url}</div>
+  </div>
+);
 
 const HomeHero = () => {
   const navigate = useNavigate();
@@ -35,21 +46,22 @@ const HomeHero = () => {
   const heroRef = useRef(null);
 
   // Cycle through 8 scenes every 2 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentScene((prev) => (prev + 1) % 8);
-    }, 2000);
-    return () => clearInterval(timer);
-  }, []);
+useEffect(() => {
+  const timer = setInterval(() => {
+    setCurrentScene((prev) => (prev + 1) % 9); // was % 8
+  }, 2200);
+  return () => clearInterval(timer);
+}, []);
 
-  const tagDefs = [
-    { id: 0, text: "UI Design",  icon: <FiLayers    size={11} color="#0a0a0a" />, initialX: "5%",  initialY: "15%" },
-    { id: 1, text: "React",      icon: <FiBox       size={11} color="#0a0a0a" />, initialX: "75%", initialY: "8%"  },
-    { id: 2, text: "Brand",      icon: <FiImage     size={11} color="#0a0a0a" />, initialX: "12%", initialY: "78%" },
-    { id: 3, text: "SEO",        icon: <FiTrendingUp size={11} color="#0a0a0a" />, initialX: "78%", initialY: "82%" },
-    { id: 4, text: "Analytics",  icon: <FiZap       size={11} color="#0a0a0a" />, initialX: "2%",  initialY: "45%" },
-    { id: 5, text: "AI Node",    icon: <FiCpu       size={11} color="#0a0a0a" />, initialX: "82%", initialY: "48%" },
-  ];
+// 1. Bump the tag rename — no AI framing on the floating labels either
+const tagDefs = [
+  { id: 0, text: "UI Design",  icon: <FiLayers    size={11} color="#0a0a0a" />, initialX: "5%",  initialY: "15%" },
+  { id: 1, text: "React",      icon: <FiBox       size={11} color="#0a0a0a" />, initialX: "75%", initialY: "8%"  },
+  { id: 2, text: "Brand",      icon: <FiImage     size={11} color="#0a0a0a" />, initialX: "12%", initialY: "78%" },
+  { id: 3, text: "SEO",        icon: <FiTrendingUp size={11} color="#0a0a0a" />, initialX: "78%", initialY: "82%" },
+  { id: 4, text: "Analytics",  icon: <FiZap       size={11} color="#0a0a0a" />, initialX: "2%",  initialY: "45%" },
+  { id: 5, text: "Workflow",   icon: <FiCpu       size={11} color="#0a0a0a" />, initialX: "82%", initialY: "48%" },
+];
 
   const [offsets, setOffsets] = useState(() => tagDefs.map(() => ({ x: 0, y: 0 })));
   const tagsRef = useRef([]);
@@ -82,15 +94,15 @@ const HomeHero = () => {
           let px = (dx / dist) * overlap;
           let py = (dy / dist) * overlap;
 
-          const newLeft  = er.left   - off.x + px;
-          const newRight = er.right  - off.x + px;
-          const newTop   = er.top    - off.y + py;
-          const newBot   = er.bottom - off.y + py;
+          const newLeft = er.left - off.x + px;
+          const newRight = er.right - off.x + px;
+          const newTop = er.top - off.y + py;
+          const newBot = er.bottom - off.y + py;
 
-          if (newLeft  < heroRect.left)   px += heroRect.left   - newLeft;
-          if (newRight > heroRect.right)  px -= newRight - heroRect.right;
-          if (newTop   < heroRect.top)    py += heroRect.top    - newTop;
-          if (newBot   > heroRect.bottom) py -= newBot   - heroRect.bottom;
+          if (newLeft < heroRect.left) px += heroRect.left - newLeft;
+          if (newRight > heroRect.right) px -= newRight - heroRect.right;
+          if (newTop < heroRect.top) py += heroRect.top - newTop;
+          if (newBot > heroRect.bottom) py -= newBot - heroRect.bottom;
 
           changed = true;
           return { x: px, y: py };
@@ -115,7 +127,6 @@ const HomeHero = () => {
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } } }}
           >
-          
 
             <motion.h1
               variants={fadeUp}
@@ -167,6 +178,13 @@ const HomeHero = () => {
             <div className={styles.canvasWrapper}>
               <div className={styles.dotGrid}></div>
 
+              <img
+                src={TRIODE_LOGO}
+                alt=""
+                className={styles.canvasWatermark}
+                draggable={false}
+              />
+
               <div className={styles.guideLineH} style={{ top: "33%" }} />
               <div className={styles.guideLineH} style={{ top: "66%" }} />
               <div className={styles.guideLineV} style={{ left: "33%" }} />
@@ -175,6 +193,7 @@ const HomeHero = () => {
               <div className={styles.sceneContainer}>
                 <AnimatePresence mode="wait">
 
+                  {/* SCENE 0 — Design Canvas (Figma-style layers + selection) */}
                   {currentScene === 0 && (
                     <motion.div
                       key="scene-grid"
@@ -182,14 +201,42 @@ const HomeHero = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 1.05 }}
                       transition={{ duration: 0.4 }}
-                      style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px", width: "100%", height: "100%" }}
+                      className={styles.figmaFrame}
                     >
-                      {[...Array(6)].map((_, i) => (
-                        <div key={i} className={styles.gridBlock}>BLOCK_0{i + 1}</div>
-                      ))}
+                      <div className={styles.figmaPanel}>
+                        {["Header", "Hero", "Card", "Card", "CTA", "Footer"].map((l, i) => (
+                          <div
+                            key={i}
+                            className={`${styles.figmaLayerRow} ${i === 2 ? styles.figmaLayerRowActive : ""}`}
+                          >
+                            {l}
+                          </div>
+                        ))}
+                      </div>
+                      <div className={styles.figmaCanvas}>
+                        <div className={styles.figmaGrid}>
+                          {[...Array(6)].map((_, i) => (
+                            <div
+                              key={i}
+                              className={`${styles.gridBlock} ${i === 2 ? styles.gridBlockActive : ""}`}
+                            >
+                              {i === 2 && (
+                                <>
+                                  <span className={`${styles.selectHandle} ${styles.shTL}`} />
+                                  <span className={`${styles.selectHandle} ${styles.shTR}`} />
+                                  <span className={`${styles.selectHandle} ${styles.shBL}`} />
+                                  <span className={`${styles.selectHandle} ${styles.shBR}`} />
+                                </>
+                              )}
+                              BLOCK_0{i + 1}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </motion.div>
                   )}
 
+                  {/* SCENE 1 — Wireframe, inside a real browser frame */}
                   {currentScene === 1 && (
                     <motion.div
                       key="scene-wire"
@@ -197,21 +244,20 @@ const HomeHero = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -15 }}
                       transition={{ duration: 0.4 }}
-                      className={styles.wireframeContainer}
+                      className={styles.browserFrame}
                     >
-                      <div className={styles.wireframeHeader}>
-                        <div className={styles.wireframeCircle} />
-                        <div className={styles.wireframeCircle} />
-                        <div className={styles.wireframeLineShort} />
-                      </div>
-                      <div className={styles.wireframeHero}>
-                        <div className={styles.wireframeTitleBox} />
-                        <div className={styles.wireframeDescBox} />
-                        <div className={styles.wireframeButtonBox} />
+                      <BrowserBar url="triode.studio/draft" />
+                      <div className={styles.wireframeContainer}>
+                        <div className={styles.wireframeHero}>
+                          <div className={styles.wireframeTitleBox} />
+                          <div className={styles.wireframeDescBox} />
+                          <div className={styles.wireframeButtonBox} />
+                        </div>
                       </div>
                     </motion.div>
                   )}
 
+                  {/* SCENE 2 — Live product UI with real logo in nav */}
                   {currentScene === 2 && (
                     <motion.div
                       key="scene-ui"
@@ -219,10 +265,12 @@ const HomeHero = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 1.02 }}
                       transition={{ duration: 0.4 }}
-                      className={styles.polishedContainer}
+                      className={styles.browserFrame}
                     >
+                      <BrowserBar url="triode.studio" />
+                      {/* SCENE 2 — logo only in nav, no text beside it */}
                       <div className={styles.polishedHeader}>
-                        <div className={styles.polishedLogo}>TRIODE</div>
+                        <img src={TRIODE_LOGO} alt="Triode" className={styles.triodeLogoIcon} />
                         <div className={styles.polishedNav}>
                           <div className={styles.polishedNavLink} />
                           <div className={styles.polishedNavLink} />
@@ -242,6 +290,7 @@ const HomeHero = () => {
                     </motion.div>
                   )}
 
+                  {/* SCENE 3 — Code editor with line numbers + terminal */}
                   {currentScene === 3 && (
                     <motion.div
                       key="scene-code"
@@ -258,44 +307,91 @@ const HomeHero = () => {
                         </div>
                         <span>App.jsx</span>
                       </div>
-                      <div className={styles.codeContent}>
-                        <span className={styles.codeBlue}>const</span>{" "}
-                        <span className={styles.codePurple}>Triode</span> = () =&gt; &#123;<br />
-                        &nbsp;&nbsp;<span className={styles.codeBlue}>return</span> (<br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className={styles.codeGreen}>BuildSystem</span><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.codeOrange}>engine</span>=<span className={styles.codePurple}>"React"</span><br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
-                        &nbsp;&nbsp;);<br />
-                        &#125;;
+                      <div className={styles.codeBody}>
+                        <div className={styles.codeLineNumbers}>
+                          {[1, 2, 3, 4, 5, 6].map((n) => <div key={n}>{n}</div>)}
+                        </div>
+                        <div className={styles.codeContent}>
+                          <span className={styles.codeBlue}>const</span>{" "}
+                          <span className={styles.codePurple}>Triode</span> = () =&gt; &#123;<br />
+                          &nbsp;&nbsp;<span className={styles.codeBlue}>return</span> (<br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className={styles.codeGreen}>BuildSystem</span><br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.codeOrange}>engine</span>=<span className={styles.codePurple}>"React"</span><br />
+                          &nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br />
+                          &nbsp;&nbsp;);<br />
+                          &#125;;
+                        </div>
                       </div>
+                      <div className={styles.terminalLine}>▲ Deploying to production…</div>
                       <div className={styles.deployBadge}>Deploy Successful ✓</div>
                     </motion.div>
                   )}
 
-                  {currentScene === 4 && (
-                    <motion.div
-                      key="scene-brand"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                      className={styles.brandContainer}
-                    >
-                      <div className={styles.brandGrid}>
-                        <div className={styles.brandLogoBox}>T</div>
-                        <div className={styles.brandColors}>
-                          <div className={styles.colorSwatch} style={{ background: "#0A0A0A" }} />
-                          <div className={styles.colorSwatch} style={{ background: "#F5F3EF" }} />
-                          <div className={styles.colorSwatch} style={{ background: "#555555" }} />
-                        </div>
-                      </div>
-                      <div className={styles.brandCard}>
-                        <span style={{ fontSize: "8px", fontWeight: 700, color: "rgba(0,0,0,0.4)" }}>CARD MOCKUP</span>
-                        <span style={{ fontSize: "14px", fontWeight: 800 }}>Triode Studio</span>
-                      </div>
-                    </motion.div>
-                  )}
+{/* SCENE 4 — Coded Design Output */}
+{currentScene === 4 && (
+  <motion.div
+    key="scene-coded-design"
+    initial={{ opacity: 0, scale: 0.96 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 1.04 }}
+    transition={{ duration: 0.45 }}
+    className={styles.browserFrame}
+  >
+    <BrowserBar url="triode.studio" />
 
+    <div className={styles.codedDesignBody}>
+      <img
+        src={TRIODE_LOGO}
+        alt="Triode"
+        className={styles.codedDesignLogo}
+      />
+
+      <span className={styles.codedDesignTag}>Creative Development</span>
+
+      <h2 className={styles.codedDesignTitle}>
+        Design.
+        <br />
+        Develop.
+        <br />
+        Deliver.
+      </h2>
+
+      <p className={styles.codedDesignSubtitle}>
+        Modern websites crafted with precision.
+      </p>
+
+      <div className={styles.codedDesignButtons}>
+        <button className={styles.primaryBtn}>Start Project</button>
+        <button className={styles.secondaryBtn}>Portfolio</button>
+      </div>
+
+      <div className={styles.featureGrid}>
+        <div className={styles.featureCard}>
+          <span className={styles.featureNumber}>01</span>
+          <span>UI / UX</span>
+        </div>
+
+        <div className={styles.featureCard}>
+          <span className={styles.featureNumber}>02</span>
+          <span>Web Apps</span>
+        </div>
+
+        <div className={styles.featureCard}>
+          <span className={styles.featureNumber}>03</span>
+          <span>Branding</span>
+        </div>
+      </div>
+
+      <div className={styles.codePreview}>
+        <span>{"<motion.div>"}</span>
+        <span>beautiful experiences</span>
+        <span>{"</motion.div>"}</span>
+      </div>
+    </div>
+  </motion.div>
+)}
+
+                  {/* SCENE 5 — Analytics dashboard */}
                   {currentScene === 5 && (
                     <motion.div
                       key="scene-marketing"
@@ -303,50 +399,68 @@ const HomeHero = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -15 }}
                       transition={{ duration: 0.4 }}
-                      className={styles.marketingContainer}
+                      className={styles.browserFrame}
                     >
-                      <div className={styles.metricCard}>
-                        <span className={styles.metricLabel}>SEO Rank</span>
-                        <span className={styles.metricValue}>#1</span>
-                        <span className={styles.growthIndicator}>+12.4%</span>
-                      </div>
-                      <div className={styles.metricCard}>
-                        <span className={styles.metricLabel}>Conversion</span>
-                        <span className={styles.metricValue}>4.8%</span>
-                        <span className={styles.growthIndicator}>+22.1%</span>
-                      </div>
-                      <div className={styles.chartBox}>
-                        <div className={styles.chartBars}>
-                          <div className={styles.chartBar} style={{ height: "30%" }} />
-                          <div className={styles.chartBar} style={{ height: "50%" }} />
-                          <div className={styles.chartBar} style={{ height: "45%" }} />
-                          <div className={styles.chartBar} style={{ height: "85%" }} />
+                      <BrowserBar url="analytics.triode.studio" />
+                      <div className={styles.marketingContainer}>
+                        <div className={styles.metricCard}>
+                          <span className={styles.metricLabel}>SEO Rank</span>
+                          <span className={styles.metricValue}>#1</span>
+                          <span className={styles.growthIndicator}>+12.4%</span>
+                        </div>
+                        <div className={styles.metricCard}>
+                          <span className={styles.metricLabel}>Conversion</span>
+                          <span className={styles.metricValue}>4.8%</span>
+                          <span className={styles.growthIndicator}>+22.1%</span>
+                        </div>
+                        <div className={styles.chartBox}>
+                          <div className={styles.chartBars}>
+                            <div className={styles.chartBar} style={{ height: "30%" }} />
+                            <div className={styles.chartBar} style={{ height: "50%" }} />
+                            <div className={styles.chartBar} style={{ height: "45%" }} />
+                            <div className={styles.chartBar} style={{ height: "85%" }} />
+                          </div>
                         </div>
                       </div>
                     </motion.div>
                   )}
 
+                  {/* SCENE 6 — Client feedback / revision chat, replaces the AI scene */}
                   {currentScene === 6 && (
                     <motion.div
-                      key="scene-ai"
+                      key="scene-feedback"
                       initial={{ opacity: 0, scale: 0.98 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 1.02 }}
                       transition={{ duration: 0.4 }}
-                      className={styles.aiContainer}
+                      className={styles.feedbackContainer}
                     >
-                      <div className={styles.aiChatBox}>
-                        <div className={`${styles.aiBubble} ${styles.aiBubbleUser}`}>Generate UI layout</div>
-                        <div className={`${styles.aiBubble} ${styles.aiBubbleBot}`}>Layout generated successfully</div>
+                      <div className={styles.feedbackChatBox}>
+                        <div className={`${styles.feedbackBubble} ${styles.feedbackBubbleClient}`}>
+                          Can we try a bolder headline?
+                        </div>
+                        <div className={styles.feedbackAvatarRow}>
+                          <img src={TRIODE_LOGO} alt="" className={styles.aiAvatar} />
+                          <div className={`${styles.feedbackBubble} ${styles.feedbackBubbleTeam}`}>
+                            Updated — check revision 2
+                          </div>
+                        </div>
                       </div>
-                      <div className={styles.aiGeneration}>
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.06)" }} />
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.1)" }} />
-                        <div className={styles.aiGenThumbnail} style={{ background: "rgba(10, 10, 10, 0.04)" }} />
+                      <div className={styles.revisionTrack}>
+                        <div className={styles.revisionStep}>
+                          <span className={styles.revisionDot} /> Draft
+                        </div>
+                        <div className={styles.revisionStep}>
+                          <span className={styles.revisionDot} /> Review
+                        </div>
+                        <div className={`${styles.revisionStep} ${styles.revisionStepActive}`}>
+                          <span className={styles.revisionDot} /> Approved
+                        </div>
                       </div>
                     </motion.div>
                   )}
 
+                  {/* SCENE 7 — Finished, deployed product */}
                   {currentScene === 7 && (
                     <motion.div
                       key="scene-finished"
@@ -357,9 +471,11 @@ const HomeHero = () => {
                       className={styles.finishedProduct}
                     >
                       <div className={styles.polishedHeader}>
-                        <div className={styles.polishedLogo}>FINISHED WORKSPACE</div>
+                        <div className={styles.polishedLogo}>
+                          <img src={TRIODE_LOGO} alt="Triode" className={styles.triodeLogoIcon} />
+                        </div>
                       </div>
-                      <div style={{ display: "flex", gap: "10px", padding: "10px" }}>
+                      <div style={{ display: "flex", gap: "10px", padding: "10px", alignItems: "center" }}>
                         <div style={{ width: "30px", height: "30px", background: "#0a0a0a", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: "10px" }}>✓</div>
                         <div>
                           <span style={{ fontSize: "12px", fontWeight: "bold" }}>Production Ready</span>

@@ -463,7 +463,6 @@ const ServicesShowcase = () => {
           <div key={service.id} className={styles.mobileServiceRow}>
             <div className={styles.mobileRowTop}>
               <span className={styles.mobileNum}>{service.number}</span>
-              <div className={styles.mobileIcon}>{service.icon}</div>
               <span className={styles.mobileLabel}>{service.label}</span>
             </div>
             <h2 className={styles.mobileTitle}>{service.title}</h2>

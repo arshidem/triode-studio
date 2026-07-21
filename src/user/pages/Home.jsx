@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import HomeHero from "../components/HomeHero";
 import ServicesShowcase from "../components/ServicesShowcase";
-import ThreePillars from "../components/ThreePillars";
 import TechMarquee from "../components/TechMarquee";
 import ProcessTimeline from "../components/ProcessTimeline";
 import MouseSpotlightCTA from "../components/MouseSpotlightCTA";
@@ -40,9 +39,7 @@ const Home = () => {
       {/* Reusable Interactive Services Showcase (Laptop Frame) */}
       <ServicesShowcase />
 
-      {/* Three Pillars Section */}
-      <ThreePillars />
-
+ 
       {/* Infinite Tech Marquee */}
       <TechMarquee />
 

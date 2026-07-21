@@ -1,70 +1,128 @@
-.marqueeSection {
-  padding: 2rem 0 3rem 0;
-  width: 100%;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  z-index: 10;
+.section {
+  padding: 8rem 2rem;
+  background: #000;
   position: relative;
-}
-
-.marqueeTitle {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--subtext);
-  margin-bottom: 3rem;
-  font-weight: 700;
-}
-
-.marqueeWrapper {
-  width: 100%;
   overflow: hidden;
-  /* Premium fade on edges */
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.marqueeTrack {
+.header {
+  max-width: 720px;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.tag {
+  font-size: .75rem;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: #777;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1;
+  color: white;
+  letter-spacing: -.05em;
+}
+
+.subtitle {
+  margin-top: 1.5rem;
+  color: #8f8f8f;
+  line-height: 1.8;
+  font-size: 1rem;
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.marquee {
+  overflow: hidden;
+  margin: 4rem 0;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.track {
   display: flex;
   width: max-content;
-  animation: scrollMarquee 40s linear infinite;
   gap: 4rem;
-  padding: 1rem 0;
+  animation: marquee 30s linear infinite;
 }
 
-.marqueeTrack:hover {
+.track:hover {
   animation-play-state: paused;
 }
 
-/* Dim all items by default on track hover */
-.marqueeTrack:hover .techItem {
-  opacity: 0.2;
-}
-
-.techItem {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text);
-  opacity: 0.7;
+.item {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.18);
   white-space: nowrap;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  letter-spacing: -0.02em;
+  transition: .35s;
+  cursor: default;
 }
 
-/* Highlight the hovered item */
-.marqueeTrack .techItem:hover {
-  opacity: 1;
-  color: var(--text);
-  text-shadow: 0 0 30px var(--text);
-  transform: scale(1.1) translateY(-2px);
+.item:hover {
+  color: white;
+  transform: translateY(-4px);
 }
 
-@keyframes scrollMarquee {
-  from { transform: translateX(0); }
-  /* -50% shifts exactly half the list, plus we need to account for half a gap to stitch perfectly, but flex handles the box. */
-  to { transform: translateX(calc(-50% - 2rem)); } 
+.categories {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.category {
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  background: rgba(255,255,255,.02);
+  transition: .35s;
+}
+
+.category:hover {
+  border-color: rgba(255,255,255,.18);
+  transform: translateY(-4px);
+}
+
+.category span {
+  display: block;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 14px;
+  font-size: .95rem;
+}
+
+.category p {
+  color: #888;
+  line-height: 1.8;
+  font-size: .9rem;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width:900px) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .item {
+    font-size: 1.7rem;
+  }
+
+  .section {
+    padding: 6rem 1.25rem;
+  }
 }
