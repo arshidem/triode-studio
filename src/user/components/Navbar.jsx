@@ -1,21 +1,26 @@
+// src/components/Navbar.jsx
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FiMail, FiPhone, FiInstagram, FiLinkedin, FiMessageCircle } from "react-icons/fi";
 import styles from "../styles/Navbar.module.css";
 import { useNavbarLogo } from "../context/NavbarLogoContext";
 
 /**
  * Navbar Component — Clean, non-animated, black & white minimal
  * - Desktop: logo + nav links + Get In Touch
- * - Mobile: hamburger → sidebar dropdown
+ * - Mobile: hamburger → sidebar dropdown with social links
  */
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const lastScrollY = useRef(0);
   const location = useLocation();
   const navigate = useNavigate();
   const { navbarLogoRef, loaderDone } = useNavbarLogo() || {};
+  const sidebarRef = useRef(null);
+  const menuBtnRef = useRef(null);
 
   const menuId = "mobile-menu";
 
@@ -25,7 +30,6 @@ const Navbar = () => {
       const currentY = window.scrollY;
       setScrolled(currentY > 50);
 
-      // Only hide after scrolling past 80px to avoid flicker at top
       if (currentY > 80) {
         setHidden(currentY > lastScrollY.current);
       } else {
@@ -41,11 +45,27 @@ const Navbar = () => {
   /* Close mobile menu when route changes */
   useEffect(() => setIsMobileOpen(false), [location]);
 
+  /* Close on outside click - but not on the hamburger button */
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (isMobileOpen && 
+          sidebarRef.current && 
+          !sidebarRef.current.contains(e.target) &&
+          menuBtnRef.current &&
+          !menuBtnRef.current.contains(e.target)) {
+        closeMenu();
+      }
+    };
+    
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isMobileOpen]);
+
   /* Keyboard navigation */
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape" && isMobileOpen) {
-        setIsMobileOpen(false);
+        closeMenu();
       }
     };
     document.addEventListener("keydown", handleEscape);
@@ -65,11 +85,19 @@ const Navbar = () => {
   }, [isMobileOpen]);
 
   const toggleMenu = useCallback(() => {
-    setIsMobileOpen((prev) => !prev);
-  }, []);
+    if (isMobileOpen) {
+      closeMenu();
+    } else {
+      setIsMobileOpen(true);
+      setIsAnimating(true);
+    }
+  }, [isMobileOpen]);
 
   const closeMenu = useCallback(() => {
-    setIsMobileOpen(false);
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsMobileOpen(false);
+    }, 300);
   }, []);
 
   const isActiveLink = (path) => {
@@ -84,6 +112,15 @@ const Navbar = () => {
     { path: "/portfolio", label: "Portfolio" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
+  ];
+
+  // Social links - icons only
+  const socialLinks = [
+    { icon: <FiMail />, label: "Email", link: "mailto:triodewebstudio@gmail.com" },
+    { icon: <FiPhone />, label: "Phone", link: "tel:+918157875032" },
+    { icon: <FiMessageCircle />, label: "WhatsApp", link: "https://wa.me/918157875032" },
+    { icon: <FiInstagram />, label: "Instagram", link: "https://instagram.com/triode.studio" },
+    { icon: <FiLinkedin />, label: "LinkedIn", link: "https://linkedin.com/company/triode-studio" },
   ];
 
   return (
@@ -142,11 +179,12 @@ const Navbar = () => {
             </svg>
           </button>
 
-          {/* Hamburger */}
+          {/* Hamburger - transforms to X when open */}
           <button
+            ref={menuBtnRef}
             className={`${styles.menuBtn} ${isMobileOpen ? styles.open : ""}`}
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileOpen}
             aria-controls={menuId}
           >
@@ -157,42 +195,66 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileOpen && (
+      {/* Mobile Menu - with slide animation for both in and out */}
+      {(isMobileOpen || isAnimating) && (
         <>
-          <div className={styles.backdrop} onClick={closeMenu} />
+          <div 
+            className={`${styles.backdrop} ${isMobileOpen ? styles.backdropVisible : styles.backdropHidden}`} 
+            onClick={closeMenu} 
+          />
           <div
-            className={styles.navbarMobileMenu}
+            ref={sidebarRef}
+            className={`${styles.navbarMobileMenu} ${
+              isMobileOpen ? styles.slideIn : styles.slideOut
+            }`}
             id={menuId}
             role="menu"
             aria-label="Mobile navigation menu"
           >
-            <div className={styles.mobileMenuHeader}>
-              <span>Menu</span>
-              <p>Digital systems for websites, brands, campaigns, and AI creative work.</p>
-            </div>
+            <div className={styles.mobileContent}>
+              {/* Navigation Links */}
+              <div className={styles.mobileLinks}>
+                {links.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`${styles.mobileLink} ${
+                      isActiveLink(link.path) ? styles.activeMobile : ""
+                    }`}
+                    role="menuitem"
+                    onClick={closeMenu}
+                    aria-current={isActiveLink(link.path) ? "page" : undefined}
+                  >
+                    <span className={styles.linkText}>{link.label}</span>
+                    <span className={styles.linkIndicator}></span>
+                  </Link>
+                ))}
+              </div>
 
-            <div className={styles.mobileLinks}>
-              {links.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`${styles.mobileLink} ${
-                    isActiveLink(link.path) ? styles.activeMobile : ""
-                  }`}
-                  role="menuitem"
-                  onClick={closeMenu}
-                  aria-current={isActiveLink(link.path) ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+              {/* Divider */}
+              <div className={styles.divider}></div>
 
-            <div className={styles.mobileBottom}>
-              <a href="tel:+918157875032" className={styles.mobilePhone}>
-                +91 81578 75032
-              </a>
+              {/* Social Links - Icons Only */}
+              <div className={styles.mobileSocial}>
+                <span className={styles.socialLabel}>Connect</span>
+                <div className={styles.socialGrid}>
+                  {socialLinks.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.socialItem}
+                      onClick={closeMenu}
+                      aria-label={item.label}
+                    >
+                      <span className={styles.socialIcon}>{item.icon}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA Button */}
               <button
                 className={styles.mobileGetInTouchBtn}
                 onClick={() => {
@@ -200,8 +262,8 @@ const Navbar = () => {
                   navigate("/contact");
                 }}
               >
-                Get a Proposal
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                Start Your Project
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>

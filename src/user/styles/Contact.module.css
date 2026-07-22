@@ -1,98 +1,406 @@
-/* Contact.module.css — Black & White Minimal Premium */
+/* src/user/styles/Contact.module.css */
 
-.contact {
-  padding: 8rem 2rem 6rem;
-  max-width: 1200px;
+/* ===== PAGE WRAPPER ===== */
+.contactPage {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  background: var(--bg, #ffffff);
+  color: var(--text, #111111);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== HERO ===== */
+.hero {
+  text-align: center;
+  padding: 2rem 0 4rem;
+  border-bottom: 1px solid var(--border, #e5e5e5);
+}
+
+.heroContent {
+  max-width: 760px;
   margin: 0 auto;
 }
 
-.contactHeader {
-  text-align: center;
-  margin-bottom: 5rem;
-}
-
-.title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+.heroTitle {
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
   font-weight: 800;
   letter-spacing: -0.04em;
+  line-height: 1.1;
   margin-bottom: 1rem;
+  color: var(--text, #111);
 }
 
-.subtitle {
-  font-size: 1.1rem;
-  color: var(--subtext);
-  max-width: 600px;
-  margin: 0 auto;
+.heroSub {
+  font-size: 1.15rem;
+  color: var(--subtext, #555);
+  max-width: 580px;
+  margin: 0 auto 2rem;
   line-height: 1.7;
 }
 
-.contactContent {
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cta {
+  padding: 0.9rem 2.2rem;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+
+.ctaPrimary {
+  background: var(--text, #111);
+  color: var(--bg, #fff);
+}
+
+.ctaPrimary:hover {
+  background: var(--subtext, #555);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.2);
+}
+
+.ctaSecondary {
+  background: transparent;
+  color: var(--text, #111);
+  border-color: var(--border, #e5e5e5);
+}
+
+.ctaSecondary:hover {
+  background: var(--border, #e5e5e5);
+  transform: translateY(-2px);
+}
+
+/* ===== SPLIT LAYOUT ===== */
+.splitLayout {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  padding: 4rem 0;
 }
 
-.infoTitle {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 2rem;
+/* LEFT COLUMN */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
 }
 
-.infoCards {
+.leftInner {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.infoCard {
+.leftTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text, #111);
+}
+
+.leftDesc {
+  color: var(--subtext, #555);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Trust grid */
+.trustGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+  background: var(--card-bg, #fafafa);
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border, #e5e5e5);
+}
+
+.trustItem {
   display: flex;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text, #111);
+}
+
+.trustIcon {
+  color: var(--text, #111);
+  display: flex;
+}
+
+/* Timeline */
+.timeline {
+  background: var(--card-bg, #fafafa);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border, #e5e5e5);
+}
+
+.timelineTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text, #111);
+}
+
+.timelineSteps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+.timelineStep {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--subtext, #555);
+}
+
+.stepNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--text, #111);
+  color: var(--bg, #fff);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Response badges */
+.responseBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  color: var(--subtext, #555);
+  padding: 0.25rem 0;
+}
+
+/* Contact methods */
+.contactMethods {
+  margin-top: 0.5rem;
+}
+
+.methodsTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text, #111);
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.methodCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border, #e5e5e5);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text, #111);
+  transition: all 0.25s ease;
+  background: var(--card-bg, #fafafa);
+}
+
+.methodCard:hover {
+  border-color: var(--text, #111);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+}
+
+.methodIcon {
+  display: flex;
+  color: var(--subtext, #555);
+}
+
+.methodLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--subtext, #555);
+}
+
+.methodValue {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ===== RIGHT COLUMN ===== */
+.rightColumn {
+  display: flex;
   align-items: flex-start;
 }
 
-.iconWrapper {
+/* ===== WHY SECTION ===== */
+.whySection {
+  padding: 4rem 0;
+  border-top: 1px solid var(--border, #e5e5e5);
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+  color: var(--text, #111);
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.whyCard {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  color: var(--text);
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  background: var(--card-bg, #fafafa);
+  border-radius: 6px;
+  border: 1px solid var(--border, #e5e5e5);
+  font-size: 0.95rem;
+  color: var(--text, #111);
 }
 
-.cardInfoTitle {
-  font-size: 0.8rem;
+.whyIcon {
+  display: flex;
+  color: var(--text, #111);
+}
+
+/* ===== FAQ ===== */
+.faqSection {
+  padding: 4rem 0;
+  border-top: 1px solid var(--border, #e5e5e5);
+}
+
+.faqList {
+  max-width: 720px;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--border, #e5e5e5);
+  padding: 0.25rem 0;
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
-  color: var(--subtext);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.25rem;
+  color: var(--text, #111);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
 }
 
-.infoLink {
-  font-size: 1rem;
+.faqToggle {
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--subtext, #555);
+}
+
+.faqAnswer {
+  overflow: hidden;
+  color: var(--subtext, #555);
+  line-height: 1.6;
+  padding-bottom: 0.5rem;
+}
+
+.faqAnswer p {
+  margin: 0;
+}
+
+/* ===== FINAL CTA ===== */
+.finalCta {
+  text-align: center;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--border, #e5e5e5);
+}
+
+.finalCta h2 {
+  font-size: 2.2rem;
   font-weight: 700;
-  color: var(--text);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  color: var(--text, #111);
 }
 
-.infoText {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
+.finalCta p {
+  color: var(--subtext, #555);
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .contactContent {
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .splitLayout {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2.5rem;
+  }
+
+  .methodGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .contact {
-    padding: 6rem 1.5rem 4rem;
+  .contactPage {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .hero {
+    padding: 1rem 0 2rem;
+  }
+
+  .heroCtas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .trustGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .methodGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .whyGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .finalCta h2 {
+    font-size: 1.6rem;
   }
 }

@@ -1,4 +1,4 @@
-/* Navbar.module.css — Clean, non-animated, B&W minimal */
+/* src/styles/Navbar.module.css */
 
 /* ---------- Base navbar ---------- */
 .navbar {
@@ -10,7 +10,6 @@
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   font-family: 'Inter', sans-serif;
-  /* Smooth slide transition — transform is GPU-composited for 60fps */
   transition: background 0.3s ease, box-shadow 0.3s ease,
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
@@ -20,7 +19,6 @@
   z-index: 300;
 }
 
-/* Slide navbar up when scrolling down */
 .hidden {
   transform: translateY(-100%);
 }
@@ -41,6 +39,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 4; /* Higher than backdrop */
 }
 
 /* ---------- Logo ---------- */
@@ -58,10 +58,19 @@
   object-fit: contain;
   display: block;
   transition: opacity 0.15s ease;
+  filter: none; /* Ensure no filters are applied */
+  -webkit-filter: none;
 }
 
 .navbarLogo:hover .logoImage {
   opacity: 0.7;
+}
+
+/* When menu is open, ensure logo stays visible */
+.menuOpen .logoImage {
+  opacity: 1 !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* ---------- Desktop links ---------- */
@@ -98,9 +107,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 1.5px;
+  height: 2px;
   background: var(--text);
-  border-radius: 1px;
+  border-radius: 2px;
 }
 
 /* ---------- Actions ---------- */
@@ -108,6 +117,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
+  z-index: 4; /* Higher than backdrop */
 }
 
 /* ---------- Get In Touch ---------- */
@@ -118,7 +129,7 @@
   background: var(--text);
   color: var(--bg);
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: 50px;
   padding: 0.6rem 1.25rem;
   font-weight: 600;
   font-size: 0.8rem;
@@ -145,153 +156,260 @@
   background: none;
   border: none;
   padding: 0;
+  position: relative;
 }
 
 .menuBtn .line {
   background-color: var(--text);
-  height: 1.5px;
+  height: 2px;
   border-radius: 2px;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   width: 100%;
+  transform-origin: center;
 }
 
 .menuBtn.open .line:nth-child(1) {
-  transform: rotate(45deg) translateY(9px);
+  transform: rotate(45deg) translateY(8.5px);
 }
 
 .menuBtn.open .line:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .menuBtn.open .line:nth-child(3) {
-  transform: rotate(-45deg) translateY(-9px);
+  transform: rotate(-45deg) translateY(-8.5px);
 }
 
-/* ---------- Backdrop ---------- */
+/* ---------- Backdrop - Behind Navbar ---------- */
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 10, 0.42);
-  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1; /* Lower than navbar (100) */
   cursor: pointer;
-  backdrop-filter: blur(3px);
+  transition: opacity 0.3s ease;
 }
 
-/* ---------- Mobile Menu ---------- */
+.backdropVisible {
+  opacity: 1;
+}
+
+.backdropHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Mobile Menu - Slide Animation ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 0.75rem;
+  top: 0;
   right: 0;
-  width: min(360px, calc(100vw - 1.5rem));
-  height: calc(100dvh - 1.5rem);
+  width: 300px;
+  height: 100vh;
   background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 18px 0 0 18px;
-  padding: 4.75rem 1rem 1rem;
+  z-index: 2; /* Higher than backdrop, lower than navbar */
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  z-index: 2;
-  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.16);
-  overflow: hidden;
+  border-radius: 20px 0 0 20px;
+  will-change: transform;
 }
 
-.mobileMenuHeader {
-  padding: 0 0.5rem 1.2rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1rem;
+/* Slide In Animation */
+.slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.mobileMenuHeader span {
-  display: block;
-  color: var(--text);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 0.55rem;
+/* Slide Out Animation */
+.slideOut {
+  animation: slideOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.mobileMenuHeader p {
-  color: var(--subtext);
-  font-size: 0.82rem;
-  line-height: 1.55;
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mobileContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 4.5rem 1.5rem 1.5rem;
+  gap: 1.5rem;
+}
+
+/* ---------- Mobile Links - Selected with BLACK Background ---------- */
 .mobileLinks {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  min-height: 0;
+  gap: 0.25rem;
 }
 
 .mobileLink {
   display: flex;
   align-items: center;
-  min-height: 50px;
+  justify-content: space-between;
   text-decoration: none;
   color: var(--subtext);
-  font-weight: 700;
-  font-size: 1.05rem;
-  padding: 0.85rem 1rem;
-  transition: color 0.15s ease, background 0.15s ease;
-  border-radius: 10px;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.75rem 0.85rem;
+  transition: all 0.2s ease;
   letter-spacing: -0.025em;
+  border-radius: 10px;
+  position: relative;
 }
 
 .mobileLink:hover {
   color: var(--text);
   background: var(--hover-bg);
+}
+
+/* Selected state - BLACK BACKGROUND with white text */
+.mobileLink.activeMobile {
+  color: #ffffff !important;
+  font-weight: 700;
+  background: #000000 !important;
+  border: 1px solid #000000;
+}
+
+.mobileLink.activeMobile:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.linkText {
+  position: relative;
+  z-index: 1;
+}
+
+/* Indicator dot - white on black background */
+.linkIndicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000000;
+  opacity: 0;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mobileLink.activeMobile .linkIndicator {
+  opacity: 1;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.mobileLink:hover .linkIndicator {
+  opacity: 0.3;
+}
+
+.mobileLink.activeMobile:hover .linkIndicator {
   opacity: 1;
 }
 
-.mobileLink.activeMobile {
-  color: var(--text);
-  font-weight: 600;
-  background: var(--active-bg);
-}
-
-/* ---------- Mobile Bottom ---------- */
-.mobileBottom {
+/* ---------- Divider ---------- */
+.divider {
   border-top: 1px solid var(--border);
-  padding: 1rem 0 0;
-  display: grid;
-  gap: 0.75rem;
-  background: var(--bg);
+  margin: 0.25rem 0;
 }
 
-.mobilePhone {
+/* ---------- Social Links - Icons Only ---------- */
+.mobileSocial {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.socialLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--subtext);
+}
+
+.socialGrid {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.socialItem {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--text);
-  font-size: 0.85rem;
-  font-weight: 800;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--subtext);
+  transition: all 0.2s ease;
+  background: var(--card-bg);
+  flex: 0 0 auto;
 }
 
+.socialItem:hover {
+  border-color: #000000;
+  color: #000000;
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+/* ---------- Mobile CTA Button ---------- */
 .mobileGetInTouchBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   width: 100%;
   background: var(--text);
   color: var(--bg);
   border: none;
-  border-radius: 999px;
-  min-height: 48px;
+  border-radius: 50px;
   padding: 0.875rem 1rem;
-  font-weight: 800;
-  font-size: 0.92rem;
+  font-weight: 700;
+  font-size: 0.9rem;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+  margin-top: auto;
+}
+
+.mobileGetInTouchBtn:hover {
+  opacity: 0.85;
+  transform: scale(0.98);
 }
 
 /* ---------- Responsive ---------- */
@@ -318,9 +436,59 @@
   }
 
   .navbarMobileMenu {
-    right: 0.75rem;
-    border-radius: 18px;
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    width: 280px;
+  }
+
+  .mobileContent {
+    padding: 4rem 1.25rem 1.25rem;
+  }
+
+  .mobileLink {
+    font-size: 1rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .socialGrid {
+    gap: 0.5rem;
+  }
+
+  .socialItem {
+    width: 40px;
+    height: 40px;
+  }
+
+  .socialIcon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbarMobileMenu {
+    width: 260px;
+    border-radius: 0;
+  }
+
+  .mobileContent {
+    padding: 4rem 1rem 1rem;
+  }
+
+  .mobileLink {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .socialItem {
+    width: 38px;
+    height: 38px;
+  }
+
+  .socialIcon {
+    font-size: 0.9rem;
+  }
+
+  .mobileGetInTouchBtn {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
   }
 }
 
@@ -328,18 +496,20 @@
   .navbarMobileMenu {
     display: none;
   }
-
-  .backdrop {
-    display: none;
-  }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .navbarMobileMenu {
+    animation: none !important;
+  }
+  
   .navbar,
   .navLink,
   .getInTouchBtn,
-  .mobileLink {
+  .mobileLink,
+  .socialItem,
+  .mobileGetInTouchBtn {
     transition: none;
   }
 }
