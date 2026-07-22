@@ -1,0 +1,484 @@
+# Triode Studio Website Redesign Prompt
+
+You are a **Senior Creative Director, Award-Winning UI/UX Designer, Brand Strategist, CRO Specialist, and Frontend Engineer**.
+
+Your task is to completely audit and redesign the Triode Studio website. Do **not** simply improve the visuals—optimize the entire website to increase trust, conversions, professionalism, and perceived value.
+
+The design language should feel comparable to the quality of leading creative studios such as Locomotive, Cuberto, BASIC/DEPT®, Figma, Linear, and Stripe—while maintaining a unique identity.
+
+---
+
+# Brand Identity
+
+Triode Studio is a creative digital agency specializing in:
+
+* Web Development
+* UI/UX Design
+* Branding
+* Graphic Design
+* Digital Marketing
+* AI Creative Solutions
+
+The brand personality should be:
+
+* Minimal
+* Premium
+* Modern
+* Intelligent
+* Creative
+* Confident
+* Precise
+* Human
+
+Avoid looking like a template or a generic agency.
+
+---
+
+# Design Language
+
+Only use:
+
+* Black
+* White
+* Grey
+
+No colorful gradients.
+
+Use color only if absolutely necessary for interaction feedback.
+
+The website should feel timeless.
+
+---
+
+# Main Goal
+
+The homepage should answer these questions within the first few seconds:
+
+Who are you?
+
+What do you do?
+
+Who do you help?
+
+Why should I trust you?
+
+How can I contact you?
+
+Everything on the page should move the visitor toward contacting Triode Studio.
+
+---
+
+# Hero Section
+
+Redesign the hero completely.
+
+Do NOT use:
+
+❌ Generic laptop renders
+
+❌ Random floating icons
+
+❌ Decorative particles
+
+❌ Meaningless animations
+
+❌ Stock illustrations
+
+Instead create one unforgettable interactive experience that communicates precision, creativity, and digital craftsmanship.
+
+Animations must have purpose.
+
+Every movement should reinforce the message.
+
+The headline should focus on client outcomes, not services.
+
+Instead of:
+
+"We Build Websites"
+
+Use messaging like:
+
+"We craft digital experiences that turn visitors into customers."
+
+CTA should be strong:
+
+* Start Your Project
+* Book a Discovery Call
+* Let's Build Together
+* Get a Proposal
+
+Avoid:
+
+Learn More
+
+Explore
+
+Click Here
+
+---
+
+# Messaging
+
+Rewrite every piece of copy.
+
+Remove generic agency phrases like:
+
+"We build websites."
+
+"We help businesses grow."
+
+"We create amazing designs."
+
+Replace them with outcome-focused copy.
+
+Every section should explain:
+
+Problem
+
+Solution
+
+Business Value
+
+Result
+
+Speak to business owners rather than designers.
+
+---
+
+# Services Section
+
+Never list services as simple cards.
+
+Each service should communicate:
+
+What it solves
+
+Who it's for
+
+Business impact
+
+Expected outcome
+
+For example:
+
+Instead of
+
+Web Development
+
+Use
+
+High-performance websites engineered to increase conversions, improve SEO, and build trust.
+
+Instead of
+
+Graphic Design
+
+Use
+
+Strategic visual systems that make your brand instantly recognizable.
+
+Show relationships between services rather than isolated cards.
+
+---
+
+# Homepage Structure
+
+Keep only sections that increase trust or conversions.
+
+Recommended flow:
+
+Hero
+
+Trusted by / credibility
+
+About Triode Studio
+
+Core Expertise
+
+How We Work
+
+Selected Projects
+
+Case Studies
+
+Results
+
+Testimonials
+
+Process
+
+FAQ
+
+Final CTA
+
+Footer
+
+Remove anything that doesn't help the visitor make a decision.
+
+---
+
+# Portfolio
+
+Never use:
+
+Fake projects
+
+Placeholder images
+
+Random Unsplash photos
+
+Fake client logos
+
+If real projects are unavailable:
+
+Create clearly labeled concept projects.
+
+Each project should include:
+
+Challenge
+
+Solution
+
+Process
+
+Outcome
+
+Technology
+
+Business Impact
+
+---
+
+# Trust
+
+Add genuine credibility.
+
+Include:
+
+Project numbers (only if real)
+
+Years of experience (only if true)
+
+Client testimonials
+
+Case studies
+
+Project process
+
+Technology stack
+
+Workflow
+
+Quality standards
+
+Never invent statistics.
+
+---
+
+# Typography
+
+Use a premium type system.
+
+Create a strong hierarchy.
+
+Large headlines
+
+Comfortable reading width
+
+Excellent spacing
+
+Consistent sizing
+
+Avoid decorative fonts.
+
+---
+
+# Layout
+
+Every section should feel different.
+
+Alternate layouts.
+
+Break visual rhythm.
+
+Avoid repeated card grids.
+
+Use whitespace intentionally.
+
+---
+
+# Animations
+
+Every animation must have a purpose.
+
+Examples:
+
+Reveal information
+
+Guide attention
+
+Show workflow
+
+Explain relationships
+
+Improve storytelling
+
+Remove:
+
+Random floating objects
+
+Continuous spinning
+
+Infinite decorative motion
+
+Overused parallax
+
+Animations should improve usability, not distract.
+
+---
+
+# Performance
+
+Optimize everything.
+
+Lazy loading
+
+Compressed images
+
+Minimal JavaScript
+
+Fast transitions
+
+Excellent Core Web Vitals
+
+Avoid heavy effects that slow the website.
+
+---
+
+# UX
+
+Improve conversion rate.
+
+Sticky navigation
+
+Visible CTA
+
+Clear hierarchy
+
+Accessible buttons
+
+Keyboard navigation
+
+Responsive design
+
+Readable spacing
+
+High accessibility
+
+No confusing layouts.
+
+---
+
+# Branding
+
+Maintain consistency.
+
+One visual language.
+
+One icon style.
+
+One button style.
+
+One spacing system.
+
+One typography system.
+
+One animation philosophy.
+
+Every page should feel like part of the same brand.
+
+---
+
+# Things to Remove
+
+Remove generic stock imagery.
+
+Remove fake achievements.
+
+Remove meaningless animations.
+
+Remove decorative effects without purpose.
+
+Remove duplicated layouts.
+
+Remove generic service descriptions.
+
+Remove weak CTAs.
+
+Remove unnecessary sections.
+
+Remove excessive scrolling.
+
+Remove anything that doesn't increase trust.
+
+Remove visual clutter.
+
+---
+
+# Things to Add
+
+Clear value proposition.
+
+Outcome-focused copywriting.
+
+Interactive storytelling.
+
+Real business benefits.
+
+Case studies.
+
+Testimonials.
+
+Project process.
+
+Technology expertise.
+
+Conversion-focused CTAs.
+
+Professional portfolio.
+
+Trust indicators.
+
+Performance optimization.
+
+Accessibility improvements.
+
+SEO best practices.
+
+Responsive experience.
+
+Micro-interactions with purpose.
+
+Distinctive layouts.
+
+Consistent branding.
+
+Premium typography.
+
+Clear information architecture.
+
+Conversion optimization.
+
+---
+
+# Final Objective
+
+The finished website should not feel like another agency template.
+
+It should make visitors think:
+
+"These people know exactly what they're doing."
+
+The experience should communicate precision, creativity, professionalism, and trust from the first interaction to the final call-to-action.
+
+Every design decision, animation, layout, interaction, and piece of copy must have a clear purpose. If an element does not improve clarity, credibility, usability, or conversions, remove it.

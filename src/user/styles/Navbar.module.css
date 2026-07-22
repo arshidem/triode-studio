@@ -16,6 +16,10 @@
   will-change: transform;
 }
 
+.menuOpen {
+  z-index: 300;
+}
+
 /* Slide navbar up when scrolling down */
 .hidden {
   transform: translateY(-100%);
@@ -170,43 +174,72 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 10, 0.3);
-  z-index: 998;
+  background: rgba(10, 10, 10, 0.42);
+  z-index: 1;
   cursor: pointer;
+  backdrop-filter: blur(3px);
 }
 
 /* ---------- Mobile Menu ---------- */
 .navbarMobileMenu {
   position: fixed;
-  top: 0;
+  top: 0.75rem;
   right: 0;
-  width: 280px;
-  height: 100vh;
+  width: min(360px, calc(100vw - 1.5rem));
+  height: calc(100dvh - 1.5rem);
   background: var(--bg);
-  border-left: 1px solid var(--border);
-  padding: 5rem 1.5rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: 18px 0 0 18px;
+  padding: 4.75rem 1rem 1rem;
   display: flex;
   flex-direction: column;
-  z-index: 999;
+  z-index: 2;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+.mobileMenuHeader {
+  padding: 0 0.5rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.mobileMenuHeader span {
+  display: block;
+  color: var(--text);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.55rem;
+}
+
+.mobileMenuHeader p {
+  color: var(--subtext);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .mobileLinks {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
+  min-height: 0;
 }
 
 .mobileLink {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 50px;
   text-decoration: none;
   color: var(--subtext);
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 0.875rem 1rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.85rem 1rem;
   transition: color 0.15s ease, background 0.15s ease;
-  border-radius: var(--radius-sm);
-  letter-spacing: -0.01em;
+  border-radius: 10px;
+  letter-spacing: -0.025em;
 }
 
 .mobileLink:hover {
@@ -224,7 +257,22 @@
 /* ---------- Mobile Bottom ---------- */
 .mobileBottom {
   border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
+  padding: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  background: var(--bg);
+}
+
+.mobilePhone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 800;
 }
 
 .mobileGetInTouchBtn {
@@ -236,10 +284,11 @@
   background: var(--text);
   color: var(--bg);
   border: none;
-  border-radius: var(--radius-full);
-  padding: 0.875rem;
-  font-weight: 600;
-  font-size: 0.9rem;
+  border-radius: 999px;
+  min-height: 48px;
+  padding: 0.875rem 1rem;
+  font-weight: 800;
+  font-size: 0.92rem;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
   letter-spacing: -0.01em;
@@ -266,6 +315,12 @@
 
   .logoImage {
     height: 22px;
+  }
+
+  .navbarMobileMenu {
+    right: 0.75rem;
+    border-radius: 18px;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
 

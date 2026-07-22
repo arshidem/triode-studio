@@ -1,0 +1,152 @@
+// src/user/components/SceneLogoLoader.jsx
+/**
+ * Scene Logo Loader — Designed specifically for the hero animation container
+ * Plays after the last scene and flies to the navbar logo
+ */
+
+import React, { useState, useEffect, useRef } from "react";
+import styles from "../styles/SceneLogoLoader.module.css";
+
+const DRAW_DURATION_MS = 1800;
+const FLY_MOVE_MS = 400;
+const FLY_HOLD_MS = 500;
+
+const SceneLogoLoader = ({ onComplete, navbarLogoRef }) => {
+  const [phase, setPhase] = useState("init");
+  const [flyStyle, setFlyStyle] = useState({});
+  const svgWrapperRef = useRef(null);
+
+  // ── Phase timer sequence ────────────────────────────────────────────────
+  useEffect(() => {
+    const t1 = setTimeout(() => setPhase("fade-in"), 80);
+    const t2 = setTimeout(() => setPhase("hold"), 600);
+    const t3 = setTimeout(() => setPhase("fly-move"), 100 + DRAW_DURATION_MS);
+    return () => { 
+      clearTimeout(t1); 
+      clearTimeout(t2); 
+      clearTimeout(t3); 
+    };
+  }, []);
+
+  // ── FLIP animation ─────────────────────────────────────────────────────
+  useEffect(() => {
+    if (phase !== "fly-move") return;
+
+    const srcEl = svgWrapperRef.current;
+    const tgtEl = navbarLogoRef?.current;
+
+    if (!srcEl || !tgtEl) {
+      setTimeout(() => { 
+        setPhase("done"); 
+        onComplete?.(); 
+      }, 200);
+      return;
+    }
+
+    const src = srcEl.getBoundingClientRect();
+    const tgt = tgtEl.getBoundingClientRect();
+
+    // Calculate scale and position
+    const scale = tgt.height / src.height;
+    const dx = (tgt.left + tgt.width / 2) - (src.left + src.width / 2);
+    const dy = (tgt.top + tgt.height / 2) - (src.top + src.height / 2);
+
+    // ── Step 1: Fly to target ──
+    requestAnimationFrame(() => {
+      setFlyStyle({
+        transform: `translate(${dx}px, ${dy}px) scale(${scale})`,
+        opacity: 1,
+        transition: `transform ${FLY_MOVE_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
+      });
+
+      // ── Step 2: Hold at target ──
+      setTimeout(() => {
+        setPhase("fly-hold");
+        setFlyStyle({
+          transform: `translate(${dx}px, ${dy}px) scale(${scale})`,
+          opacity: 1,
+          transition: "none",
+        });
+
+        // ── Step 3: Complete ──
+        setTimeout(() => {
+          setPhase("done");
+          onComplete?.();
+        }, FLY_HOLD_MS);
+      }, FLY_MOVE_MS + 20);
+    });
+  }, [phase, navbarLogoRef, onComplete]);
+
+  if (phase === "done") return null;
+
+  const isDrawing = phase === "fade-in" || phase === "hold";
+  const isFlying = phase === "fly-move" || phase === "fly-hold";
+
+  return (
+    <div className={`${styles.sceneLoader} ${isFlying ? styles.sceneLoaderFly : ""}`}>
+      <div
+        ref={svgWrapperRef}
+        className={`${styles.logoWrapper}
+          ${phase === "init" ? styles.hidden : ""}
+          ${phase === "fade-in" ? styles.fadeIn : ""}
+          ${phase === "hold" ? styles.visible : ""}
+          ${isFlying ? styles.visible : ""}`}
+        style={isFlying ? flyStyle : undefined}
+      >
+        <svg
+          className={styles.logoSvg}
+          viewBox="0 0 529.76 116.25"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="triode logo"
+        >
+          <g className={isDrawing ? styles.drawGroup : ""}>
+            {/* T */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M17.88,44.58v29.8c0,13.26,10.74,24,23.99,24h7.32v17.11c-1.32.23-2.66.41-4.02.51-.73.06-1.48.1-2.22.12h-2.16c-1.57-.04-3.13-.17-4.66-.39-6.73-.92-12.94-3.45-18.25-7.18-3.95-2.78-7.39-6.22-10.17-10.17C2.92,91.59.12,83.32.12,74.39V.12h17.75v26.71h31.31v17.75h-31.31Z"
+            />
+            {/* R */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M129.61,27.01v17.95c-1.03-.19-2.08-.31-3.15-.37-.39-.02-.78-.03-1.17-.03-.11-.01-.22-.01-.33-.01-.51,0-1.01.01-1.51.04-14.17.78-25.41,12.51-25.41,26.86v44.68h-17.74v-46.29c.1-2.98.5-5.89,1.16-8.69,1.44-6.1,4.13-11.71,7.78-16.56,2.51-3.33,5.47-6.29,8.8-8.81,5.28-3.99,11.47-6.83,18.21-8.16,2.04-.4,4.12-.67,6.25-.78h4.92c.73.04,1.46.09,2.19.17Z"
+            />
+            {/* I dot */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M178.07,11.73c0,4.9-3.97,8.87-8.87,8.87s-8.88-3.97-8.88-8.87,3.98-8.87,8.88-8.87,8.87,3.97,8.87,8.87Z"
+            />
+            {/* I stem */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M178.07,26.83v89.29h-17.75v-17.36c.1-.13.19-.25.29-.38h-.29v-53.8h.35c-.12-.15-.23-.31-.35-.46v-17.29h17.75Z"
+            />
+            {/* O */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M287.83,44.59c-8.15-10.79-21.07-17.75-35.63-17.75s-27.48,6.96-35.63,17.75c-5.66,7.48-9.01,16.8-9.01,26.9s3.35,19.42,9.01,26.9c8.15,10.78,21.07,17.74,35.63,17.74s27.48-6.96,35.63-17.74c5.66-7.48,9.02-16.8,9.02-26.9s-3.36-19.42-9.02-26.9ZM252.2,98.39c-14.86,0-26.9-12.04-26.9-26.9s12.04-26.9,26.9-26.9,26.9,12.04,26.9,26.9-12.04,26.9-26.9,26.9Z"
+            />
+            {/* D */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M396.62.13v35.73c-7.48-5.66-16.8-9.02-26.9-9.02-14.56,0-27.48,6.96-35.63,17.75-5.66,7.48-9.02,16.8-9.02,26.9s3.36,19.42,9.02,26.9c8.15,10.78,21.07,17.74,35.63,17.74,10.1,0,19.42-3.36,26.9-9.02,3.29-2.48,6.23-5.42,8.72-8.72,5.66-7.48,9.02-16.8,9.02-26.9V.13h-17.74ZM369.72,98.39c-14.86,0-26.9-12.04-26.9-26.9s12.04-26.9,26.9-26.9,26.9,12.04,26.9,26.9-12.05,26.9-26.9,26.9Z"
+            />
+            {/* E */}
+            <path
+              className={styles.letter}
+              pathLength="1"
+              d="M485.51,98.39c-8.56,0-16.19-4-21.11-10.23l47.99-17.36,17.23-6.23c-.86-5.53-2.74-10.73-5.44-15.39-.92-1.6-1.94-3.13-3.05-4.59-8.14-10.79-21.06-17.75-35.62-17.75s-27.48,6.96-35.63,17.75c-5.66,7.48-9.02,16.8-9.02,26.9,0,8.37,2.3,16.2,6.32,22.89.82,1.39,1.72,2.73,2.7,4.01,8.15,10.78,21.07,17.74,35.63,17.74s27.48-6.96,35.62-17.74c2.78-3.66,5-7.77,6.54-12.2l-17.09-4.94c-3.9,10.03-13.65,17.14-25.07,17.14ZM458.61,71.49c0-14.86,12.04-26.9,26.9-26.9,8.8,0,16.61,4.22,21.52,10.75l-48.39,17.39c-.02-.41-.03-.82-.03-1.24Z"
+            />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+export default SceneLogoLoader;

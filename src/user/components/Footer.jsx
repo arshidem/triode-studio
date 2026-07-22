@@ -1,4 +1,3 @@
-// src/user/components/Footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Footer.module.css";
@@ -17,23 +16,21 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        {/* Brand */}
         <div className={styles.footerSection}>
           <div className={styles.logoWrapper}>
             <img
               src="/assets/logo/Triode SVG.svg"
-              alt="triode logo"
+              alt="Triode Studio"
               className={styles.logoImage}
             />
           </div>
           <p className={styles.brandDescription}>
-            Crafting premium digital experiences that elevate brands and engage audiences.
+            Digital strategy, design, development, branding, marketing, and AI creative systems built to make businesses easier to trust and contact.
           </p>
         </div>
 
-        {/* Quick Links */}
         <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Quick Links</h3>
+          <h3 className={styles.sectionTitle}>Navigate</h3>
           <div className={styles.linksList}>
             {quickLinks.map((link) => (
               <Link
@@ -48,24 +45,23 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Contact Info */}
         <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Get in Touch</h3>
+          <h3 className={styles.sectionTitle}>Start a Project</h3>
           <div className={styles.contactInfo}>
-            <div className={styles.contactItem}>
-              <a href="mailto:triodewebstudio@gmail.com" className={styles.contactLink}>
-                triodewebstudio@gmail.com
+            <a href="mailto:triodewebstudio@gmail.com" className={styles.contactLink}>
+              triodewebstudio@gmail.com
+            </a>
+            <a href="tel:+918157875032" className={styles.contactLink}>
+              +91 81578 75032
+            </a>
+            <span className={styles.contactText}>Palakkad, Kerala, India</span>
+            <div className={styles.socialLinks}>
+              <a href="https://www.instagram.com/triodestudio/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                Instagram
               </a>
-            </div>
-            <div className={styles.contactItem}>
-              <a href="tel:+918157875032" className={styles.contactLink}>
-                +91 81578 75032
+              <a href="https://wa.me/918157875032" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+                WhatsApp
               </a>
-            </div>
-            <div className={styles.contactItem}>
-              <span className={styles.contactText}>
-                Palakkad, Kerala, India
-              </span>
             </div>
           </div>
         </div>
@@ -73,7 +69,7 @@ const Footer = () => {
 
       <div className={styles.footerBottom}>
         <p className={styles.copyright}>
-          © {currentYear} triode studio. All rights reserved.
+          © {currentYear} Triode Studio. All rights reserved.
         </p>
       </div>
     </footer>

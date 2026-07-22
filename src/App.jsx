@@ -12,6 +12,7 @@ import Navbar from "./user/components/Navbar";
 import Footer from "./user/components/Footer";
 import ScrollToTop from "./user/components/ScrollToTop";
 import LogoLoader from "./user/components/LogoLoader";
+import FloatingContact from "./user/components/FloatingContact";
 
 // Pages
 import Home from "./user/pages/Home";
@@ -75,6 +76,7 @@ const App = () => {
             <AnimatedRoutes />
           </main>
           <Footer />
+          <FloatingContact />
         </div>
       </Router>
     </NavbarLogoContext.Provider>

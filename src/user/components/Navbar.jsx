@@ -88,7 +88,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""} ${hidden ? styles.hidden : ""}`}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ""} ${hidden ? styles.hidden : ""} ${isMobileOpen ? styles.menuOpen : ""}`}
       role="navigation"
       aria-label="Main navigation"
     >
@@ -136,7 +136,7 @@ const Navbar = () => {
             className={styles.getInTouchBtn}
             onClick={() => navigate("/contact")}
           >
-            Get In Touch
+            Get a Proposal
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -167,6 +167,11 @@ const Navbar = () => {
             role="menu"
             aria-label="Mobile navigation menu"
           >
+            <div className={styles.mobileMenuHeader}>
+              <span>Menu</span>
+              <p>Digital systems for websites, brands, campaigns, and AI creative work.</p>
+            </div>
+
             <div className={styles.mobileLinks}>
               {links.map((link) => (
                 <Link
@@ -185,6 +190,9 @@ const Navbar = () => {
             </div>
 
             <div className={styles.mobileBottom}>
+              <a href="tel:+918157875032" className={styles.mobilePhone}>
+                +91 81578 75032
+              </a>
               <button
                 className={styles.mobileGetInTouchBtn}
                 onClick={() => {
@@ -192,7 +200,7 @@ const Navbar = () => {
                   navigate("/contact");
                 }}
               >
-                Get In Touch
+                Get a Proposal
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
