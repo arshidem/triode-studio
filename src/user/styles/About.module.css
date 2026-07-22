@@ -33,9 +33,9 @@
   margin-bottom: 2.5rem;
 }
 
-/* Our Story */
+/* ===== Our Story ===== */
 .storySection {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 
 .storyGrid {
@@ -54,6 +54,10 @@
   font-size: 1.05rem;
   line-height: 1.75;
   color: var(--subtext);
+}
+
+.storyDescription strong {
+  color: var(--text);
 }
 
 .storyAside {
@@ -83,9 +87,79 @@
   font-weight: 700;
 }
 
-/* Process */
+/* ===== Founders Section ===== */
+.foundersSection {
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.foundersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.founderCard {
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  background: var(--card-bg);
+}
+
+.founderCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+}
+
+.founderAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.avatarPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.founderName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.founderRole {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--subtext);
+  margin-bottom: 0.5rem;
+}
+
+.founderExpertise {
+  font-size: 0.9rem;
+  color: var(--subtext);
+  line-height: 1.5;
+}
+
+/* ===== Process - Numbers at Top Right ===== */
 .processSection {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 
 .processGrid {
@@ -96,17 +170,42 @@
 
 .processCard {
   border: 1px solid var(--border);
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
+  border-radius: 12px;
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+.processCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+}
+
+/* Step number - Top Right, Bold, Large */
 .stepNum {
-  font-family: 'Inter', monospace;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--subtext);
-  margin-bottom: 1.5rem;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+  opacity: 0.06;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.processCard:hover .stepNum {
+  opacity: 0.12;
+  transform: scale(1.05) translateX(-4px);
 }
 
 .stepTitle {
@@ -114,17 +213,22 @@
   font-weight: 700;
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  padding-top: 0.5rem;
 }
 
 .stepDesc {
   font-size: 0.9rem;
   color: var(--subtext);
   line-height: 1.6;
+  position: relative;
+  z-index: 1;
 }
 
-/* Values */
+/* ===== Values ===== */
 .valuesSection {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
 }
 
 .valuesGrid {
@@ -151,11 +255,12 @@
   line-height: 1.6;
 }
 
-/* CTA */
+/* ===== CTA ===== */
 .ctaSection {
   text-align: center;
   padding: 4rem 2rem;
   border: 1px solid var(--border);
+  border-radius: 16px;
 }
 
 .ctaTitle {
@@ -174,18 +279,31 @@
   background: var(--text);
   color: var(--bg);
   padding: 0.8rem 2rem;
-  border-radius: var(--radius-full);
+  border-radius: 50px;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: opacity 0.15s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .ctaButton:hover {
   opacity: 0.85;
+  transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .foundersGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .processGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
   .storyGrid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -200,13 +318,19 @@
     justify-content: space-between;
   }
 
-  .processGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .foundersGrid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .valuesGrid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .stepNum {
+    font-size: 2.8rem;
+    top: 1rem;
+    right: 1.25rem;
   }
 }
 
@@ -219,8 +343,22 @@
     grid-template-columns: 1fr;
   }
 
+  .foundersGrid {
+    grid-template-columns: 1fr;
+  }
+
   .storyAside {
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .ctaSection {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .stepNum {
+    font-size: 2.5rem;
+    top: 0.75rem;
+    right: 1rem;
   }
 }

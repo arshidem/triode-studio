@@ -56,6 +56,24 @@ const About = () => {
     },
   ];
 
+  const founders = [
+    {
+      name: "Mohammed Arshid EM",
+      role: "Founder & Lead Developer",
+      expertise: "Full-Stack Development, UI/UX, System Architecture",
+    },
+    {
+      name: "Muhammed Musthafa",
+      role: "Co-Founder & Creative Director",
+      expertise: "UI/UX Design, AI Video Generation, Creative Direction",
+    },
+    {
+      name: "Salman Faris",
+      role: "Co-Founder & Brand Strategist",
+      expertise: "Digital Marketing, Brand Strategy, Creative Campaigns",
+    },
+  ];
+
   return (
     <motion.div
       className={styles.about}
@@ -79,22 +97,48 @@ const About = () => {
         <div className={styles.storyGrid}>
           <div className={styles.storyText}>
             <p className={styles.storyDescription}>
-              Triode Studio is a digital design and development studio. We build websites, mobile apps, logos, and advertisements. We focus on making products that work well and help businesses find more customers.
+              Triode Studio is a digital design and development studio. We build websites, mobile apps, brand identities, and advertising campaigns. We focus on creating products that work well and help businesses find more customers.
             </p>
             <p className={styles.storyDescription}>
               <strong>Why "Triode"?</strong> Just like a triode valve controls and strengthens electronic signals, we take care of all the small details to make your brand stronger and help your business grow.
             </p>
+            <p className={styles.storyDescription}>
+              Founded by <strong>Mohammed Arshid EM</strong>, <strong>Muhammed Musthafa</strong>, and <strong>Salman Faris</strong> — a team of designers, developers, and strategists who share a passion for building digital experiences that truly make a difference.
+            </p>
           </div>
           <div className={styles.storyAside}>
             <div className={styles.asideBlock}>
-              <span className={styles.asideTitle}>Founder</span>
-              <span className={styles.asideValue}>Mohammed Arshid EM</span>
+              <span className={styles.asideTitle}>Founded</span>
+              <span className={styles.asideValue}>2024</span>
             </div>
             <div className={styles.asideBlock}>
               <span className={styles.asideTitle}>Location</span>
               <span className={styles.asideValue}>Kerala, India</span>
             </div>
+            <div className={styles.asideBlock}>
+              <span className={styles.asideTitle}>Focus</span>
+              <span className={styles.asideValue}>Web • Mobile • Branding • AI</span>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Founders Section */}
+      <section className={styles.foundersSection}>
+        <h2 className={styles.sectionTitle}>Meet the Team</h2>
+        <div className={styles.foundersGrid}>
+          {founders.map((founder, idx) => (
+            <div key={idx} className={styles.founderCard}>
+              <div className={styles.founderAvatar}>
+                <span className={styles.avatarPlaceholder}>
+                  {founder.name.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
+              <h3 className={styles.founderName}>{founder.name}</h3>
+              <span className={styles.founderRole}>{founder.role}</span>
+              <p className={styles.founderExpertise}>{founder.expertise}</p>
+            </div>
+          ))}
         </div>
       </section>
 
