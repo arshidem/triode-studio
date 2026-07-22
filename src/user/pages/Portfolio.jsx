@@ -99,7 +99,6 @@ const projects = [
     ctaLink: "/portfolio/ai-marketing",
     duration: "4 weeks",
     services: ["AI Production", "Creative Direction", "Marketing Strategy"],
-    deliverables: ["Video Ads", "Style Guide", "Analytics Report"],
     image: "/assets/portfolio/ai-marketing.jpg",
   },
 ];
