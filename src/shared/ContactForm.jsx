@@ -1,6 +1,8 @@
 // src/components/ContactForm.jsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
+import toast from "react-hot-toast";
 import styles from "./ContactForm.module.css";
 
 const SERVICES = [
@@ -15,7 +17,6 @@ const SERVICES = [
 
 const ContactForm = () => {
   const [formState, setFormState] = useState({
-    projectType: "",
     businessName: "",
     name: "",
     email: "",
@@ -44,11 +45,44 @@ const ContactForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1800);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey || serviceId === "your_service_id") {
+      // Simulate submission in development if keys are not set
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        toast.success("Inquiry simulated! Add actual EmailJS keys to .env for real delivery.");
+      }, 1500);
+      return;
+    }
+
+    const templateParams = {
+      project_type: selectedServices.join(", ") || "General Inquiry",
+      selected_services: selectedServices.join(", ") || "None selected",
+      business_name: formState.businessName,
+      from_name: formState.name,
+      from_email: formState.email,
+      phone: formState.phone,
+      budget: formState.budget,
+      timeline: formState.timeline,
+      message: formState.description,
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        toast.success("Project inquiry sent successfully!");
+      })
+      .catch((err) => {
+        console.error("EmailJS Error:", err);
+        setIsSubmitting(false);
+        toast.error("Failed to send inquiry. Please try again.");
+      });
   };
 
   if (isSubmitted) {
@@ -73,22 +107,6 @@ const ContactForm = () => {
       <p className={styles.formSub}>Tell us about your vision, and we'll build a roadmap.</p>
 
       <form onSubmit={handleSubmit} className={styles.form}>
-        {/* Project Type */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Project Type *</label>
-          <select name="projectType" value={formState.projectType} onChange={handleChange} required className={styles.select}>
-            <option value="">Select a category</option>
-            <option value="Web Development">Web Development</option>
-            <option value="Mobile App Development">Mobile App Development</option>
-            <option value="UI/UX Design">UI/UX Design</option>
-            <option value="Branding">Branding</option>
-            <option value="Graphic Design">Graphic Design</option>
-            <option value="Digital Marketing">Digital Marketing</option>
-            <option value="AI Video Production">AI Video Production</option>
-            <option value="Creative Posters">Creative Posters</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
 
         {/* Service chips */}
         <div className={styles.formGroup}>
