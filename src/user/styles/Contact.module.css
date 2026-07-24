@@ -2,9 +2,9 @@
 
 /* ===== PAGE WRAPPER ===== */
 .contactPage {
-  max-width: 1280px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
-  padding: 6rem 2rem 4rem;
+  padding: var(--page-padding-desktop);
   background: var(--bg, #ffffff);
   color: var(--text, #111111);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -23,10 +23,10 @@
 }
 
 .heroTitle {
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-size: var(--title-font-size);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-letter-spacing);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
   margin-bottom: 1rem;
   color: var(--text, #111);
 }
@@ -100,10 +100,10 @@
 }
 
 .leftTitle {
-  font-size: 2rem;
+  font-size: var(--section-title-font-size);
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.2;
   color: var(--text, #111);
 }
 
@@ -256,9 +256,10 @@
 }
 
 .sectionTitle {
-  font-size: 2rem;
+  font-size: var(--section-title-font-size);
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
   font-weight: 700;
-  letter-spacing: -0.03em;
   margin-bottom: 2rem;
   color: var(--text, #111);
 }
@@ -343,9 +344,10 @@
 }
 
 .finalCta h2 {
-  font-size: 2.2rem;
+  font-size: var(--section-title-font-size);
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
   font-weight: 700;
-  letter-spacing: -0.03em;
   margin-bottom: 0.75rem;
   color: var(--text, #111);
 }
@@ -371,7 +373,7 @@
 
 @media (max-width: 600px) {
   .contactPage {
-    padding: 4rem 1rem 2rem;
+    padding: var(--page-padding-mobile);
   }
 
   .hero {

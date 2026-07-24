@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ContactForm from "../../shared/ContactForm";
+import useSEO from "../hooks/useSEO";
 import styles from "../styles/Contact.module.css";
 
 // --- Icons ---
@@ -55,15 +56,21 @@ const IconCheck = () => (
 
 // --- FAQ data ---
 const FAQS = [
-  { q: "How long does a project take?", a: "Timelines vary based on scope. Most projects take 4–12 weeks from discovery to launch." },
-  { q: "Do you work with startups?", a: "Absolutely. We love helping startups build their digital presence and product foundations." },
-  { q: "Can you redesign existing websites?", a: "Yes, we specialize in modern redesigns that improve UX, performance, and conversion." },
-  { q: "Do you provide maintenance?", a: "We offer ongoing support and maintenance plans to keep your product running smoothly." },
-  { q: "Can you create AI videos and posters?", a: "Yes, we produce AI-powered video content and creative posters for campaigns." },
-  { q: "How does pricing work?", a: "We provide fixed-price quotes based on your requirements after a discovery call." },
+  { q: "How long does a project take?", a: "Most projects take 4–12 weeks from discovery to launch." },
+  { q: "Do you work with startups?", a: "Yes. We help startups build their initial digital presence and products." },
+  { q: "Can you redesign existing websites?", a: "Yes, we redesign platforms to improve user experience and conversions." },
+  { q: "Do you provide maintenance?", a: "Yes. We offer ongoing support to keep your site running smoothly." },
+  { q: "Can you create AI videos and posters?", a: "Yes, we produce AI videos and custom graphics for campaigns." },
+  { q: "How does pricing work?", a: "We provide fixed-price quotes based on your requirements after a brief call." },
 ];
 
 const Contact = () => {
+  useSEO({
+    title: "Start Your Project | Contact Triode Studio",
+    description: "Get in touch with Triode Studio to request a proposal for web development, app development, UI/UX design, or marketing.",
+    keywords: "contact Triode Studio, project inquiry, hire web developers, UI UX consultation",
+  });
+
   const [activeFaq, setActiveFaq] = useState(null);
 
   const pageVariants = {

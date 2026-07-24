@@ -1,75 +1,82 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import HomeHero from "../components/HomeHero";
+import useSEO from "../hooks/useSEO";
 import styles from "../styles/Home.module.css";
 
 const services = [
   {
-    title: "Websites that convert serious buyers",
-    for: "For businesses whose current site looks unclear, dated, or hard to trust.",
-    impact: "We structure the offer, sharpen the user journey, and build fast pages that make enquiry the natural next step.",
+    title: "High-converting websites",
+    for: "For businesses needing a modern, clear web presence.",
+    impact: "We structure layout and copy to make inquiry easy and natural.",
   },
   {
-    title: "UI/UX systems for products and service brands",
-    for: "For teams launching a new product, redesigning a flow, or simplifying a confusing experience.",
-    impact: "We turn messy requirements into usable screens, decision flows, and component systems your team can actually build.",
+    title: "Intuitive UI/UX design",
+    for: "For products requiring simplified flows and interfaces.",
+    impact: "We design component systems that developers can build quickly.",
   },
   {
-    title: "Brand identity that makes you easier to choose",
-    for: "For founders and businesses that need to look credible before the first conversation.",
-    impact: "We define the visual rules, messaging direction, and branded assets that keep every touchpoint consistent.",
+    title: "Strong brand identity",
+    for: "For founders who need to establish trust and credibility.",
+    impact: "We define logos, rules, and assets that keep branding consistent.",
   },
   {
-    title: "Marketing assets built around action",
-    for: "For brands running social content, ads, launch campaigns, or local lead generation.",
-    impact: "We create focused campaign materials that clarify the offer and reduce wasted attention.",
+    title: "Action-focused marketing assets",
+    for: "For campaigns designed to generate leads and sales.",
+    impact: "We create clean assets to clarify your offer and lower ad costs.",
   },
   {
-    title: "AI-assisted creative workflows",
-    for: "For businesses that need faster content, sharper ideas, and repeatable creative output.",
-    impact: "We use AI where it improves speed and quality, then refine everything with human direction and brand judgment.",
+    title: "AI-assisted production workflows",
+    for: "For teams looking to generate campaign content faster.",
+    impact: "We use AI to speed up editing, then polish it with human eyes.",
   },
 ];
 
 const process = [
-  ["01", "Diagnose", "We identify the real conversion problem, audience hesitation, and business goal before any design work begins."],
-  ["02", "Architect", "We map the message, page structure, user flow, and proof points that make the offer easier to understand."],
-  ["03", "Craft", "We design, write, build, and refine the experience with performance, accessibility, and responsiveness in mind."],
-  ["04", "Launch", "We prepare the final build, check quality, and leave you with a website or system ready to use."],
+  ["01", "Diagnose", "We identify the user journey issue and goals first."],
+  ["02", "Architect", "We map the layout, messaging flow, and details."],
+  ["03", "Craft", "We write, design, and code for high speed and SEO."],
+  ["04", "Launch", "We do quality checks and launch your site ready to go."],
 ];
 
 const projects = [
   {
     name: "KoFund",
-    type: "Community fund platform",
-    challenge: "Manual contribution tracking made transparency difficult for community admins and members.",
-    outcome: "A role-based mobile app with real-time fund visibility, contribution records, and expense management.",
-    tech: "Flutter, Firebase Auth, Cloud Firestore, Firebase Storage",
+    type: "Community fund app",
+    challenge: "Tracking contributions manually was slow and lacked visibility.",
+    outcome: "Created a role-based app with live tracking and expense dashboards.",
+    tech: "Flutter, Firebase Auth, Cloud Firestore",
   },
   {
     name: "Nike E-commerce Redesign",
-    type: "Concept commerce system",
-    challenge: "Demonstrate a complete shopping flow with admin controls, payment handling, and product discovery.",
-    outcome: "A responsive store concept with cart, wishlist, Razorpay checkout, and analytics-focused admin pages.",
+    type: "Web store concept",
+    challenge: "Required a fully featured checkout flow with admin controls.",
+    outcome: "Built a responsive store concept with Razorpay and custom dashboards.",
     tech: "React, Node.js, Express, MongoDB, Razorpay",
   },
   {
     name: "AI Campaign System",
-    type: "Concept marketing workflow",
-    challenge: "Create a repeatable way to produce cinematic ad creative without losing brand consistency.",
-    outcome: "A structured workflow for scripting, generation, voiceover, editing, and Meta campaign rollout.",
-    tech: "Runway, Midjourney, ElevenLabs, Premiere Pro, Meta Ads",
+    type: "Marketing workflow",
+    challenge: "Needed high-volume video ads without losing brand style.",
+    outcome: "Built an AI production pipeline for cinematic social campaigns.",
+    tech: "Runway, Midjourney, ElevenLabs, Premiere Pro",
   },
 ];
 
 const faqs = [
-  ["Do you only build websites?", "No. We connect brand, interface, development, campaign assets, and AI-assisted production when the project needs it."],
-  ["Can you work with an existing brand?", "Yes. We can improve the digital experience while keeping your existing logo and brand recognition intact."],
-  ["Do you use fake metrics?", "No. We avoid invented numbers. Case studies focus on challenge, solution, decisions, and business impact."],
-  ["What happens after I contact you?", "We review your business, clarify the objective, and suggest the smallest practical scope that can create visible value."],
+  ["Do you only build websites?", "No. We handle branding, mobile apps, marketing assets, and AI workflows too."],
+  ["Can you work with my existing brand?", "Yes. We can design and improve the digital experience using your current logo."],
+  ["Do you use fake metrics?", "No. We focus on real client challenges, decisions, and clear business outcomes."],
+  ["What is the first step?", "We review your goals and suggest a small, practical project scope to start."],
 ];
 
 const Home = () => {
+  useSEO({
+    title: "Triode Studio | Web Development & UI/UX Agency",
+    description: "Triode Studio is a digital studio building high-converting websites, mobile apps, UI/UX systems, and AI video campaigns.",
+    keywords: "web development, UI UX design, mobile app development, digital marketing, AI video agency, Kerala digital studio",
+  });
+
   return (
     <div className={styles.home}>
       <HomeHero />

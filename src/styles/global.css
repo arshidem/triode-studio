@@ -56,7 +56,22 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  /* Layout Standard Uniformity */
+  --page-max-width: 1200px;
+  --page-padding-desktop: 8rem 2rem 6rem;
+  --page-padding-mobile: 6rem 1.5rem 4rem;
+  
+  /* Typography Standard Uniformity */
+  --title-font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  --title-line-height: 1.15;
+  --title-letter-spacing: -0.04em;
+  
+  --section-title-font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  --section-title-line-height: 1.25;
+  --section-title-letter-spacing: -0.03em;
 }
+
 
 /* ===== RESET & BASE STYLES ===== */
 *,

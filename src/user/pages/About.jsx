@@ -6,6 +6,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import useSEO from "../hooks/useSEO";
 import styles from "../styles/About.module.css";
 import { Link } from "react-router-dom";
 
@@ -18,59 +19,65 @@ const pageVariants = {
 const pageTransition = { duration: 0.3 };
 
 const About = () => {
+  useSEO({
+    title: "About Us | Triode Studio",
+    description: "Discover Triode Studio's team, values, and client-first process for web development, UI/UX, branding, and AI creative solutions.",
+    keywords: "About Triode Studio, digital agency Kerala, web design team, founders Arshid Musthafa Faris",
+  });
+
   const processSteps = [
     {
       step: "01",
-      title: "Planning & Research",
-      description: "We study your business goals, sketch layout designs, figure out who your target audience is, and plan what to make.",
+      title: "Research",
+      description: "We study your goals and outline the target audience to plan what to make.",
     },
     {
       step: "02",
-      title: "Designing & Writing",
-      description: "We create layouts for your website, phone app, poster designs, and write simple, clear text for your ads.",
+      title: "Design",
+      description: "We design websites, app interfaces, and clean marketing assets.",
     },
     {
       step: "03",
-      title: "Building & Creating",
-      description: "We write clean code to build your website or app, set up search engine optimization, and create AI-powered ads.",
+      title: "Build",
+      description: "We write clean code to build your website or app, optimizing for SEO.",
     },
     {
       step: "04",
-      title: "Testing & Launching",
-      description: "We test different ads to see what works best, launch your product, and tweak everything to get you the best results.",
+      title: "Launch",
+      description: "We verify everything runs smoothly and launch the final product.",
     },
   ];
 
   const values = [
     {
-      title: "High Quality Work",
-      description: "We build websites and mobile apps using clean, high-quality coding standards so they run fast and stay secure.",
+      title: "Quality Code",
+      description: "We build websites and mobile apps using clean code so they run fast and stay secure.",
     },
     {
-      title: "Beautiful Design",
-      description: "We design simple, modern posters and ads that look beautiful, neat, and catch people's eye.",
+      title: "Clean Design",
+      description: "We design minimal, modern interfaces and assets that catch the eye and feel professional.",
     },
     {
-      title: "Real Results",
-      description: "We set up online search, run ad campaigns, and use AI tools to help you get more customers and sales.",
+      title: "Real Value",
+      description: "We focus on solutions that solve problems and help your business grow.",
     },
   ];
 
   const founders = [
     {
       name: "Mohammed Arshid EM",
-      role: "Founder & Lead Developer",
-      expertise: "Full-Stack Development, UI/UX, System Architecture",
+      role: "Lead Developer",
+      expertise: "Full-Stack Development & Architecture",
     },
     {
       name: "Muhammed Musthafa",
-      role: "Co-Founder & Creative Director",
-      expertise: "UI/UX Design, AI Video Generation, Creative Direction",
+      role: "Creative Director",
+      expertise: "UI/UX & AI Video Generation",
     },
     {
       name: "Salman Faris",
-      role: "Co-Founder & Brand Strategist",
-      expertise: "Digital Marketing, Brand Strategy, Creative Campaigns",
+      role: "Brand Strategist",
+      expertise: "Digital Marketing & Brand Strategy",
     },
   ];
 
@@ -97,13 +104,13 @@ const About = () => {
         <div className={styles.storyGrid}>
           <div className={styles.storyText}>
             <p className={styles.storyDescription}>
-              Triode Studio is a digital design and development studio. We build websites, mobile apps, brand identities, and advertising campaigns. We focus on creating products that work well and help businesses find more customers.
+              Triode Studio is a digital design and development studio. We build websites, mobile apps, brand identities, and ad campaigns.
             </p>
             <p className={styles.storyDescription}>
-              <strong>Why "Triode"?</strong> Just like a triode valve controls and strengthens electronic signals, we take care of all the small details to make your brand stronger and help your business grow.
+              <strong>Why "Triode"?</strong> Just like a triode valve strengthens electrical signals, we help make your business presence stronger.
             </p>
             <p className={styles.storyDescription}>
-              Founded by <strong>Mohammed Arshid EM</strong>, <strong>Muhammed Musthafa</strong>, and <strong>Salman Faris</strong> — a team of designers, developers, and strategists who share a passion for building digital experiences that truly make a difference.
+              Founded by Arshid, Musthafa, and Faris — a team passionate about creating digital experiences that make a difference.
             </p>
           </div>
           <div className={styles.storyAside}>

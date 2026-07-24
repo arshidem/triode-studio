@@ -7,45 +7,27 @@ import styles from "../styles/ServicesShowcase.module.css";
 const services = [
   {
     title: "Custom Web Development",
-    solves: "Outdated websites that don't convert visitors into customers or fail to represent your brand properly.",
-    forWho: "Businesses, startups, and organizations needing a modern, fast, and conversion-focused website.",
-    impact: "Faster load times, better SEO, mobile responsiveness, and a clear path for visitors to take action.",
-    outcome: "A website that builds trust, explains your value, and turns visitors into leads.",
+    description: "We build fast, secure, and modern websites that rank well on Google and turn visitors into customers.",
   },
   {
     title: "Mobile App Development",
-    solves: "Complex mobile experiences that confuse users or fail to deliver a smooth, native feel.",
-    forWho: "Companies building iOS, Android, or cross-platform apps for customers, employees, or partners.",
-    impact: "Intuitive navigation, better engagement, and a polished experience that users actually enjoy.",
-    outcome: "A mobile app that people find useful, easy to use, and keep coming back to.",
+    description: "We create smooth, native iOS and Android apps tailored to your business operations.",
   },
   {
     title: "UI/UX Design",
-    solves: "Confusing interfaces, poor user flows, and designs that look good but don't work well.",
-    forWho: "Teams building websites, apps, dashboards, or digital products that need a user-first approach.",
-    impact: "Clearer navigation, reduced friction, and design decisions backed by user behavior.",
-    outcome: "A product that feels intuitive and guides users toward their goals effortlessly.",
+    description: "We design clean interfaces and user journeys that make digital products simple to use.",
   },
   {
     title: "Digital Marketing",
-    solves: "Marketing campaigns that feel scattered, fail to reach the right audience, or don't generate real results.",
-    forWho: "Businesses running social media, Google ads, content marketing, or lead generation campaigns.",
-    impact: "Better targeting, clearer messaging, and campaigns designed to drive measurable action.",
-    outcome: "Marketing that actually connects with your audience and brings in qualified leads.",
+    description: "We launch targeted ads and social campaigns that connect your brand with the right audience.",
   },
   {
     title: "AI Video Production",
-    solves: "Slow video creation, high production costs, and inconsistent quality across campaigns.",
-    forWho: "Brands needing promotional videos, social media content, explainer videos, and AI-powered animations.",
-    impact: "Faster turnaround, consistent quality, and engaging visuals that capture attention.",
-    outcome: "Professional videos that tell your story and drive engagement at scale.",
+    description: "We produce high-quality promo videos and animations quickly using modern AI tools.",
   },
   {
     title: "Creative Posters & Graphics",
-    solves: "Visual assets that look generic, fail to stand out, or don't align with your brand identity.",
-    forWho: "Businesses needing posters, banners, social graphics, and visual content for campaigns.",
-    impact: "Consistent brand visuals, professional designs, and graphics that make an impression.",
-    outcome: "Eye-catching designs that stop the scroll and communicate your message clearly.",
+    description: "We design eye-catching posters, ads, and graphics that keep your brand look consistent.",
   },
 ];
 
@@ -67,24 +49,9 @@ const ServicesShowcase = () => {
             <div className={styles.serialNumber}>0{index + 1}</div>
             <div className={styles.content}>
               <h2>{service.title}</h2>
-              <dl>
-                <div>
-                  <dt>What we solve</dt>
-                  <dd>{service.solves}</dd>
-                </div>
-                <div>
-                  <dt>Who it's for</dt>
-                  <dd>{service.forWho}</dd>
-                </div>
-                <div>
-                  <dt>How you benefit</dt>
-                  <dd>{service.impact}</dd>
-                </div>
-                <div>
-                  <dt>What you get</dt>
-                  <dd>{service.outcome}</dd>
-                </div>
-              </dl>
+              <p style={{ fontSize: "0.95rem", lineHeight: "1.6", color: "var(--subtext)" }}>
+                {service.description}
+              </p>
             </div>
           </article>
         ))}

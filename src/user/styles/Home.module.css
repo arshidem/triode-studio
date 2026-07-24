@@ -64,7 +64,7 @@
 .processGrid,
 .faqList,
 .finalCta {
-  width: min(1240px, 100%);
+  width: min(var(--page-max-width), 100%);
   margin: 0 auto;
 }
 
@@ -78,9 +78,9 @@
 .split h2,
 .sectionIntro h2,
 .finalCta h2 {
-  font-size: clamp(2.2rem, 4vw, 4.8rem);
-  line-height: 1;
-  letter-spacing: -0.055em;
+  font-size: var(--section-title-font-size);
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
 }
 
 .copyBlock {

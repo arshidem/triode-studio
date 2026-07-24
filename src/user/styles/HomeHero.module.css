@@ -11,7 +11,7 @@
 }
 
 .heroInner {
-  width: min(1400px, 100%);
+  width: min(var(--page-max-width), 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
@@ -33,9 +33,9 @@
 }
 
 .title {
-  font-size: clamp(3.2rem, 7vw, 7.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.055em;
+  font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   font-weight: 800;
   max-width: 980px;
 }

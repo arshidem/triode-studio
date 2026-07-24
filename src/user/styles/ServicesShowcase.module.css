@@ -1,7 +1,7 @@
 /* src/styles/ServicesShowcase.module.css */
 .services {
-  padding: 6rem 2rem;
-  max-width: 1280px;
+  max-width: var(--page-max-width);
+  padding: var(--page-padding-desktop);
   margin: 0 auto;
   background: var(--bg, #ffffff);
   color: var(--text, #111111);
@@ -24,10 +24,10 @@
 }
 
 .header h1 {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: var(--title-font-size);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-letter-spacing);
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
   margin-bottom: 1rem;
   color: var(--text, #111111);
 }
@@ -143,9 +143,10 @@
 }
 
 .ctaBand h2 {
-  font-size: 1.8rem;
+  font-size: var(--section-title-font-size);
+  line-height: var(--section-title-line-height);
+  letter-spacing: var(--section-title-letter-spacing);
   font-weight: 700;
-  letter-spacing: -0.03em;
   margin-bottom: 0.5rem;
   color: var(--text, #111111);
 }
@@ -191,7 +192,7 @@
 
 @media (max-width: 600px) {
   .services {
-    padding: 4rem 1rem;
+    padding: var(--page-padding-mobile);
   }
   
   .service {
