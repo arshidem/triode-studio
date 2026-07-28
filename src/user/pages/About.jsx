@@ -16,13 +16,13 @@ const pageVariants = {
   out: { opacity: 0 },
 };
 
-const pageTransition = { duration: 0.3 };
+const pageTransition = { duration: 0.4, ease: "easeOut" };
 
 const About = () => {
   useSEO({
-    title: "About Us | Triode Studio",
-    description: "Discover Triode Studio's team, values, and client-first process for web development, UI/UX, branding, and AI creative solutions.",
-    keywords: "About Triode Studio, digital agency Kerala, web design team, founders Arshid Musthafa Faris",
+    title: "Our Story | Digital Agency Kerala",
+    description: "Meet Triode Studio, a premium digital agency in Kerala founded by Arshid EM, Musthafa, and Salman Faris. Learn about our values and processes.",
+    keywords: "digital agency Kerala, founders, Arshid EM, Musthafa, Salman Faris, team, software design agency, Kerala web developers",
   });
 
   const processSteps = [

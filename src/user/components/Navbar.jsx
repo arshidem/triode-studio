@@ -48,15 +48,15 @@ const Navbar = () => {
   /* Close on outside click - but not on the hamburger button */
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (isMobileOpen && 
-          sidebarRef.current && 
-          !sidebarRef.current.contains(e.target) &&
-          menuBtnRef.current &&
-          !menuBtnRef.current.contains(e.target)) {
+      if (isMobileOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target) &&
+        menuBtnRef.current &&
+        !menuBtnRef.current.contains(e.target)) {
         closeMenu();
       }
     };
-    
+
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [isMobileOpen]);
@@ -119,7 +119,7 @@ const Navbar = () => {
     { icon: <FiMail />, label: "Email", link: "mailto:triodewebstudio@gmail.com" },
     { icon: <FiPhone />, label: "Phone", link: "tel:+918157875032" },
     { icon: <FiMessageCircle />, label: "WhatsApp", link: "https://wa.me/918157875032" },
-    { icon: <FiInstagram />, label: "Instagram", link: "https://instagram.com/triode.studio" },
+    { icon: <FiInstagram />, label: "Instagram", link: "https://instagram.com/triodestudio" },
     { icon: <FiLinkedin />, label: "LinkedIn", link: "https://linkedin.com/company/triode-studio" },
   ];
 
@@ -140,7 +140,7 @@ const Navbar = () => {
           <img
             ref={navbarLogoRef}
             src="/assets/logo/Triode SVG.svg"
-            alt="triode logo"
+            alt="Triode Studio Logo"
             className={styles.logoImage}
             style={{
               opacity: loaderDone ? 1 : 0,
@@ -155,9 +155,8 @@ const Navbar = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`${styles.navLink} ${
-                isActiveLink(link.path) ? styles.active : ""
-              }`}
+              className={`${styles.navLink} ${isActiveLink(link.path) ? styles.active : ""
+                }`}
               role="menuitem"
               aria-current={isActiveLink(link.path) ? "page" : undefined}
             >
@@ -175,7 +174,7 @@ const Navbar = () => {
           >
             Get a Proposal
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
@@ -198,15 +197,14 @@ const Navbar = () => {
       {/* Mobile Menu - with slide animation for both in and out */}
       {(isMobileOpen || isAnimating) && (
         <>
-          <div 
-            className={`${styles.backdrop} ${isMobileOpen ? styles.backdropVisible : styles.backdropHidden}`} 
-            onClick={closeMenu} 
+          <div
+            className={`${styles.backdrop} ${isMobileOpen ? styles.backdropVisible : styles.backdropHidden}`}
+            onClick={closeMenu}
           />
           <div
             ref={sidebarRef}
-            className={`${styles.navbarMobileMenu} ${
-              isMobileOpen ? styles.slideIn : styles.slideOut
-            }`}
+            className={`${styles.navbarMobileMenu} ${isMobileOpen ? styles.slideIn : styles.slideOut
+              }`}
             id={menuId}
             role="menu"
             aria-label="Mobile navigation menu"
@@ -218,9 +216,8 @@ const Navbar = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`${styles.mobileLink} ${
-                      isActiveLink(link.path) ? styles.activeMobile : ""
-                    }`}
+                    className={`${styles.mobileLink} ${isActiveLink(link.path) ? styles.activeMobile : ""
+                      }`}
                     role="menuitem"
                     onClick={closeMenu}
                     aria-current={isActiveLink(link.path) ? "page" : undefined}
@@ -264,7 +261,7 @@ const Navbar = () => {
               >
                 Start Your Project
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
             </div>

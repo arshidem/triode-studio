@@ -64,20 +64,22 @@ const FAQS = [
   { q: "How does pricing work?", a: "We provide fixed-price quotes based on your requirements after a brief call." },
 ];
 
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 },
+};
+
+const pageTransition = { duration: 0.4, ease: "easeOut" };
+
 const Contact = () => {
   useSEO({
-    title: "Start Your Project | Contact Triode Studio",
-    description: "Get in touch with Triode Studio to request a proposal for web development, app development, UI/UX design, or marketing.",
-    keywords: "contact Triode Studio, project inquiry, hire web developers, UI UX consultation",
+    title: "Start Your Project | Flutter App Developers Palakkad",
+    description: "Hire the best Flutter app developers in Palakkad. Get in touch with Triode Studio for high-performance cross-platform iOS and Android mobile app development.",
+    keywords: "Flutter app developers Palakkad, Mobile app developers Palakkad, React Native Kerala, hire mobile app developers, contact Triode Studio, custom app development",
   });
 
   const [activeFaq, setActiveFaq] = useState(null);
-
-  const pageVariants = {
-    initial: { opacity: 0, y: 20 },
-    in: { opacity: 1, y: 0 },
-    out: { opacity: 0, y: -20 },
-  };
 
   return (
     <motion.div
@@ -86,14 +88,14 @@ const Contact = () => {
       animate="in"
       exit="out"
       variants={pageVariants}
-      transition={{ duration: 0.4 }}
+      transition={pageTransition}
     >
       {/* ===== HERO ===== */}
       <section className={styles.hero}>
         <motion.div
           className={styles.heroContent}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <h1 className={styles.heroTitle}>Let's Build Something That Matters.</h1>
@@ -112,8 +114,8 @@ const Contact = () => {
         {/* LEFT: Trust, process, contact */}
         <motion.div
           className={styles.leftColumn}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <div className={styles.leftInner}>
@@ -160,7 +162,7 @@ const Contact = () => {
                   { icon: <IconEmail />, label: "Email", value: "triodewebstudio@gmail.com", link: "mailto:triodewebstudio@gmail.com" },
                   { icon: <IconPhone />, label: "Phone", value: "+91 81578 75032", link: "tel:+918157875032" },
                   { icon: <IconWhatsApp />, label: "WhatsApp", value: "Chat with us", link: "https://wa.me/918157875032" },
-                  { icon: <IconInstagram />, label: "Instagram", value: "@triode.studio", link: "https://instagram.com/triode.studio" },
+                  { icon: <IconInstagram />, label: "Instagram", value: "@triodestudio", link: "https://instagram.com/triodestudio" },
                   { icon: <IconLinkedIn />, label: "LinkedIn", value: "Triode Studio", link: "https://linkedin.com/company/triode-studio" },
                 ].map((method, i) => (
                   <a key={i} href={method.link} target="_blank" rel="noopener noreferrer" className={styles.methodCard}>
@@ -180,8 +182,8 @@ const Contact = () => {
         <motion.div
           className={styles.rightColumn}
           id="inquiry"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <ContactForm />
@@ -247,8 +249,8 @@ const Contact = () => {
       {/* ===== FINAL CTA ===== */}
       <motion.section
         className={styles.finalCta}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >

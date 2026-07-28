@@ -5,7 +5,7 @@ import { useEffect } from "react";
  * Custom hook to dynamically manage SEO metadata per page.
  * Updates document.title and creates/updates meta description, keywords, og, and twitter tags.
  */
-export const useSEO = ({ title, description, keywords, ogImage, ogUrl }) => {
+export const useSEO = ({ title, description, keywords, ogImage, ogUrl, jsonLd }) => {
   useEffect(() => {
     // 1. Update Title
     if (title) {
@@ -24,6 +24,18 @@ export const useSEO = ({ title, description, keywords, ogImage, ogUrl }) => {
       element.setAttribute("content", content);
     };
 
+    // Helper function to update or create link tags (for canonical link)
+    const updateLinkTag = (rel, hrefValue) => {
+      if (!hrefValue) return;
+      let element = document.querySelector(`link[rel="${rel}"]`);
+      if (!element) {
+        element = document.createElement("link");
+        element.setAttribute("rel", rel);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("href", hrefValue);
+    };
+
     // 2. Standard Meta Tags
     updateMetaTag('meta[name="description"]', "name", "description", description);
     updateMetaTag('meta[name="keywords"]', "name", "keywords", keywords);
@@ -35,9 +47,11 @@ export const useSEO = ({ title, description, keywords, ogImage, ogUrl }) => {
     if (ogImage) {
       updateMetaTag('meta[property="og:image"]', "property", "og:image", ogImage);
     }
-    if (ogUrl) {
-      updateMetaTag('meta[property="og:url"]', "property", "og:url", ogUrl);
-    }
+    const currentUrl = ogUrl || window.location.origin + window.location.pathname;
+    updateMetaTag('meta[property="og:url"]', "property", "og:url", currentUrl);
+    
+    // Canonical link
+    updateLinkTag("canonical", currentUrl);
 
     // 4. Twitter Card Metadata
     updateMetaTag('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
@@ -46,7 +60,29 @@ export const useSEO = ({ title, description, keywords, ogImage, ogUrl }) => {
     if (ogImage) {
       updateMetaTag('meta[name="twitter:image"]', "name", "twitter:image", ogImage);
     }
-  }, [title, description, keywords, ogImage, ogUrl]);
+
+    // 5. JSON-LD Structured Data
+    let scriptTag = document.getElementById("jsonLd-schema");
+    if (jsonLd) {
+      if (!scriptTag) {
+        scriptTag = document.createElement("script");
+        scriptTag.id = "jsonLd-schema";
+        scriptTag.type = "application/ld+json";
+        document.head.appendChild(scriptTag);
+      }
+      scriptTag.textContent = JSON.stringify(jsonLd);
+    } else if (scriptTag) {
+      scriptTag.remove();
+    }
+
+    // Cleanup function when unmounting or parameters change
+    return () => {
+      const scriptToRemove = document.getElementById("jsonLd-schema");
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [title, description, keywords, ogImage, ogUrl, jsonLd]);
 };
 
 export default useSEO;

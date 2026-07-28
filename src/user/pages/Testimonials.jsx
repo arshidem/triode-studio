@@ -11,12 +11,12 @@ import styles from "../styles/Testimonials.module.css";
 
 // Page transition variants
 const pageVariants = {
-  initial: { opacity: 0, y: 50 },
-  in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -50 },
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 },
 };
 
-const pageTransition = { type: "tween", duration: 0.6 };
+const pageTransition = { duration: 0.4, ease: "easeOut" };
 
 const Testimonials = () => {
   const [current, setCurrent] = useState(0);

@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import HomeHero from "../components/HomeHero";
 import useSEO from "../hooks/useSEO";
 import styles from "../styles/Home.module.css";
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 },
+};
+
+const pageTransition = { duration: 0.4, ease: "easeOut" };
 
 const services = [
   {
@@ -41,27 +50,49 @@ const process = [
 
 const projects = [
   {
-    name: "KoFund",
-    type: "Community fund app",
-    challenge: "Tracking contributions manually was slow and lacked visibility.",
-    outcome: "Created a role-based app with live tracking and expense dashboards.",
-    tech: "Flutter, Firebase Auth, Cloud Firestore",
-  },
-  {
     name: "Nike E-commerce Redesign",
-    type: "Web store concept",
-    challenge: "Required a fully featured checkout flow with admin controls.",
-    outcome: "Built a responsive store concept with Razorpay and custom dashboards.",
+    type: "Custom Web Development",
+    challenge: "Required a fully featured checkout flow with admin controls and fast load times.",
+    outcome: "Built a responsive store concept with Razorpay integration and custom admin dashboards.",
     tech: "React, Node.js, Express, MongoDB, Razorpay",
   },
   {
-    name: "AI Campaign System",
-    type: "Marketing workflow",
-    challenge: "Needed high-volume video ads without losing brand style.",
-    outcome: "Built an AI production pipeline for cinematic social campaigns.",
-    tech: "Runway, Midjourney, ElevenLabs, Premiere Pro",
+    name: "KoFund",
+    type: "Mobile App Development",
+    challenge: "Tracking community contributions manually was slow and lacked real-time visibility.",
+    outcome: "Created a Flutter app with role-based access, live contribution tracking, and dashboards.",
+    tech: "Flutter, Firebase Auth, Cloud Firestore, Riverpod",
+  },
+  {
+    name: "KoFind",
+    type: "UI/UX Design",
+    challenge: "Users struggled to find reliable local event info due to scattered resources.",
+    outcome: "Designed an intuitive discovery platform with personalized flows and map integration.",
+    tech: "Figma, React, TypeScript, Tailwind CSS",
+  },
+  {
+    name: "Nike E-commerce",
+    type: "Custom Web Development",
+    challenge: "Required a complete e-commerce flow with product management, cart, checkout, and admin controls.",
+    outcome: "Built a responsive store with Razorpay payment gateway, product filtering, and a custom admin dashboard.",
+    tech: "React, Node.js, Express, MongoDB, Razorpay",
+  },
+  {
+    name: "Cinematic Brand Reel",
+    type: "AI Video Production",
+    challenge: "Brand needed high-quality launch videos fast without a large production crew.",
+    outcome: "Produced a 60s cinematic brand story using AI scripting, voice synthesis, and video generation.",
+    tech: "Runway, Midjourney, ElevenLabs, Suno AI",
+  },
+  {
+    name: "Event Campaign Posters",
+    type: "Creative Posters & Graphics",
+    challenge: "Client needed consistent, eye-catching visual assets across print and digital formats.",
+    outcome: "Delivered a full poster and ad creative set keeping brand identity consistent across formats.",
+    tech: "Photoshop, Illustrator, Figma, Canva",
   },
 ];
+
 
 const faqs = [
   ["Do you only build websites?", "No. We handle branding, mobile apps, marketing assets, and AI workflows too."],
@@ -72,13 +103,72 @@ const faqs = [
 
 const Home = () => {
   useSEO({
-    title: "Triode Studio | Web Development & UI/UX Agency",
-    description: "Triode Studio is a digital studio building high-converting websites, mobile apps, UI/UX systems, and AI video campaigns.",
-    keywords: "web development, UI UX design, mobile app development, digital marketing, AI video agency, Kerala digital studio",
+    title: "Triode Studio | Web Development Agency Kerala",
+    description: "Triode Studio is a premier web development agency in Kerala, India. We build high-converting websites, custom mobile apps, and modern UI/UX designs.",
+    keywords: "web development agency Kerala, digital agency Palakkad, UI UX design, mobile app development, Triode Studio, custom software",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Triode Studio",
+      "image": "https://triodestudio/assets/logo/Triode%20SVG.svg",
+      "@id": "https://triodestudio/#organization",
+      "url": "https://triodestudio",
+      "telephone": "+91 81578 75032",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "TODO: Add Street Address",
+        "addressLocality": "Palakkad",
+        "addressRegion": "Kerala",
+        "postalCode": "TODO: Add Postal Code",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "10.7867",
+        "longitude": "76.6547"
+      },
+      "areaServed": [
+        {
+          "@type": "State",
+          "name": "Kerala"
+        },
+        {
+          "@type": "Country",
+          "name": "India"
+        }
+      ],
+      "description": "Triode Studio is a digital development agency in Palakkad, Kerala, offering web development, Flutter app development, UI/UX design, and digital marketing/SEO services.",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/triodestudio/",
+        "https://wa.me/918157875032",
+        "https://linkedin.com/company/triode-studio"
+      ]
+    }
   });
 
   return (
-    <div className={styles.home}>
+    <motion.div
+      className={styles.home}
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <HomeHero />
 
       <section className={styles.credibility} aria-label="Credibility">
@@ -181,7 +271,7 @@ const Home = () => {
         <h2>Bring the problem. We will help shape the right digital solution.</h2>
         <Link to="/contact" className={styles.ctaButton}>Get a Proposal</Link>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

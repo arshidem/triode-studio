@@ -11,7 +11,7 @@ const pageVariants = {
   out: { opacity: 0 },
 };
 
-const pageTransition = { duration: 0.4 };
+const pageTransition = { duration: 0.4, ease: "easeOut" };
 
 // Project Data
 const projects = [
@@ -72,53 +72,111 @@ const projects = [
     image: "/assets/portfolio/kofund.jpg",
   },
   {
-    id: "ai-marketing",
-    title: "AI Campaign",
-    category: "AI Video • Marketing • Creative Direction",
-    shortDescription: "An AI-powered video marketing pipeline that scales creative asset production.",
+    id: "nike-ecommerce",
+    title: "Nike E-commerce",
+    category: "Web Development • UI/UX • E-commerce",
+    shortDescription: "A fully featured Nike store concept with checkout, cart, and admin dashboard.",
     featured: false,
-    campaignGoal: "Generate 50+ video ads in standard formats to test across social channels.",
-    creativeDirection: "Established a clear prompt style guide to keep generated scenes consistent.",
-    aiWorkflow: "Designed a generation chain: AI Scripting → Voice Synthesis → Video Gen → Editing.",
-    videoProduction: "Utilized Runway and Midjourney to generate high-definition cinematic elements.",
-    advertisingStrategy: "Implemented multi-variant creative testing on Meta Ads.",
-    deliverables: [
-      "50+ Video Ads",
-      "Visual Prompts Guide",
-      "Production Pipeline Docs",
+    challenge: "Required a complete e-commerce flow with product management, cart, checkout, and admin controls.",
+    solution: "Built a responsive store with Razorpay payment gateway, product filtering, and a custom admin dashboard.",
+    keyFeatures: [
+      "Product catalog with filters",
+      "Cart and checkout flow",
+      "Razorpay payment integration",
+      "Custom admin dashboard",
+      "Responsive mobile design",
     ],
-    businessValue: "Reduced production costs by 70% while improving click-through rate by 3.5x.",
-    visualStorytelling: "Crafted short, high-impact stories tailored for mobile scroll behaviors.",
-    techStack: ["Runway", "Midjourney", "ElevenLabs", "Premiere"],
-    cta: "See Pipeline",
-    ctaLink: "/portfolio/ai-marketing",
-    duration: "4 weeks",
-    services: ["AI Production", "Creative Direction", "Ad Strategy"],
-    image: "/assets/portfolio/ai-marketing.jpg",
+    techStack: ["React", "Node.js", "Express", "MongoDB", "Razorpay"],
+    cta: "View Project",
+    ctaLink: "/portfolio/nike-ecommerce",
+    duration: "6 weeks",
+    services: ["Web Development", "UI/UX Design", "Backend"],
+    deliverables: ["Full-stack Web App", "Admin Panel", "Payment Integration"],
   },
 ];
 
-// Placeholder data for Creative Posters
+// Real poster work — copy images to public/assets/posters/
 const posters = [
-  { title: "Art Exhibition Poster", industry: "Arts & Culture", objective: "Promote gallery exhibition", tools: ["Photoshop", "Illustrator"] },
-  { title: "Brand Campaign Poster", industry: "Branding", objective: "Launch campaign visuals", tools: ["Figma", "After Effects"] },
-  { title: "Event Promotional Poster", industry: "Events", objective: "Increase event attendance", tools: ["Photoshop", "InDesign"] },
-  { title: "Social Media Campaign", industry: "Digital Marketing", objective: "Social engagement", tools: ["Canva", "Premiere Pro"] },
+  {
+    title: "Nike — Move Without Limits",
+    client: "Nike (Brand Concept)",
+    industry: "Sports & Lifestyle",
+    objective: "Brand campaign poster showcasing Nike Dunk with bold typographic treatment",
+    tools: ["Photoshop", "Illustrator"],
+    image: "/assets/posters/nike-poster.jpg",
+  },
+  {
+    title: "Kairali Spice & Grocery — Grand Opening",
+    client: "Kairali Spice & Grocery, Palakkad",
+    industry: "Retail / Local Business",
+    objective: "Grand opening announcement poster for a new grocery store in Palakkad, Kerala",
+    tools: ["Photoshop", "Canva"],
+    image: "/assets/posters/kairali-poster.jpg",
+  },
+  {
+    title: "TODO: Add Your Next Poster",
+    client: "TODO: Client Name",
+    industry: "TODO: Industry",
+    objective: "TODO: What was the poster for",
+    tools: ["Photoshop", "Canva"],
+    image: "",
+  },
 ];
 
-// Placeholder data for AI Videos
+// AI Video work — AI-generated only, no editing software
 const aiVideos = [
-  { title: "Brand Story Video", client: "Tech Startup", concept: "Brand launch", duration: "60s", goal: "Brand awareness" },
-  { title: "Product Explainer", client: "SaaS Company", concept: "Product demo", duration: "90s", goal: "Lead generation" },
-  { title: "Social Media Reel", client: "Fashion Brand", concept: "Campaign teaser", duration: "30s", goal: "Engagement" },
-  { title: "AI Cinematic Ad", client: "Entertainment", concept: "Movie promo", duration: "45s", goal: "Ticket sales" },
+  { title: "Brand Story Reel", client: "Local Business, Palakkad", concept: "Brand launch & awareness", duration: "60s", goal: "Brand awareness" },
+  { title: "Product Promo Video", client: "TODO: Client Name", concept: "Product showcase", duration: "45s", goal: "Lead generation" },
+  { title: "Social Media Reel", client: "TODO: Client Name", concept: "Engagement content", duration: "30s", goal: "Engagement" },
+  { title: "AI Cinematic Ad", client: "TODO: Client Name", concept: "Campaign ad", duration: "60s", goal: "Conversions" },
 ];
 
 const Portfolio = () => {
   useSEO({
-    title: "Selected Work | Portfolio | Triode Studio",
+    title: "Selected Work | UI UX Design Agency Kerala",
     description: "Explore Triode Studio's portfolio featuring web applications, mobile apps, creative poster designs, and AI video campaigns.",
-    keywords: "Triode Studio portfolio, web design portfolio, mobile app showcase, AI video case studies",
+    keywords: "UI UX design agency Kerala, portfolio, case studies, Web design Kerala, Flutter mobile applications, KoFind, KoFund, LostLink, Fate Unwritten",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CreativeWork",
+          "name": "KoFind",
+          "description": "A discovery platform connecting users with curated local experiences.",
+          "creator": {
+            "@type": "Organization",
+            "name": "Triode Studio"
+          }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "KoFund",
+          "description": "A community fund management platform for transparent tracking.",
+          "creator": {
+            "@type": "Organization",
+            "name": "Triode Studio"
+          }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "LostLink",
+          "description": "A creative digital concept and product design project.",
+          "creator": {
+            "@type": "Organization",
+            "name": "Triode Studio"
+          }
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Fate Unwritten",
+          "description": "A creative project showcasing visual storytelling and production.",
+          "creator": {
+            "@type": "Organization",
+            "name": "Triode Studio"
+          }
+        }
+      ]
+    }
   });
 
   const [selectedProject, setSelectedProject] = useState(null);
@@ -153,24 +211,24 @@ const Portfolio = () => {
       <section className={styles.portfolioHeader}>
         <motion.span 
           className={styles.headerTag}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
           Selected Work
         </motion.span>
         <motion.h1 
           className={styles.title}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
           Digital products built with strategy, creativity, and measurable impact.
         </motion.h1>
         <motion.p 
           className={styles.subtitle}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
           Every project is designed to solve real problems and create meaningful experiences.
@@ -248,8 +306,8 @@ const Portfolio = () => {
             <motion.div
               key={project.id}
               className={styles.projectCard}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => openModal(project)}
@@ -276,8 +334,8 @@ const Portfolio = () => {
       <section className={styles.postersSection}>
         <motion.div 
           className={styles.sectionHeader}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           <h2 className={styles.sectionTitle}>Creative Posters</h2>
@@ -289,29 +347,35 @@ const Portfolio = () => {
             <motion.div
               key={index}
               className={styles.posterCard}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
             >
               <div className={styles.posterVisual}>
-                <div className={styles.posterPlaceholder}>
-                  <span className={styles.posterIcon}>◆</span>
-                  <span className={styles.posterLabel}>Poster Preview</span>
-                </div>
+                {poster.image ? (
+                  <img
+                    src={poster.image}
+                    alt={poster.title}
+                    className={styles.posterImage}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
+                  />
+                ) : (
+                  <div className={styles.posterPlaceholder}>
+                    <span className={styles.posterIcon}>◆</span>
+                    <span className={styles.posterLabel}>Coming Soon</span>
+                  </div>
+                )}
               </div>
               <div className={styles.posterContent}>
                 <h3 className={styles.posterTitle}>{poster.title}</h3>
-                <span className={styles.posterIndustry}>{poster.industry}</span>
+                <span className={styles.posterIndustry}>{poster.client || poster.industry}</span>
                 <p className={styles.posterObjective}>{poster.objective}</p>
                 <div className={styles.posterTools}>
                   {poster.tools.map((tool, i) => (
                     <span key={i} className={styles.toolTag}>{tool}</span>
                   ))}
                 </div>
-                <button className={styles.posterCta}>
-                  View Project <FiArrowRight />
-                </button>
               </div>
             </motion.div>
           ))}
@@ -322,8 +386,8 @@ const Portfolio = () => {
       <section className={styles.videoSection}>
         <motion.div 
           className={styles.sectionHeader}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
           <h2 className={styles.sectionTitle}>AI Video Showcase</h2>
@@ -335,8 +399,8 @@ const Portfolio = () => {
             <motion.div
               key={index}
               className={styles.videoCard}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >

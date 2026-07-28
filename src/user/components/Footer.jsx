@@ -20,7 +20,7 @@ const Footer = () => {
           <div className={styles.logoWrapper}>
             <img
               src="/assets/logo/Triode SVG.svg"
-              alt="Triode Studio"
+              alt="Triode Studio Logo"
               className={styles.logoImage}
             />
           </div>
@@ -47,7 +47,8 @@ const Footer = () => {
 
         <div className={styles.footerSection}>
           <h3 className={styles.sectionTitle}>Start a Project</h3>
-          <div className={styles.contactInfo}>
+          {/* TODO: Update address and telephone if physical storefront details change */}
+          <address className={styles.contactInfo} style={{ fontStyle: "normal" }}>
             <a href="mailto:triodewebstudio@gmail.com" className={styles.contactLink}>
               triodewebstudio@gmail.com
             </a>
@@ -63,7 +64,7 @@ const Footer = () => {
                 WhatsApp
               </a>
             </div>
-          </div>
+          </address>
         </div>
       </div>
 
