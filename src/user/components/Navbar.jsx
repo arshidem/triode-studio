@@ -1,7 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FiMail, FiPhone, FiInstagram, FiLinkedin, FiMessageCircle } from "react-icons/fi";
+import { FiMail, FiPhone, FiInstagram, FiLinkedin, FiMessageCircle, FiArrowLeft } from "react-icons/fi";
 import styles from "../styles/Navbar.module.css";
 import { useNavbarLogo } from "../context/NavbarLogoContext";
 
@@ -123,6 +123,8 @@ const Navbar = () => {
     { icon: <FiLinkedin />, label: "LinkedIn", link: "https://linkedin.com/company/triode-studio" },
   ];
 
+  const isPostersPage = location.pathname === "/posters";
+
   return (
     <nav
       className={`${styles.navbar} ${scrolled ? styles.scrolled : ""} ${hidden ? styles.hidden : ""} ${isMobileOpen ? styles.menuOpen : ""}`}
@@ -130,27 +132,62 @@ const Navbar = () => {
       aria-label="Main navigation"
     >
       <div className={styles.navbarContainer}>
-        {/* Logo */}
-        <Link
-          to="/"
-          className={styles.navbarLogo}
-          onClick={closeMenu}
-          aria-label="Triode Studio Home"
-        >
-          <img
-            ref={navbarLogoRef}
-            src="/assets/logo/Triode SVG.svg"
-            alt="Triode Studio Logo"
-            className={styles.logoImage}
-            style={{
-              opacity: loaderDone ? 1 : 0,
-              transition: "none",
-            }}
-          />
-        </Link>
+        {/* Logo or Back Button */}
+        {isPostersPage ? (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", position: "relative" }}>
+            <button
+              onClick={() => navigate("/portfolio")}
+              style={{
+                position: "absolute",
+                left: 0,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                background: "transparent",
+                border: "none",
+                color: "#111111",
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                cursor: "pointer",
+                padding: 0,
+                transition: "opacity 0.2s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.opacity = "0.6";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.opacity = "1";
+              }}
+            >
+              <FiArrowLeft size={18} /> Back
+            </button>
+            <span style={{ fontSize: "1.1rem", fontWeight: "700", color: "#111111", letterSpacing: "-0.01em" }}>
+              Posters Collection
+            </span>
+          </div>
+        ) : (
+          <Link
+            to="/"
+            className={styles.navbarLogo}
+            onClick={closeMenu}
+            aria-label="Triode Studio Home"
+          >
+            <img
+              ref={navbarLogoRef}
+              src="/assets/logo/Triode SVG.svg"
+              alt="Triode Studio Logo"
+              className={styles.logoImage}
+              style={{
+                opacity: loaderDone ? 1 : 0,
+                transition: "none",
+              }}
+            />
+          </Link>
+        )}
 
         {/* Desktop Links */}
-        <div className={styles.navbarLinks} role="menubar">
+        {!isPostersPage && (
+          <div className={styles.navbarLinks} role="menubar">
           {links.map((link) => (
             <Link
               key={link.path}
@@ -164,9 +201,11 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
+        )}
 
         {/* Actions */}
-        <div className={styles.navbarActions}>
+        {!isPostersPage && (
+          <div className={styles.navbarActions}>
           {/* Desktop Get In Touch */}
           <button
             className={styles.getInTouchBtn}
@@ -192,6 +231,7 @@ const Navbar = () => {
             <span className={styles.line}></span>
           </button>
         </div>
+        )}
       </div>
 
       {/* Mobile Menu - with slide animation for both in and out */}

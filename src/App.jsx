@@ -20,6 +20,7 @@ import Services from "./user/pages/Services";
 import About from "./user/pages/About";
 import Contact from "./user/pages/Contact";
 import Portfolio from "./user/pages/Portfolio";
+import PostersGallery from "./user/pages/PostersGallery";
 
 // Context
 import { NavbarLogoContext } from "./user/context/NavbarLogoContext";
@@ -34,6 +35,7 @@ const AnimatedRoutes = () => {
       <Route path="/"          element={<Home />} />
       <Route path="/services"  element={<Services />} />
       <Route path="/portfolio" element={<Portfolio />} />
+      <Route path="/posters"   element={<PostersGallery />} />
       <Route path="/about"     element={<About />} />
       <Route path="/contact"   element={<Contact />} />
     </Routes>

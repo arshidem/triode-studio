@@ -3,6 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FiArrowRight, FiPlay, FiExternalLink, FiGithub } from "react-icons/fi";
 import useSEO from "../hooks/useSEO";
+import { postersData } from "../data/postersData";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/Portfolio.module.css";
 
 const pageVariants = {
@@ -106,14 +108,6 @@ const posters = [
     image: "/assets/posters/nike-poster.jpg",
   },
   {
-    title: "Kairali Spice & Grocery — Grand Opening",
-    client: "Kairali Spice & Grocery, Palakkad",
-    industry: "Retail / Local Business",
-    objective: "Grand opening announcement poster for a new grocery store in Palakkad, Kerala",
-    tools: ["Photoshop", "Canva"],
-    image: "/assets/posters/kairali-poster.jpg",
-  },
-  {
     title: "TODO: Add Your Next Poster",
     client: "TODO: Client Name",
     industry: "TODO: Industry",
@@ -132,6 +126,7 @@ const aiVideos = [
 ];
 
 const Portfolio = () => {
+  const navigate = useNavigate();
   useSEO({
     title: "Selected Work | UI UX Design Agency Kerala",
     description: "Explore Triode Studio's portfolio featuring web applications, mobile apps, creative poster designs, and AI video campaigns.",
@@ -337,39 +332,64 @@ const Portfolio = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "1rem", marginBottom: "2rem" }}
         >
-          <h2 className={styles.sectionTitle}>Creative Posters</h2>
-          <p className={styles.sectionSubtitle}>Visual storytelling through bold design and creative direction.</p>
+          <div>
+            <h2 className={styles.sectionTitle}>Creative Posters</h2>
+            <p className={styles.sectionSubtitle}>Visual storytelling through bold design, product rendering & creative direction.</p>
+          </div>
+          <button
+            onClick={() => navigate("/posters")}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              background: "rgba(255, 255, 255, 0.08)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+              color: "#ffffff",
+              padding: "0.6rem 1.2rem",
+              borderRadius: "30px",
+              fontSize: "0.9rem",
+              fontWeight: "600",
+              cursor: "pointer",
+              transition: "all 0.25s ease",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#ffffff";
+              e.currentTarget.style.color = "#000000";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+          >
+            View All {postersData.length} Posters <FiArrowRight />
+          </button>
         </motion.div>
         
         <div className={styles.postersGrid}>
-          {posters.map((poster, index) => (
+          {postersData.slice(0, 8).map((poster, index) => (
             <motion.div
-              key={index}
+              key={poster.id}
               className={styles.posterCard}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
+              transition={{ duration: 0.4, delay: index * 0.06 }}
+              onClick={() => navigate("/posters")}
+              style={{ cursor: "pointer" }}
             >
               <div className={styles.posterVisual}>
-                {poster.image ? (
-                  <img
-                    src={poster.image}
-                    alt={poster.title}
-                    className={styles.posterImage}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
-                  />
-                ) : (
-                  <div className={styles.posterPlaceholder}>
-                    <span className={styles.posterIcon}>◆</span>
-                    <span className={styles.posterLabel}>Coming Soon</span>
-                  </div>
-                )}
+                <img
+                  src={poster.image}
+                  alt={poster.title}
+                  className={styles.posterImage}
+                  style={{ width: "100%", height: "100%", aspectRatio: "3/4", objectFit: "cover", borderRadius: "8px" }}
+                />
               </div>
               <div className={styles.posterContent}>
                 <h3 className={styles.posterTitle}>{poster.title}</h3>
-                <span className={styles.posterIndustry}>{poster.client || poster.industry}</span>
+                <span className={styles.posterIndustry}>{poster.client}</span>
                 <p className={styles.posterObjective}>{poster.objective}</p>
                 <div className={styles.posterTools}>
                   {poster.tools.map((tool, i) => (
