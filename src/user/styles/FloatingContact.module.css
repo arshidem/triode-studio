@@ -23,7 +23,10 @@
   justify-content: center;
   font-size: 1.25rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  transition: width 0.22s ease, border-radius 0.22s ease, transform 0.18s ease;
+  transition:
+    width 0.22s ease,
+    border-radius 0.22s ease,
+    transform 0.18s ease;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -34,7 +37,10 @@
   margin-left: 0;
   font-size: 0.78rem;
   font-weight: 800;
-  transition: max-width 0.22s ease, opacity 0.16s ease, margin-left 0.22s ease;
+  transition:
+    max-width 0.22s ease,
+    opacity 0.16s ease,
+    margin-left 0.22s ease;
 }
 
 .action:hover,
@@ -54,26 +60,21 @@
 
 @media (max-width: 620px) {
   .floatingContact {
-    right: 50%;
-    bottom: 0.9rem;
-    transform: translateX(50%);
-    flex-direction: row;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.35rem;
-    backdrop-filter: blur(16px);
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
   }
-
-  .action,
-  .action:hover,
-  .action:focus-visible {
+  .action {
+    display: none;
+  }
+  .action:nth-child(2),
+  .action:nth-child(2):hover,
+  .action:nth-child(2):focus-visible {
+    display: inline-flex;
     width: 46px;
     height: 46px;
     border-radius: 50%;
     transform: none;
   }
-
   .action span {
     display: none;
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import { track } from "@vercel/analytics";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
 import styles from "../styles/FloatingContact.module.css";
@@ -30,11 +31,19 @@ const actions = [
 
 const FloatingContact = () => {
   return (
-    <aside className={styles.floatingContact} aria-label="Quick contact buttons">
+    <aside
+      className={styles.floatingContact}
+      aria-label="Quick contact buttons"
+    >
       {actions.map((action) => (
         <a
           key={action.label}
           href={action.href}
+          onClick={() =>
+            track("Contact clicked", {
+              channel: action.label.startsWith("Call") ? "Phone" : action.label,
+            })
+          }
           className={styles.action}
           aria-label={action.label}
           title={action.label}

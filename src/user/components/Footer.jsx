@@ -12,6 +12,7 @@ const Footer = () => {
     { path: "/posters", label: "Posters" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
+    { path: "/privacy", label: "Privacy" },
   ];
 
   return (
@@ -26,7 +27,9 @@ const Footer = () => {
             />
           </div>
           <p className={styles.brandDescription}>
-            Digital strategy, design, development, branding, marketing, and AI creative systems built to make businesses easier to trust and contact.
+            Digital strategy, design, development, branding, marketing, and AI
+            creative systems built to make businesses easier to trust and
+            contact.
           </p>
         </div>
 
@@ -49,8 +52,14 @@ const Footer = () => {
         <div className={styles.footerSection}>
           <h3 className={styles.sectionTitle}>Start a Project</h3>
           {/* TODO: Update address and telephone if physical storefront details change */}
-          <address className={styles.contactInfo} style={{ fontStyle: "normal" }}>
-            <a href="mailto:triodewebstudio@gmail.com" className={styles.contactLink}>
+          <address
+            className={styles.contactInfo}
+            style={{ fontStyle: "normal" }}
+          >
+            <a
+              href="mailto:triodewebstudio@gmail.com"
+              className={styles.contactLink}
+            >
               triodewebstudio@gmail.com
             </a>
             <a href="tel:+918157875032" className={styles.contactLink}>
@@ -58,10 +67,20 @@ const Footer = () => {
             </a>
             <span className={styles.contactText}>Palakkad, Kerala, India</span>
             <div className={styles.socialLinks}>
-              <a href="https://www.instagram.com/triodestudio/" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              <a
+                href="https://www.instagram.com/triodestudio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
                 Instagram
               </a>
-              <a href="https://wa.me/918157875032" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>
+              <a
+                href="https://wa.me/918157875032"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
                 WhatsApp
               </a>
             </div>

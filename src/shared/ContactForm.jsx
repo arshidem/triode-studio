@@ -1,22 +1,22 @@
-// src/components/ContactForm.jsx
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import emailjs from "emailjs-com";
-import toast from "react-hot-toast";
+import { track } from "@vercel/analytics";
+import { services } from "../user/data/services";
+import { getEmailConfig, buildEnquiryParams } from "../lib/enquiry";
 import styles from "./ContactForm.module.css";
-
-const SERVICES = [
-  "Web Development",
-  "Mobile App",
-  "UI/UX Design",
-  "Branding",
-  "Digital Marketing",
-  "AI Videos",
-  "Creative Posters",
-];
-
-const ContactForm = () => {
-  const [formState, setFormState] = useState({
+function recordEvent(name) {
+  try {
+    track(name);
+  } catch {
+    /* Measurement must never change delivery status. */
+  }
+}
+export default function ContactForm() {
+  const [params] = useSearchParams();
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
+  const [fields, setFields] = useState({
     businessName: "",
     name: "",
     email: "",
@@ -24,181 +24,276 @@ const ContactForm = () => {
     budget: "",
     timeline: "",
     description: "",
+    website: "",
   });
-  const [selectedServices, setSelectedServices] = useState([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleServiceToggle = (service) => {
-    setSelectedServices((prev) =>
-      prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
-    );
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey || serviceId === "your_service_id") {
-      // Simulate submission in development if keys are not set
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        toast.success("Inquiry simulated! Add actual EmailJS keys to .env for real delivery.");
-      }, 1500);
+  const [selected, setSelected] = useState(() =>
+    services.some((s) => s.title === params.get("service"))
+      ? [params.get("service")]
+      : [],
+  );
+  const [status, setStatus] = useState("idle");
+  const busy = useRef(false);
+  const statusRef = useRef(null);
+  useEffect(() => {
+    if (status === "error" || status === "unconfigured" || status === "success")
+      statusRef.current?.focus();
+  }, [status]);
+  const change = (event) =>
+    setFields((old) => ({ ...old, [event.target.name]: event.target.value }));
+  async function submit(event) {
+    event.preventDefault();
+    if (busy.current || fields.website) return;
+    const config = getEmailConfig(import.meta.env);
+    if (!config) {
+      setStatus("unconfigured");
+      recordEvent("Enquiry unavailable");
       return;
     }
-
-    const templateParams = {
-      project_type: selectedServices.join(", ") || "General Inquiry",
-      selected_services: selectedServices.join(", ") || "None selected",
-      business_name: formState.businessName,
-      from_name: formState.name,
-      from_email: formState.email,
-      phone: formState.phone,
-      budget: formState.budget,
-      timeline: formState.timeline,
-      message: formState.description,
-    };
-
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        toast.success("Project inquiry sent successfully!");
-      })
-      .catch((err) => {
-        console.error("EmailJS Error:", err);
-        setIsSubmitting(false);
-        toast.error("Failed to send inquiry. Please try again.");
-      });
-  };
-
-  if (isSubmitted) {
-    return (
-      <motion.div
-        className={styles.formCard}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-      >
-        <div className={styles.successState}>
-          <div className={styles.successIcon}>✓</div>
-          <h3>Inquiry received!</h3>
-          <p>We'll review your project and reach out within 24 hours.</p>
-        </div>
-      </motion.div>
-    );
+    busy.current = true;
+    setStatus("sending");
+    try {
+      const response = await emailjs.send(
+        config.serviceId,
+        config.templateId,
+        buildEnquiryParams(fields, selected),
+        config.publicKey,
+      );
+      if (response.status !== 200) throw new Error("Delivery not accepted");
+      setStatus("success");
+      recordEvent("Enquiry accepted");
+    } catch {
+      setStatus("error");
+      recordEvent("Enquiry failed");
+    } finally {
+      busy.current = false;
+    }
   }
-
+  if (status === "success")
+    return (
+      <div className={styles.formCard}>
+        <div
+          className={styles.successState}
+          role="status"
+          tabIndex={-1}
+          ref={statusRef}
+        >
+          <h2>Enquiry sent.</h2>
+          <p>We aim to reply within one business day.</p>
+        </div>
+      </div>
+    );
   return (
     <div className={styles.formCard}>
-      <h2 className={styles.formTitle}>Project Inquiry</h2>
-      <p className={styles.formSub}>Tell us about your vision, and we'll build a roadmap.</p>
-
-      <form onSubmit={handleSubmit} className={styles.form}>
-
-        {/* Service chips */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Services you're interested in</label>
+      <h2 className={styles.formTitle}>Tell us about your project</h2>
+      <p className={styles.formSub}>
+        Start with your idea. Budget and timeline are optional.
+      </p>
+      {(status === "error" || status === "unconfigured") && (
+        <div className="form-error" role="alert" tabIndex={-1} ref={statusRef}>
+          <p>
+            {status === "unconfigured"
+              ? "The enquiry form is currently unavailable. Your enquiry has not been sent."
+              : "We could not confirm delivery. Your details are still here so you can retry."}
+          </p>
+          <p>
+            Please <a href="mailto:triodewebstudio@gmail.com">email the team</a>{" "}
+            or <a href="https://wa.me/918157875032">contact us on WhatsApp</a>.
+          </p>
+        </div>
+      )}
+      <noscript>
+        <p>
+          Please enable JavaScript to use this form, or{" "}
+          <a href="mailto:triodewebstudio@gmail.com">email the team directly</a>
+          .
+        </p>
+      </noscript>
+      <form onSubmit={submit} className={styles.form}>
+        <fieldset className="service-fieldset">
+          <legend className={styles.label}>
+            Services you are interested in (optional)
+          </legend>
           <div className={styles.chipGroup}>
-            {SERVICES.map((svc) => (
+            {services.map((service) => (
               <button
-                key={svc}
+                key={service.slug}
                 type="button"
-                className={`${styles.chip} ${selectedServices.includes(svc) ? styles.chipActive : ""}`}
-                onClick={() => handleServiceToggle(svc)}
+                className={`${styles.chip} ${selected.includes(service.title) ? styles.chipActive : ""}`}
+                aria-pressed={selected.includes(service.title)}
+                onClick={() =>
+                  setSelected((old) =>
+                    old.includes(service.title)
+                      ? old.filter((s) => s !== service.title)
+                      : [...old, service.title],
+                  )
+                }
               >
-                {svc}
+                {service.title}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Business Name */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Business / Organization</label>
-          <input type="text" name="businessName" value={formState.businessName} onChange={handleChange} placeholder="Your company name" className={styles.input} />
-        </div>
-
-        {/* Name & Email */}
+        </fieldset>
         <div className={styles.row}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Your Name *</label>
-            <input type="text" name="name" value={formState.name} onChange={handleChange} required placeholder="Full name" className={styles.input} />
+            <label htmlFor="enquiry-name" className={styles.label}>
+              Your name (required)
+            </label>
+            <input
+              className={styles.input}
+              id="enquiry-name"
+              name="name"
+              autoComplete="name"
+              required
+              maxLength={120}
+              value={fields.name}
+              onChange={change}
+            />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Email *</label>
-            <input type="email" name="email" value={formState.email} onChange={handleChange} required placeholder="you@example.com" className={styles.input} />
+            <label htmlFor="enquiry-email" className={styles.label}>
+              Email (required)
+            </label>
+            <input
+              className={styles.input}
+              id="enquiry-email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              maxLength={254}
+              value={fields.email}
+              onChange={change}
+            />
           </div>
         </div>
-
-        {/* Phone */}
         <div className={styles.formGroup}>
-          <label className={styles.label}>Phone (optional)</label>
-          <input type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder="+91 98765 43210" className={styles.input} />
-        </div>
-
-        {/* Budget & Timeline */}
-        <div className={styles.row}>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Estimated Budget</label>
-            <select name="budget" value={formState.budget} onChange={handleChange} className={styles.select}>
-              <option value="">Select range</option>
-              <option value="Under ₹50K">Under ₹50K</option>
-              <option value="₹50K–₹1L">₹50K–₹1L</option>
-              <option value="₹1L–₹5L">₹1L–₹5L</option>
-              <option value="₹5L+">₹5L+</option>
-            </select>
-          </div>
-          <div className={styles.formGroup}>
-            <label className={styles.label}>Project Timeline</label>
-            <select name="timeline" value={formState.timeline} onChange={handleChange} className={styles.select}>
-              <option value="">Select timeline</option>
-              <option value="ASAP">ASAP</option>
-              <option value="Within 1 Month">Within 1 Month</option>
-              <option value="2–3 Months">2–3 Months</option>
-              <option value="Flexible">Flexible</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Project Description *</label>
+          <label htmlFor="enquiry-description" className={styles.label}>
+            What would you like to create? (required)
+          </label>
           <textarea
-            name="description"
-            value={formState.description}
-            onChange={handleChange}
-            required
-            rows="4"
-            placeholder="Tell us about your goals, challenges, and expectations..."
             className={styles.textarea}
+            id="enquiry-description"
+            name="description"
+            required
+            maxLength={5000}
+            rows={4}
+            value={fields.description}
+            onChange={change}
+            placeholder="Your goals, audience, and what you need help with"
           />
         </div>
-
-        <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
-          {isSubmitting ? (
-            <>
-              <span className={styles.spinner}></span> Sending...
-            </>
-          ) : (
-            "Send Inquiry"
-          )}
+        <details className="optional-fields">
+          <summary>
+            Add business, budget, or timeline details (optional)
+          </summary>
+          <div className={styles.formGroup}>
+            <label htmlFor="enquiry-business" className={styles.label}>
+              Business / organization
+            </label>
+            <input
+              className={styles.input}
+              id="enquiry-business"
+              name="businessName"
+              autoComplete="organization"
+              maxLength={200}
+              value={fields.businessName}
+              onChange={change}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="enquiry-phone" className={styles.label}>
+              Phone
+            </label>
+            <input
+              className={styles.input}
+              id="enquiry-phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              maxLength={40}
+              value={fields.phone}
+              onChange={change}
+            />
+          </div>
+          <div className={styles.row}>
+            <div className={styles.formGroup}>
+              <label htmlFor="enquiry-budget" className={styles.label}>
+                Budget
+              </label>
+              <select
+                className={styles.select}
+                id="enquiry-budget"
+                name="budget"
+                value={fields.budget}
+                onChange={change}
+              >
+                {[
+                  "",
+                  "Not sure yet",
+                  "Under ₹10,000",
+                  "₹10,000–₹50,000",
+                  "₹50,000–₹1 lakh",
+                  "₹1 lakh–₹5 lakh",
+                  "₹5 lakh+",
+                ].map((value) => (
+                  <option key={value} value={value}>
+                    {value || "Choose a range (optional)"}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="enquiry-timeline" className={styles.label}>
+                Timeline
+              </label>
+              <select
+                className={styles.select}
+                id="enquiry-timeline"
+                name="timeline"
+                value={fields.timeline}
+                onChange={change}
+              >
+                {[
+                  "",
+                  "As soon as possible",
+                  "Within one month",
+                  "Two to three months",
+                  "Flexible",
+                ].map((value) => (
+                  <option key={value} value={value}>
+                    {value || "Choose a timeline (optional)"}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </details>
+        <div className="honeypot" aria-hidden="true">
+          <label htmlFor="enquiry-website">Leave this field empty</label>
+          <input
+            id="enquiry-website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={fields.website}
+            onChange={change}
+          />
+        </div>
+        <p className="form-privacy">
+          We use these details to respond to your enquiry.{" "}
+          <Link to="/privacy">Read our privacy information</Link>.
+        </p>
+        <button
+          className={styles.submitBtn}
+          type="submit"
+          disabled={!ready || status === "sending"}
+        >
+          {status === "sending" ? "Sending…" : "Send Enquiry"}
         </button>
+        <p role="status" className="sr-only">
+          {status === "sending" ? "Sending your enquiry. Please wait." : ""}
+        </p>
       </form>
     </div>
   );
-};
-
-export default ContactForm;
+}

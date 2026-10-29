@@ -6,12 +6,12 @@
  */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import styles from "./TestimonialCard.module.css";
 
 const TestimonialCard = ({ name, role, quote, rating, image }) => {
   return (
-    <motion.div
+    <Motion.div
       className={styles.testimonialCard}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +63,7 @@ const TestimonialCard = ({ name, role, quote, rating, image }) => {
           <p className={styles.role}>{role}</p>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 };
 

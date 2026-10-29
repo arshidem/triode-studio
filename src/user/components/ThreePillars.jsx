@@ -1,10 +1,5 @@
-import { motion } from "framer-motion";
-import {
-  FiArrowUpRight,
-  FiCompass,
-  FiPenTool,
-  FiCode,
-} from "react-icons/fi";
+import { motion as Motion } from "framer-motion";
+import { FiArrowUpRight, FiCompass, FiPenTool, FiCode } from "react-icons/fi";
 import styles from "../styles/ThreePillars.module.css";
 
 const pillars = [
@@ -44,16 +39,14 @@ export default function ThreePillars() {
 
       <div className={styles.gridPattern} />
 
-      <motion.div
+      <Motion.div
         className={styles.titleArea}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <span className={styles.tagline}>
-          OUR PROCESS
-        </span>
+        <span className={styles.tagline}>OUR PROCESS</span>
 
         <h2 className={styles.heading}>
           Three pillars behind
@@ -66,11 +59,11 @@ export default function ThreePillars() {
           problem to designing meaningful experiences and engineering reliable
           solutions.
         </p>
-      </motion.div>
+      </Motion.div>
 
       <div className={styles.cards}>
         {pillars.map((pillar, index) => (
-          <motion.div
+          <Motion.div
             key={pillar.id}
             className={styles.card}
             initial={{ opacity: 0, y: 60 }}
@@ -82,35 +75,27 @@ export default function ThreePillars() {
             }}
           >
             <div className={styles.cardHeader}>
-              <span className={styles.number}>
-                {pillar.number}
-              </span>
+              <span className={styles.number}>{pillar.number}</span>
 
               <div className={styles.arrow}>
                 <FiArrowUpRight />
               </div>
             </div>
 
-            <div className={styles.icon}>
-              {pillar.icon}
-            </div>
+            <div className={styles.icon}>{pillar.icon}</div>
 
             <h3>{pillar.title}</h3>
 
-            <span className={styles.smallText}>
-              {pillar.subtitle}
-            </span>
+            <span className={styles.smallText}>{pillar.subtitle}</span>
 
             <p>{pillar.description}</p>
 
             <div className={styles.bottom}>
               <div className={styles.line} />
 
-              <span className={styles.learnMore}>
-                Learn More
-              </span>
+              <span className={styles.learnMore}>Learn More</span>
             </div>
-          </motion.div>
+          </Motion.div>
         ))}
       </div>
     </section>

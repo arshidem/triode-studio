@@ -4,17 +4,17 @@
  */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import styles from "./Hero.module.css";
 
-const Hero = ({ 
-  title, 
-  subtitle, 
-  ctaText, 
-  ctaAction, 
+const Hero = ({
+  title,
+  subtitle,
+  ctaText,
+  ctaAction,
   highlightText,
   secondaryCtaText,
-  secondaryCtaAction 
+  secondaryCtaAction,
 }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -40,34 +40,41 @@ const Hero = ({
   };
 
   return (
-    <motion.div
+    <Motion.div
       className={styles.hero}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <motion.h1 variants={itemVariants} className={styles.title}>
-        {title}{" "}
-        <span className={styles.highlight}>{highlightText}</span>
-      </motion.h1>
+      <Motion.h1 variants={itemVariants} className={styles.title}>
+        {title} <span className={styles.highlight}>{highlightText}</span>
+      </Motion.h1>
 
-      <motion.p variants={itemVariants} className={styles.subtitle}>
+      <Motion.p variants={itemVariants} className={styles.subtitle}>
         {subtitle}
-      </motion.p>
+      </Motion.p>
 
-      <motion.div className={styles.ctaContainer} variants={itemVariants}>
+      <Motion.div className={styles.ctaContainer} variants={itemVariants}>
         {ctaText && (
-          <button
-            className={styles.ctaButtonPrimary}
-            onClick={ctaAction}
-          >
+          <button className={styles.ctaButtonPrimary} onClick={ctaAction}>
             {ctaText}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                d="M5 12H19M19 12L12 5M19 12L12 19"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </button>
         )}
-        
+
         {secondaryCtaText && (
           <button
             className={styles.ctaButtonSecondary}
@@ -76,10 +83,10 @@ const Hero = ({
             {secondaryCtaText}
           </button>
         )}
-      </motion.div>
+      </Motion.div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <Motion.div
         className={styles.scrollIndicator}
         animate={{
           y: [0, 8, 0],
@@ -92,8 +99,8 @@ const Hero = ({
         }}
       >
         <div className={styles.scrollArrow} />
-      </motion.div>
-    </motion.div>
+      </Motion.div>
+    </Motion.div>
   );
 };
 

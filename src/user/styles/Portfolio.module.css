@@ -529,7 +529,8 @@
   margin-bottom: 0.75rem;
 }
 
-.videoConcept, .videoGoal {
+.videoConcept,
+.videoGoal {
   font-size: 0.75rem;
   padding: 0.2rem 0.6rem;
   background: var(--bg);
@@ -629,7 +630,7 @@
   margin-bottom: 2rem;
 }
 
-.sectionTitle {
+.modalSectionTitle {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
