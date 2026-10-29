@@ -1,6 +1,6 @@
 // src/components/ContactForm.jsx
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import toast from "react-hot-toast";
 import styles from "./ContactForm.module.css";
@@ -28,6 +28,7 @@ const ContactForm = () => {
   const [selectedServices, setSelectedServices] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleServiceToggle = (service) => {
     setSelectedServices((prev) =>
@@ -44,6 +45,8 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setSubmitError("");
     setIsSubmitting(true);
 
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -51,12 +54,8 @@ const ContactForm = () => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey || serviceId === "your_service_id") {
-      // Simulate submission in development if keys are not set
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        toast.success("Inquiry simulated! Add actual EmailJS keys to .env for real delivery.");
-      }, 1500);
+      setIsSubmitting(false);
+      setSubmitError("Online inquiries are temporarily unavailable. Your inquiry has not been sent. Please email or WhatsApp us using the links below.");
       return;
     }
 
@@ -81,13 +80,13 @@ const ContactForm = () => {
       .catch((err) => {
         console.error("EmailJS Error:", err);
         setIsSubmitting(false);
-        toast.error("Failed to send inquiry. Please try again.");
+        setSubmitError("Your inquiry could not be sent. Please try again, or contact us by email or WhatsApp below.");
       });
   };
 
   if (isSubmitted) {
     return (
-      <motion.div
+      <Motion.div
         className={styles.formCard}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -97,7 +96,7 @@ const ContactForm = () => {
           <h3>Inquiry received!</h3>
           <p>We'll review your project and reach out within 24 hours.</p>
         </div>
-      </motion.div>
+      </Motion.div>
     );
   }
 
@@ -106,6 +105,8 @@ const ContactForm = () => {
       <h2 className={styles.formTitle}>Project Inquiry</h2>
       <p className={styles.formSub}>Tell us about your vision, and we'll build a roadmap.</p>
 
+      {submitError && <p role="alert">{submitError}</p>}
+      <p>Prefer a direct conversation? <a href="mailto:triodewebstudio@gmail.com">Email us</a> or <a href="https://wa.me/918157875032" target="_blank" rel="noopener noreferrer">WhatsApp us</a>.</p>
       <form onSubmit={handleSubmit} className={styles.form}>
 
         {/* Service chips */}
@@ -116,6 +117,7 @@ const ContactForm = () => {
               <button
                 key={svc}
                 type="button"
+                aria-pressed={selectedServices.includes(svc)}
                 className={`${styles.chip} ${selectedServices.includes(svc) ? styles.chipActive : ""}`}
                 onClick={() => handleServiceToggle(svc)}
               >
@@ -127,33 +129,33 @@ const ContactForm = () => {
 
         {/* Business Name */}
         <div className={styles.formGroup}>
-          <label className={styles.label}>Business / Organization</label>
-          <input type="text" name="businessName" value={formState.businessName} onChange={handleChange} placeholder="Your company name" className={styles.input} />
+          <label className={styles.label} htmlFor="inquiry-businessName">Business / Organization</label>
+          <input type="text" id="inquiry-businessName" name="businessName" value={formState.businessName} onChange={handleChange} placeholder="Your company name" className={styles.input} />
         </div>
 
         {/* Name & Email */}
         <div className={styles.row}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Your Name *</label>
-            <input type="text" name="name" value={formState.name} onChange={handleChange} required placeholder="Full name" className={styles.input} />
+            <label className={styles.label} htmlFor="inquiry-name">Your Name *</label>
+            <input type="text" id="inquiry-name" name="name" value={formState.name} onChange={handleChange} required placeholder="Full name" className={styles.input} />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Email *</label>
-            <input type="email" name="email" value={formState.email} onChange={handleChange} required placeholder="you@example.com" className={styles.input} />
+            <label className={styles.label} htmlFor="inquiry-email">Email *</label>
+            <input type="email" id="inquiry-email" name="email" value={formState.email} onChange={handleChange} required placeholder="you@example.com" className={styles.input} />
           </div>
         </div>
 
         {/* Phone */}
         <div className={styles.formGroup}>
-          <label className={styles.label}>Phone (optional)</label>
-          <input type="tel" name="phone" value={formState.phone} onChange={handleChange} placeholder="+91 98765 43210" className={styles.input} />
+          <label className={styles.label} htmlFor="inquiry-phone">Phone (optional)</label>
+          <input type="tel" id="inquiry-phone" name="phone" value={formState.phone} onChange={handleChange} placeholder="+91 98765 43210" className={styles.input} />
         </div>
 
         {/* Budget & Timeline */}
         <div className={styles.row}>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Estimated Budget</label>
-            <select name="budget" value={formState.budget} onChange={handleChange} className={styles.select}>
+            <label className={styles.label} htmlFor="inquiry-budget">Estimated Budget</label>
+            <select id="inquiry-budget" name="budget" value={formState.budget} onChange={handleChange} className={styles.select}>
               <option value="">Select range</option>
               <option value="Under ₹50K">Under ₹50K</option>
               <option value="₹50K–₹1L">₹50K–₹1L</option>
@@ -162,8 +164,8 @@ const ContactForm = () => {
             </select>
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.label}>Project Timeline</label>
-            <select name="timeline" value={formState.timeline} onChange={handleChange} className={styles.select}>
+            <label className={styles.label} htmlFor="inquiry-timeline">Project Timeline</label>
+            <select id="inquiry-timeline" name="timeline" value={formState.timeline} onChange={handleChange} className={styles.select}>
               <option value="">Select timeline</option>
               <option value="ASAP">ASAP</option>
               <option value="Within 1 Month">Within 1 Month</option>
@@ -175,9 +177,9 @@ const ContactForm = () => {
 
         {/* Description */}
         <div className={styles.formGroup}>
-          <label className={styles.label}>Project Description *</label>
+          <label className={styles.label} htmlFor="inquiry-description">Project Description *</label>
           <textarea
-            name="description"
+            id="inquiry-description" name="description"
             value={formState.description}
             onChange={handleChange}
             required

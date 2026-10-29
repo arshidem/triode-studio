@@ -1,6 +1,6 @@
 // src/user/pages/Contact.jsx
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import ContactForm from "../../shared/ContactForm";
 import useSEO from "../hooks/useSEO";
 import styles from "../styles/Contact.module.css";
@@ -82,7 +82,7 @@ const Contact = () => {
   const [activeFaq, setActiveFaq] = useState(null);
 
   return (
-    <motion.div
+    <Motion.div
       className={styles.contactPage}
       initial="initial"
       animate="in"
@@ -92,7 +92,7 @@ const Contact = () => {
     >
       {/* ===== HERO ===== */}
       <section className={styles.hero}>
-        <motion.div
+        <Motion.div
           className={styles.heroContent}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -104,15 +104,15 @@ const Contact = () => {
           </p>
           <div className={styles.heroCtas}>
             <a href="#inquiry" className={`${styles.ctaPrimary} ${styles.cta}`}>Start Your Project</a>
-            <a href="#contact-methods" className={`${styles.ctaSecondary} ${styles.cta}`}>Schedule a Discovery Call</a>
+            <a href="https://wa.me/918157875032?text=Hi%20Triode%20Studio%2C%20I%20would%20like%20to%20arrange%20a%20discovery%20call." target="_blank" rel="noopener noreferrer" className={`${styles.ctaSecondary} ${styles.cta}`}>Arrange a Discovery Call</a>
           </div>
-        </motion.div>
+        </Motion.div>
       </section>
 
       {/* ===== TWO-COLUMN LAYOUT ===== */}
       <div className={styles.splitLayout}>
         {/* LEFT: Trust, process, contact */}
-        <motion.div
+        <Motion.div
           className={styles.leftColumn}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -176,10 +176,10 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* RIGHT: Project Inquiry Form */}
-        <motion.div
+        <Motion.div
           className={styles.rightColumn}
           id="inquiry"
           initial={{ opacity: 0 }}
@@ -187,11 +187,11 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <ContactForm />
-        </motion.div>
+        </Motion.div>
       </div>
 
       {/* ===== WHY CHOOSE TRIODE ===== */}
-      <motion.section
+      <Motion.section
         className={styles.whySection}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -207,10 +207,10 @@ const Contact = () => {
             </div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ===== FAQ ===== */}
-      <motion.section
+      <Motion.section
         className={styles.faqSection}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -230,7 +230,7 @@ const Contact = () => {
               </button>
               <AnimatePresence>
                 {activeFaq === idx && (
-                  <motion.div
+                  <Motion.div
                     className={styles.faqAnswer}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
@@ -238,16 +238,16 @@ const Contact = () => {
                     transition={{ duration: 0.25 }}
                   >
                     <p>{faq.a}</p>
-                  </motion.div>
+                  </Motion.div>
                 )}
               </AnimatePresence>
             </div>
           ))}
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* ===== FINAL CTA ===== */}
-      <motion.section
+      <Motion.section
         className={styles.finalCta}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -257,8 +257,8 @@ const Contact = () => {
         <h2>Every successful project begins with a conversation.</h2>
         <p>Let's talk about your next digital experience — no pressure, just possibilities.</p>
         <a href="#inquiry" className={`${styles.ctaPrimary} ${styles.cta}`}>Start Your Project</a>
-      </motion.section>
-    </motion.div>
+      </Motion.section>
+    </Motion.div>
   );
 };
 

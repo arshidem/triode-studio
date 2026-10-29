@@ -5,7 +5,7 @@
  */
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import useSEO from "../hooks/useSEO";
 import styles from "../styles/About.module.css";
 import { Link } from "react-router-dom";
@@ -68,21 +68,24 @@ const About = () => {
       name: "Mohammed Arshid EM",
       role: "Lead Developer",
       expertise: "Full-Stack Development & Architecture",
+      bio: "Arshid leads the development of websites and applications, connecting interfaces with the systems behind them.",
     },
     {
       name: "Muhammed Musthafa",
       role: "Creative Director",
       expertise: "UI/UX & AI Video Generation",
+      bio: "Musthafa shapes product interfaces and AI video concepts, focusing on how each experience looks and feels.",
     },
     {
       name: "Salman Faris",
       role: "Brand Strategist",
       expertise: "Digital Marketing & Brand Strategy",
+      bio: "Faris connects brand messaging and marketing direction so each project communicates a clear offer.",
     },
   ];
 
   return (
-    <motion.div
+    <Motion.div
       className={styles.about}
       initial="initial"
       animate="in"
@@ -144,6 +147,7 @@ const About = () => {
               <h3 className={styles.founderName}>{founder.name}</h3>
               <span className={styles.founderRole}>{founder.role}</span>
               <p className={styles.founderExpertise}>{founder.expertise}</p>
+              <p>{founder.bio}</p>
             </div>
           ))}
         </div>
@@ -186,7 +190,7 @@ const About = () => {
           Get in Touch
         </Link>
       </section>
-    </motion.div>
+    </Motion.div>
   );
 };
 

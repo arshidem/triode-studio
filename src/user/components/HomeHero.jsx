@@ -9,12 +9,6 @@ const proofItems = [
   "Build-ready design systems",
 ];
 
-const signalRows = [
-  { label: "Clarity", value: "What buyers need to understand" },
-  { label: "Trust", value: "What removes hesitation" },
-  { label: "Action", value: "What moves them to contact you" },
-];
-
 const HomeHero = () => {
   const navigate = useNavigate();
 
@@ -36,9 +30,9 @@ const HomeHero = () => {
             <button className={styles.primaryAction} onClick={() => navigate("/contact")}>
               Start Your Project <FiArrowRight aria-hidden="true" />
             </button>
-            <button className={styles.secondaryAction} onClick={() => navigate("/contact")}>
-              <FiCalendar aria-hidden="true" /> Book a Discovery Call
-            </button>
+            <a className={styles.secondaryAction} href="https://wa.me/918157875032?text=Hi%20Triode%20Studio%2C%20I%20would%20like%20to%20arrange%20a%20discovery%20call." target="_blank" rel="noopener noreferrer">
+              <FiCalendar aria-hidden="true" /> Arrange a Discovery Call
+            </a>
           </div>
 
           <div className={styles.proofList} aria-label="How Triode Studio works">
@@ -51,46 +45,14 @@ const HomeHero = () => {
           </div>
         </div>
 
-        <div
-          className={styles.systemPanel}
-          aria-label="Conversion system preview"
-        >
-          <div className={styles.panelHeader}>
-            <span>Decision Architecture</span>
-            <span>Live</span>
-          </div>
-
-          <div className={styles.signalMap}>
-            {signalRows.map((row, index) => (
-              <div
-                key={row.label}
-                className={styles.signalRow}
-              >
-                <span className={styles.signalNumber}>0{index + 1}</span>
-                <div>
-                  <strong>{row.label}</strong>
-                  <p>{row.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.flow}>
-            <div className={styles.flowNode}>Problem</div>
-            <span />
-            <div className={styles.flowNode}>Offer</div>
-            <span />
-            <div className={styles.flowNode}>Lead</div>
-          </div>
-
-          <div className={styles.outcomeBox}>
-            <span>Outcome</span>
-            <strong>A website that explains, persuades, and makes contacting you feel obvious.</strong>
-          </div>
-        </div>
+        <figure className={styles.workPreview}>
+          <img src="/assets/posters/nike-poster.jpg" alt="Nike concept campaign poster designed by Triode Studio" width="800" height="1000" />
+          <figcaption>Nike — independent brand concept<br /><a href="/posters">Explore our poster collection →</a></figcaption>
+        </figure>
       </div>
     </section>
   );
 };
 
 export default HomeHero;
+
