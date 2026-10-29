@@ -1,7 +1,7 @@
 // src/user/pages/Portfolio.jsx
-import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { FiArrowRight, FiPlay, FiExternalLink, FiGithub } from "react-icons/fi";
+import React, { useState } from "react";
+import { motion as Motion, AnimatePresence } from "framer-motion";
+import { FiArrowRight } from "react-icons/fi";
 import useSEO from "../hooks/useSEO";
 import { postersData } from "../data/postersData";
 import { useNavigate } from "react-router-dom";
@@ -22,25 +22,25 @@ const projects = [
     title: "KoFind",
     category: "Product Design • Web App • UI/UX",
     shortDescription: "A discovery platform connecting users with curated local experiences.",
-    featured: true,
+    featured: false,
     challenge: "Users struggled to find reliable local event info due to scattered resources.",
     solution: "We built an intuitive discovery web application with personalized recommendations and map integration.",
-    research: "Conducted interviews with 50+ local users to identify core navigation problems.",
+    research: "Explored navigation challenges for local discovery.",
     designProcess: "Created rapid wireframes and high-fidelity mockups, validated with live user testing.",
     development: "Developed with React, TypeScript, and Tailwind CSS for speed and accessibility.",
     responsive: "Optimized with a responsive, mobile-first design system.",
-    accessibility: "WCAG 2.1 AA compliant featuring keyboard navigation and screen reader support.",
-    businessValue: "Reduced search time by 60% and raised user engagement by 45%.",
+    accessibility: "Designed with accessible navigation in mind.",
+    businessValue: "Brings local discovery and saved experiences into one interface.",
     keyFeatures: [
       "Personalized recommendations",
       "Interactive map integration",
       "Saved favorites",
       "Real-time notifications",
     ],
-    outcome: "Successfully launched with 10,000+ active users in the first month.",
-    gallery: ["/assets/portfolio/kofind-1.jpg", "/assets/portfolio/kofind-2.jpg"],
+    outcome: "A product exploration focused on local discovery.",
+    
     cta: "Explore Project",
-    ctaLink: "/portfolio/kofind",
+    ctaLink: "/contact",
     duration: "12 weeks",
     services: ["Product Design", "Web Dev", "UI/UX"],
     deliverables: ["Design System", "Web App", "API Setup"],
@@ -64,21 +64,21 @@ const projects = [
     dashboard: "Interactive dashboard displaying live contributions and fund health.",
     userExperience: "Simplified navigation with quick-action shortcuts for contributions.",
     architecture: "Role-based Firebase rules enforcing secure user data separation.",
-    impact: "Digitized payments for 500+ communities and boosted tracking speed by 90%.",
+    impact: "Designed to simplify contribution tracking and financial visibility.",
     techStack: ["Flutter", "Firebase", "Dart", "Riverpod"],
     cta: "View Project",
-    ctaLink: "/portfolio/kofund",
+    ctaLink: "/contact",
     duration: "8 weeks",
     services: ["Mobile Dev", "UI/UX Design", "Architecture"],
     deliverables: ["Mobile App", "Admin Panel"],
-    image: "/assets/portfolio/kofund.jpg",
+    
   },
   {
     id: "nike-ecommerce",
     title: "Nike E-commerce",
-    category: "Web Development • UI/UX • E-commerce",
+    category: "Independent Nike Brand Concept • E-commerce",
     shortDescription: "A fully featured Nike store concept with checkout, cart, and admin dashboard.",
-    featured: false,
+    featured: true,
     challenge: "Required a complete e-commerce flow with product management, cart, checkout, and admin controls.",
     solution: "Built a responsive store with Razorpay payment gateway, product filtering, and a custom admin dashboard.",
     keyFeatures: [
@@ -90,39 +90,11 @@ const projects = [
     ],
     techStack: ["React", "Node.js", "Express", "MongoDB", "Razorpay"],
     cta: "View Project",
-    ctaLink: "/portfolio/nike-ecommerce",
+    ctaLink: "/contact",
     duration: "6 weeks",
     services: ["Web Development", "UI/UX Design", "Backend"],
     deliverables: ["Full-stack Web App", "Admin Panel", "Payment Integration"],
   },
-];
-
-// Real poster work — copy images to public/assets/posters/
-const posters = [
-  {
-    title: "Nike — Move Without Limits",
-    client: "Nike (Brand Concept)",
-    industry: "Sports & Lifestyle",
-    objective: "Brand campaign poster showcasing Nike Dunk with bold typographic treatment",
-    tools: ["Photoshop", "Illustrator"],
-    image: "/assets/posters/nike-poster.jpg",
-  },
-  {
-    title: "TODO: Add Your Next Poster",
-    client: "TODO: Client Name",
-    industry: "TODO: Industry",
-    objective: "TODO: What was the poster for",
-    tools: ["Photoshop", "Canva"],
-    image: "",
-  },
-];
-
-// AI Video work — AI-generated only, no editing software
-const aiVideos = [
-  { title: "Brand Story Reel", client: "Local Business, Palakkad", concept: "Brand launch & awareness", duration: "60s", goal: "Brand awareness" },
-  { title: "Product Promo Video", client: "TODO: Client Name", concept: "Product showcase", duration: "45s", goal: "Lead generation" },
-  { title: "Social Media Reel", client: "TODO: Client Name", concept: "Engagement content", duration: "30s", goal: "Engagement" },
-  { title: "AI Cinematic Ad", client: "TODO: Client Name", concept: "Campaign ad", duration: "60s", goal: "Conversions" },
 ];
 
 const Portfolio = () => {
@@ -176,7 +148,6 @@ const Portfolio = () => {
 
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("all");
 
   const openModal = (project) => {
     setSelectedProject(project);
@@ -194,7 +165,7 @@ const Portfolio = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <motion.div
+    <Motion.div
       className={styles.portfolio}
       initial="initial"
       animate="in"
@@ -204,35 +175,35 @@ const Portfolio = () => {
     >
       {/* ===== HERO HEADER ===== */}
       <section className={styles.portfolioHeader}>
-        <motion.span 
+        <Motion.span 
           className={styles.headerTag}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
           Selected Work
-        </motion.span>
-        <motion.h1 
+        </Motion.span>
+        <Motion.h1 
           className={styles.title}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          Digital products built with strategy, creativity, and measurable impact.
-        </motion.h1>
-        <motion.p 
+          Software explorations and creative work from our studio.
+        </Motion.h1>
+        <Motion.p 
           className={styles.subtitle}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Every project is designed to solve real problems and create meaningful experiences.
-        </motion.p>
+          Software explorations and independent creative concepts from our team. Brand concepts do not imply a commissioned client relationship.
+        </Motion.p>
       </section>
 
       {/* ===== FEATURED PROJECT ===== */}
       {featuredProject && (
-        <motion.section 
+        <Motion.section 
           className={styles.featuredSection}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -248,8 +219,8 @@ const Portfolio = () => {
               
               <div className={styles.featuredMetrics}>
                 <div>
-                  <span className={styles.metricLabel}>Duration</span>
-                  <span className={styles.metricValue}>{featuredProject.duration}</span>
+                  <span className={styles.metricLabel}>Project type</span>
+                  <span className={styles.metricValue}>Independent project</span>
                 </div>
                 <div>
                   <span className={styles.metricLabel}>Services</span>
@@ -266,12 +237,8 @@ const Portfolio = () => {
             </div>
             
             <div className={styles.featuredVisual}>
-              <div className={styles.featuredPlaceholder}>
-                <div className={styles.placeholderContent}>
-                  <span className={styles.placeholderIcon}>◆</span>
-                  <span>Project Preview</span>
-                </div>
-              </div>
+              <img src="/assets/posters/nike-poster.jpg" alt="Independent Nike campaign poster concept by Triode Studio" style={{ width: '100%', height: 'auto', maxHeight: 520, objectFit: 'contain' }} />
+              <p>Campaign artwork for our independent Nike brand exploration.</p>
             </div>
           </div>
 
@@ -287,10 +254,10 @@ const Portfolio = () => {
             </div>
             <div className={styles.detailCard}>
               <h4>Business Value</h4>
-              <p>{featuredProject.businessValue}</p>
+              <p>{featuredProject.businessValue || "An independent exploration of a complete shopping experience."}</p>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
       )}
 
       {/* ===== OTHER PROJECTS ===== */}
@@ -298,7 +265,7 @@ const Portfolio = () => {
         <h3 className={styles.sectionLabel}>Featured Projects</h3>
         <div className={styles.projectsGrid}>
           {otherProjects.map((project, index) => (
-            <motion.div
+            <Motion.div
               key={project.id}
               className={styles.projectCard}
               initial={{ opacity: 0 }}
@@ -306,12 +273,8 @@ const Portfolio = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => openModal(project)}
+              role="button" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openModal(project); } }}
             >
-              <div className={styles.cardVisual}>
-                <div className={styles.cardPlaceholder}>
-                  <span>◆</span>
-                </div>
-              </div>
               <div className={styles.cardContent}>
                 <span className={styles.cardCategory}>{project.category}</span>
                 <h3 className={styles.cardTitle}>{project.title}</h3>
@@ -320,14 +283,14 @@ const Portfolio = () => {
                   <span className={styles.cardCta}>{project.cta} →</span>
                 </div>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
       </section>
 
       {/* ===== CREATIVE POSTERS SECTION ===== */}
       <section className={styles.postersSection}>
-        <motion.div 
+        <Motion.div 
           className={styles.sectionHeader}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -365,11 +328,11 @@ const Portfolio = () => {
           >
             View All {postersData.length} Posters <FiArrowRight />
           </button>
-        </motion.div>
+        </Motion.div>
         
         <div className={styles.postersGrid}>
           {postersData.slice(0, 8).map((poster, index) => (
-            <motion.div
+            <Motion.div
               key={poster.id}
               className={styles.posterCard}
               initial={{ opacity: 0, y: 15 }}
@@ -377,10 +340,12 @@ const Portfolio = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.06 }}
               onClick={() => navigate("/posters")}
+              role="link" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter") navigate("/posters"); }}
               style={{ cursor: "pointer" }}
             >
               <div className={styles.posterVisual}>
                 <img
+                  loading="lazy"
                   src={poster.image}
                   alt={poster.title}
                   className={styles.posterImage}
@@ -397,70 +362,28 @@ const Portfolio = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
       </section>
 
-      {/* ===== AI VIDEO SHOWCASE ===== */}
       <section className={styles.videoSection}>
-        <motion.div 
-          className={styles.sectionHeader}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <h2 className={styles.sectionTitle}>AI Video Showcase</h2>
-          <p className={styles.sectionSubtitle}>Cinematic storytelling powered by AI, crafted with human creativity.</p>
-        </motion.div>
-        
-        <div className={styles.videoGrid}>
-          {aiVideos.map((video, index) => (
-            <motion.div
-              key={index}
-              className={styles.videoCard}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-            >
-              <div className={styles.videoVisual}>
-                <div className={styles.videoPlaceholder}>
-                  <div className={styles.videoOverlay}>
-                    <button className={styles.playButton} aria-label="Play video preview">
-                      <FiPlay />
-                    </button>
-                  </div>
-                  <span className={styles.videoDuration}>{video.duration}</span>
-                </div>
-              </div>
-              <div className={styles.videoContent}>
-                <h3 className={styles.videoTitle}>{video.title}</h3>
-                <span className={styles.videoClient}>{video.client}</span>
-                <div className={styles.videoMeta}>
-                  <span className={styles.videoConcept}>{video.concept}</span>
-                  <span className={styles.videoGoal}>{video.goal}</span>
-                </div>
-                <button className={styles.videoCta}>
-                  View Case Study <FiExternalLink />
-                </button>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <h2 className={styles.sectionTitle}>Have an AI video project in mind?</h2>
+        <p>Tell us about your audience, message, and format to discuss an AI-assisted production approach.</p>
+        <button onClick={() => navigate('/contact')} className={styles.videoCta}>Discuss your video brief →</button>
       </section>
 
       {/* ===== PROJECT MODAL ===== */}
       <AnimatePresence>
         {isModalOpen && selectedProject && (
-          <motion.div
+          <Motion.div
             className={styles.modalBackdrop}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
           >
-            <motion.div
+            <Motion.div
               className={styles.modal}
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -468,7 +391,7 @@ const Portfolio = () => {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button className={styles.closeButton} onClick={closeModal}>✕</button>
+              <button className={styles.closeButton} aria-label="Close project details" onClick={closeModal}>✕</button>
               
               <div className={styles.modalContent}>
                 <span className={styles.modalCategory}>{selectedProject.category}</span>
@@ -476,7 +399,7 @@ const Portfolio = () => {
                 <p className={styles.modalDescription}>{selectedProject.shortDescription}</p>
 
                 <div className={styles.modalMeta}>
-                  <div><strong>Duration:</strong> {selectedProject.duration}</div>
+                  <div><strong>Project:</strong> Independent studio work</div>
                   <div><strong>Services:</strong> {selectedProject.services?.join(", ")}</div>
                 </div>
 
@@ -518,16 +441,16 @@ const Portfolio = () => {
 
                 <button 
                   className={styles.modalCta}
-                  onClick={() => window.open(selectedProject.ctaLink, "_blank")}
+                  onClick={() => { closeModal(); navigate(selectedProject.ctaLink); }}
                 >
-                  {selectedProject.cta} <FiArrowRight />
+                  Discuss a similar project <FiArrowRight />
                 </button>
               </div>
-            </motion.div>
-          </motion.div>
+            </Motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </Motion.div>
   );
 };
 

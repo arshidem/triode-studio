@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import HomeHero from "../components/HomeHero";
 import useSEO from "../hooks/useSEO";
 import styles from "../styles/Home.module.css";
@@ -50,7 +50,7 @@ const process = [
 
 const projects = [
   {
-    name: "Nike E-commerce Redesign",
+    name: "Nike E-commerce — Independent Concept",
     type: "Custom Web Development",
     challenge: "Required a fully featured checkout flow with admin controls and fast load times.",
     outcome: "Built a responsive store concept with Razorpay integration and custom admin dashboards.",
@@ -71,24 +71,10 @@ const projects = [
     tech: "Figma, React, TypeScript, Tailwind CSS",
   },
   {
-    name: "Nike E-commerce",
-    type: "Custom Web Development",
-    challenge: "Required a complete e-commerce flow with product management, cart, checkout, and admin controls.",
-    outcome: "Built a responsive store with Razorpay payment gateway, product filtering, and a custom admin dashboard.",
-    tech: "React, Node.js, Express, MongoDB, Razorpay",
-  },
-  {
-    name: "Cinematic Brand Reel",
-    type: "AI Video Production",
-    challenge: "Brand needed high-quality launch videos fast without a large production crew.",
-    outcome: "Produced a 60s cinematic brand story using AI scripting, voice synthesis, and video generation.",
-    tech: "Runway, Midjourney, ElevenLabs, Suno AI",
-  },
-  {
     name: "Event Campaign Posters",
     type: "Creative Posters & Graphics",
-    challenge: "Client needed consistent, eye-catching visual assets across print and digital formats.",
-    outcome: "Delivered a full poster and ad creative set keeping brand identity consistent across formats.",
+    challenge: "Explore consistent visual treatments across print and digital formats.",
+    outcome: "Created poster artwork and independent brand explorations.",
     tech: "Photoshop, Illustrator, Figma, Canva",
   },
 ];
@@ -97,7 +83,7 @@ const projects = [
 const faqs = [
   ["Do you only build websites?", "No. We handle branding, mobile apps, marketing assets, and AI workflows too."],
   ["Can you work with my existing brand?", "Yes. We can design and improve the digital experience using your current logo."],
-  ["Do you use fake metrics?", "No. We focus on real client challenges, decisions, and clear business outcomes."],
+  ["What will I receive?", "We agree on deliverables before starting, including designs, development, launch support, and any ongoing maintenance."],
   ["What is the first step?", "We review your goals and suggest a small, practical project scope to start."],
 ];
 
@@ -110,17 +96,15 @@ const Home = () => {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "Triode Studio",
-      "image": "https://triodestudio/assets/logo/Triode%20SVG.svg",
-      "@id": "https://triodestudio/#organization",
-      "url": "https://triodestudio",
+      "image": "https://triodestudio.vercel.app/assets/logo/Triode%20SVG.svg",
+      "@id": "https://triodestudio.vercel.app/#organization",
+      "url": "https://triodestudio.vercel.app",
       "telephone": "+91 81578 75032",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "TODO: Add Street Address",
         "addressLocality": "Palakkad",
         "addressRegion": "Kerala",
-        "postalCode": "TODO: Add Postal Code",
         "addressCountry": "IN"
       },
       "geo": {
@@ -161,7 +145,7 @@ const Home = () => {
   });
 
   return (
-    <motion.div
+    <Motion.div
       className={styles.home}
       initial="initial"
       animate="in"
@@ -271,8 +255,9 @@ const Home = () => {
         <h2>Bring the problem. We will help shape the right digital solution.</h2>
         <Link to="/contact" className={styles.ctaButton}>Get a Proposal</Link>
       </section>
-    </motion.div>
+    </Motion.div>
   );
 };
 
 export default Home;
+

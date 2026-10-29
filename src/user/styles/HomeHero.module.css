@@ -264,3 +264,9 @@
     justify-self: center;
   }
 }
+
+
+.workPreview { margin: 0; min-width: 0; border: 1px solid var(--border); background: #fff; padding: 1rem; box-shadow: 10px 10px 0 #0a0a0a; }
+.workPreview img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; }
+.workPreview figcaption { padding: 1rem 0 0; color: var(--text); line-height: 1.7; }
+.secondaryAction { text-decoration: none; }
