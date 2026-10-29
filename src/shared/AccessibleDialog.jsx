@@ -1,5 +1,11 @@
 import { useEffect, useRef, useId } from "react";
-export default function AccessibleDialog({ id, title, onClose, children }) {
+export default function AccessibleDialog({
+  id,
+  title,
+  onClose,
+  children,
+  className = "",
+}) {
   const ref = useRef(null);
   const titleId = useId();
   useEffect(() => {
@@ -18,7 +24,7 @@ export default function AccessibleDialog({ id, title, onClose, children }) {
     <dialog
       ref={ref}
       id={id}
-      className="site-dialog"
+      className={`site-dialog ${className}`}
       aria-labelledby={titleId}
       onCancel={(event) => {
         event.preventDefault();

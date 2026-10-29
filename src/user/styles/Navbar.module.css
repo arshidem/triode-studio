@@ -517,3 +517,46 @@
     transition: none;
   }
 }
+
+/* Use the original slide-in sidebar inside a native modal dialog. */
+.navbarMobileMenu.navigationDialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  margin: 0;
+  width: min(300px, 100vw);
+  height: 100dvh;
+  max-height: 100dvh;
+  max-width: 100vw;
+  padding: 0;
+  border: 0;
+  border-radius: 20px 0 0 20px;
+}
+.navigationDialog :global(.dialog-content) {
+  padding: 0;
+  min-height: 100%;
+}
+.navigationDialog :global(.dialog-header) {
+  position: absolute;
+  top: 0.6rem;
+  left: 1.25rem;
+  right: 1rem;
+  margin: 0;
+}
+.navigationDialog :global(.dialog-header h2) {
+  font-size: 0.8rem;
+  color: var(--subtext);
+}
+.navigationDialog .mobileContent {
+  min-height: 100dvh;
+}
+@media (max-width: 768px) {
+  .navbarMobileMenu.navigationDialog {
+    width: min(280px, 100vw);
+  }
+}
+@media (max-width: 480px) {
+  .navbarMobileMenu.navigationDialog {
+    width: min(260px, 100vw);
+    border-radius: 0;
+  }
+}

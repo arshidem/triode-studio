@@ -4,8 +4,8 @@
   bottom: 1.15rem;
   z-index: 120;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
   gap: 0.65rem;
   pointer-events: none;
 }
@@ -45,35 +45,23 @@
 
 .action:hover,
 .action:focus-visible {
-  width: 178px;
-  border-radius: 999px;
   transform: translateY(-2px);
   opacity: 1;
-}
-
-.action:hover span,
-.action:focus-visible span {
-  max-width: 130px;
-  opacity: 1;
-  margin-left: 0.55rem;
 }
 
 @media (max-width: 620px) {
   .floatingContact {
     right: 1rem;
     bottom: max(1rem, env(safe-area-inset-bottom));
+    gap: 0.5rem;
   }
-  .action {
-    display: none;
-  }
-  .action:nth-child(2),
-  .action:nth-child(2):hover,
-  .action:nth-child(2):focus-visible {
+  .action,
+  .action:hover,
+  .action:focus-visible {
     display: inline-flex;
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    transform: none;
   }
   .action span {
     display: none;
