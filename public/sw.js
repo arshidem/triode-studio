@@ -1,0 +1,13 @@
+// Retire the previous offline app shell so visitors receive current pages.
+self.addEventListener("install", () => self.skipWaiting());
+self.addEventListener("activate", (event) =>
+  event.waitUntil(
+    (async () => {
+      for (const key of await caches.keys())
+        if (key.startsWith("workbox-") || key === "api-cache")
+          await caches.delete(key);
+      await self.clients.claim();
+      await self.registration.unregister();
+    })(),
+  ),
+);

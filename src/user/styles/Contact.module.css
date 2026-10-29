@@ -7,7 +7,7 @@
   padding: var(--page-padding-desktop);
   background: var(--bg, #ffffff);
   color: var(--text, #111111);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: inherit;
 }
 
 /* ===== HERO ===== */
@@ -65,7 +65,7 @@
 .ctaPrimary:hover {
   background: var(--subtext, #555);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.2);
 }
 
 .ctaSecondary {
@@ -223,7 +223,7 @@
 .methodCard:hover {
   border-color: var(--text, #111);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
 }
 
 .methodIcon {

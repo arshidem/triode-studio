@@ -1,19 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
+export default function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  const previousPath = useRef(pathname);
   useEffect(() => {
-    // Wait for route change + any framer-motion animation
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 500); // adjust based on your animation duration
-
-    return () => clearTimeout(timer);
-  }, [pathname]);
-
+    if (hash) {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+    } else if (previousPath.current !== pathname) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      document.getElementById("main-content")?.focus({ preventScroll: true });
+    }
+    previousPath.current = pathname;
+  }, [pathname, hash]);
   return null;
-};
-
-export default ScrollToTop;
+}

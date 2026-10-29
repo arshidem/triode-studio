@@ -1,260 +1,111 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import HomeHero from "../components/HomeHero";
 import useSEO from "../hooks/useSEO";
+import { services } from "../data/services";
+import { projects } from "../data/projects";
 import styles from "../styles/Home.module.css";
-
-const pageVariants = {
-  initial: { opacity: 0 },
-  in: { opacity: 1 },
-  out: { opacity: 0 },
-};
-
-const pageTransition = { duration: 0.4, ease: "easeOut" };
-
-const services = [
-  {
-    title: "High-converting websites",
-    for: "For businesses needing a modern, clear web presence.",
-    impact: "We structure layout and copy to make inquiry easy and natural.",
-  },
-  {
-    title: "Intuitive UI/UX design",
-    for: "For products requiring simplified flows and interfaces.",
-    impact: "We design component systems that developers can build quickly.",
-  },
-  {
-    title: "Strong brand identity",
-    for: "For founders who need to establish trust and credibility.",
-    impact: "We define logos, rules, and assets that keep branding consistent.",
-  },
-  {
-    title: "Action-focused marketing assets",
-    for: "For campaigns designed to generate leads and sales.",
-    impact: "We create clean assets to clarify your offer and lower ad costs.",
-  },
-  {
-    title: "AI-assisted production workflows",
-    for: "For teams looking to generate campaign content faster.",
-    impact: "We use AI to speed up editing, then polish it with human eyes.",
-  },
-];
-
-const process = [
-  ["01", "Diagnose", "We identify the user journey issue and goals first."],
-  ["02", "Architect", "We map the layout, messaging flow, and details."],
-  ["03", "Craft", "We write, design, and code for high speed and SEO."],
-  ["04", "Launch", "We do quality checks and launch your site ready to go."],
-];
-
-const projects = [
-  {
-    name: "Nike E-commerce Redesign",
-    type: "Custom Web Development",
-    challenge: "Required a fully featured checkout flow with admin controls and fast load times.",
-    outcome: "Built a responsive store concept with Razorpay integration and custom admin dashboards.",
-    tech: "React, Node.js, Express, MongoDB, Razorpay",
-  },
-  {
-    name: "KoFund",
-    type: "Mobile App Development",
-    challenge: "Tracking community contributions manually was slow and lacked real-time visibility.",
-    outcome: "Created a Flutter app with role-based access, live contribution tracking, and dashboards.",
-    tech: "Flutter, Firebase Auth, Cloud Firestore, Riverpod",
-  },
-  {
-    name: "KoFind",
-    type: "UI/UX Design",
-    challenge: "Users struggled to find reliable local event info due to scattered resources.",
-    outcome: "Designed an intuitive discovery platform with personalized flows and map integration.",
-    tech: "Figma, React, TypeScript, Tailwind CSS",
-  },
-  {
-    name: "Nike E-commerce",
-    type: "Custom Web Development",
-    challenge: "Required a complete e-commerce flow with product management, cart, checkout, and admin controls.",
-    outcome: "Built a responsive store with Razorpay payment gateway, product filtering, and a custom admin dashboard.",
-    tech: "React, Node.js, Express, MongoDB, Razorpay",
-  },
-  {
-    name: "Cinematic Brand Reel",
-    type: "AI Video Production",
-    challenge: "Brand needed high-quality launch videos fast without a large production crew.",
-    outcome: "Produced a 60s cinematic brand story using AI scripting, voice synthesis, and video generation.",
-    tech: "Runway, Midjourney, ElevenLabs, Suno AI",
-  },
-  {
-    name: "Event Campaign Posters",
-    type: "Creative Posters & Graphics",
-    challenge: "Client needed consistent, eye-catching visual assets across print and digital formats.",
-    outcome: "Delivered a full poster and ad creative set keeping brand identity consistent across formats.",
-    tech: "Photoshop, Illustrator, Figma, Canva",
-  },
-];
-
-
 const faqs = [
-  ["Do you only build websites?", "No. We handle branding, mobile apps, marketing assets, and AI workflows too."],
-  ["Can you work with my existing brand?", "Yes. We can design and improve the digital experience using your current logo."],
-  ["Do you use fake metrics?", "No. We focus on real client challenges, decisions, and clear business outcomes."],
-  ["What is the first step?", "We review your goals and suggest a small, practical project scope to start."],
+  [
+    "What can you help us create?",
+    "We build websites and mobile apps, design interfaces and brands, and create marketing campaigns, posters, and AI videos.",
+  ],
+  [
+    "What does a project cost?",
+    "We provide a quote after understanding the deliverables, timeline, and support you need.",
+  ],
+  [
+    "Can you improve an existing website or brand?",
+    "Yes. Share your current work and what you want to improve so we can suggest a practical scope.",
+  ],
+  [
+    "What happens after an enquiry?",
+    "We aim to reply within one business day, discuss your goals, and prepare a proposal with scope, timeline, and cost.",
+  ],
 ];
-
-const Home = () => {
-  useSEO({
-    title: "Triode Studio | Web Development Agency Kerala",
-    description: "Triode Studio is a premier web development agency in Kerala, India. We build high-converting websites, custom mobile apps, and modern UI/UX designs.",
-    keywords: "web development agency Kerala, digital agency Palakkad, UI UX design, mobile app development, Triode Studio, custom software",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Triode Studio",
-      "image": "https://triodestudio/assets/logo/Triode%20SVG.svg",
-      "@id": "https://triodestudio/#organization",
-      "url": "https://triodestudio",
-      "telephone": "+91 81578 75032",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "TODO: Add Street Address",
-        "addressLocality": "Palakkad",
-        "addressRegion": "Kerala",
-        "postalCode": "TODO: Add Postal Code",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "10.7867",
-        "longitude": "76.6547"
-      },
-      "areaServed": [
-        {
-          "@type": "State",
-          "name": "Kerala"
-        },
-        {
-          "@type": "Country",
-          "name": "India"
-        }
-      ],
-      "description": "Triode Studio is a digital development agency in Palakkad, Kerala, offering web development, Flutter app development, UI/UX design, and digital marketing/SEO services.",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "sameAs": [
-        "https://www.instagram.com/triodestudio/",
-        "https://wa.me/918157875032",
-        "https://linkedin.com/company/triode-studio"
-      ]
-    }
-  });
-
+export default function Home() {
+  useSEO();
   return (
-    <motion.div
-      className={styles.home}
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
+    <div className={styles.home}>
       <HomeHero />
-
-      <section className={styles.credibility} aria-label="Credibility">
-        <p>Built for businesses that need clarity before traffic, trust before enquiry, and quality before scale.</p>
-        <div>
-          <span>Web</span>
-          <span>UI/UX</span>
-          <span>Brand</span>
-          <span>Marketing</span>
-          <span>AI Creative</span>
-        </div>
-      </section>
-
       <section className={styles.aboutSection}>
-        <div className={styles.sectionKicker}>About Triode Studio</div>
         <div className={styles.split}>
-          <h2>Digital work should make your business easier to understand, trust, and contact.</h2>
+          <h2>One small team, from the first idea to launch.</h2>
           <div className={styles.copyBlock}>
             <p>
-              Triode Studio is a creative digital agency from Kerala working across web development, UI/UX, branding, graphic design, digital marketing, and AI creative solutions.
+              Arshid leads development, Musthafa leads creative work, and Salman
+              Faris leads branding and marketing. We work together so your
+              product and its communication fit the same goal.
             </p>
-            <p>
-              We treat every project as a business system: the message, structure, visual identity, speed, and call-to-action all need to support one clear decision.
-            </p>
+            <Link className="text-link" to="/about">
+              Meet the team →
+            </Link>
           </div>
         </div>
       </section>
-
       <section className={styles.expertiseSection}>
         <div className={styles.sectionIntro}>
-          <span className={styles.sectionKicker}>Core Expertise</span>
-          <h2>Services connected by one goal: better decisions from your audience.</h2>
+          <span className={styles.sectionKicker}>Our services</span>
+          <h2>Choose the support your business needs.</h2>
         </div>
-        <div className={styles.serviceList}>
-          {services.map((service, index) => (
-            <article key={service.title} className={styles.serviceRow}>
-              <span className={styles.rowNumber}>0{index + 1}</span>
+        <div className="service-home-grid">
+          {services.map((service) => (
+            <article className="project-card" key={service.slug}>
               <h3>{service.title}</h3>
-              <p>{service.for}</p>
-              <strong>{service.impact}</strong>
+              <p>{service.description}</p>
+              <Link className="text-link" to={`/services/${service.slug}`}>
+                Explore the service →
+              </Link>
             </article>
           ))}
         </div>
       </section>
-
       <section className={styles.workSection}>
         <div className={styles.sectionIntro}>
-          <span className={styles.sectionKicker}>Selected Projects</span>
-          <h2>Real and clearly labeled concept work, shown through the decisions behind it.</h2>
+          <span className={styles.sectionKicker}>Products & concepts</span>
+          <h2>Explore our development and design work.</h2>
         </div>
-        <div className={styles.projectStack}>
+        <div className="project-grid">
           {projects.map((project) => (
-            <article key={project.name} className={styles.projectPanel}>
-              <div>
-                <span>{project.type}</span>
-                <h3>{project.name}</h3>
-              </div>
-              <p><strong>Challenge:</strong> {project.challenge}</p>
-              <p><strong>Outcome:</strong> {project.outcome}</p>
-              <p><strong>Technology:</strong> {project.tech}</p>
+            <article className="project-card dark-card" key={project.slug}>
+              <p className="eyebrow">{project.type}</p>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+              <Link className="text-link" to={`/portfolio/${project.slug}`}>
+                Read project overview →
+              </Link>
             </article>
           ))}
         </div>
-        <Link className={styles.textLink} to="/portfolio">Read the project details</Link>
       </section>
-
       <section className={styles.processSection}>
         <div className={styles.sectionIntro}>
-          <span className={styles.sectionKicker}>How We Work</span>
-          <h2>A direct process that keeps creative work tied to business value.</h2>
+          <span className={styles.sectionKicker}>How we work</span>
+          <h2>A clear path from brief to delivery.</h2>
         </div>
         <div className={styles.processGrid}>
-          {process.map(([num, title, desc]) => (
-            <article key={num} className={styles.processCard}>
-              <span>{num}</span>
+          {[
+            ["Discover", "We discuss your audience, goals, and constraints."],
+            ["Plan", "We agree deliverables, cost, and timeline."],
+            [
+              "Create",
+              "We design and build, with reviews at agreed milestones.",
+            ],
+            [
+              "Deliver",
+              "We test the work, launch or export it, and hand it over.",
+            ],
+          ].map(([title, description], index) => (
+            <article className={styles.processCard} key={title}>
+              <span>0{index + 1}</span>
               <h3>{title}</h3>
-              <p>{desc}</p>
+              <p>{description}</p>
             </article>
           ))}
         </div>
       </section>
-
       <section className={styles.faqSection}>
         <div className={styles.sectionIntro}>
-          <span className={styles.sectionKicker}>FAQ</span>
-          <h2>Answers before the first call.</h2>
+          <h2>Before we start.</h2>
         </div>
         <div className={styles.faqList}>
           {faqs.map(([question, answer]) => (
@@ -265,14 +116,13 @@ const Home = () => {
           ))}
         </div>
       </section>
-
       <section className={styles.finalCta}>
-        <span className={styles.sectionKicker}>Start the conversation</span>
-        <h2>Bring the problem. We will help shape the right digital solution.</h2>
-        <Link to="/contact" className={styles.ctaButton}>Get a Proposal</Link>
+        <span className={styles.sectionKicker}>Your next project</span>
+        <h2>Tell us what you want to make.</h2>
+        <Link className={styles.ctaButton} to="/contact">
+          Discuss Your Project →
+        </Link>
       </section>
-    </motion.div>
+    </div>
   );
-};
-
-export default Home;
+}

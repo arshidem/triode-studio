@@ -1,96 +1,51 @@
-import React from "react";
-import { FiArrowRight, FiCalendar, FiCheckCircle } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { postersData } from "../data/postersData";
+import PosterImage from "../../shared/PosterImage";
 import styles from "../styles/HomeHero.module.css";
-
-const proofItems = [
-  "Strategy before screens",
-  "Conversion-led interfaces",
-  "Build-ready design systems",
-];
-
-const signalRows = [
-  { label: "Clarity", value: "What buyers need to understand" },
-  { label: "Trust", value: "What removes hesitation" },
-  { label: "Action", value: "What moves them to contact you" },
-];
-
-const HomeHero = () => {
-  const navigate = useNavigate();
-
+export default function HomeHero() {
   return (
     <section className={styles.hero} aria-labelledby="home-hero-title">
       <div className={styles.heroInner}>
-        <div
-          className={styles.copy}
-        >
-          <p className={styles.eyebrow}>Triode Studio / Digital growth systems</p>
+        <div className={styles.copy}>
+          <p className={styles.eyebrow}>Triode Studio · Kerala, India</p>
           <h1 id="home-hero-title" className={styles.title}>
-            We craft digital experiences that turn visitors into customers.
+            Websites, apps, and creative campaigns for growing businesses.
           </h1>
           <p className={styles.lede}>
-            We help founders, local businesses, and growing brands replace vague online presence with clear websites, sharper brands, and focused campaigns built to earn trust.
+            We are a three-person studio combining development, design, and
+            marketing. From your first website to app interfaces, posters, and
+            AI videos, we help turn your ideas into useful digital work.
           </p>
-
           <div className={styles.actions}>
-            <button className={styles.primaryAction} onClick={() => navigate("/contact")}>
-              Start Your Project <FiArrowRight aria-hidden="true" />
-            </button>
-            <button className={styles.secondaryAction} onClick={() => navigate("/contact")}>
-              <FiCalendar aria-hidden="true" /> Book a Discovery Call
-            </button>
+            <Link className={styles.primaryAction} to="/contact">
+              Discuss Your Project →
+            </Link>
+            <Link className={styles.secondaryAction} to="/portfolio">
+              View Our Work →
+            </Link>
           </div>
-
-          <div className={styles.proofList} aria-label="How Triode Studio works">
-            {proofItems.map((item) => (
-              <span key={item}>
-                <FiCheckCircle aria-hidden="true" />
-                {item}
-              </span>
-            ))}
+          <div className={styles.proofList}>
+            <span>Direct contact with the team</span>
+            <span>Clear project scope</span>
+            <span>Design and development together</span>
           </div>
         </div>
-
-        <div
-          className={styles.systemPanel}
-          aria-label="Conversion system preview"
-        >
-          <div className={styles.panelHeader}>
-            <span>Decision Architecture</span>
-            <span>Live</span>
-          </div>
-
-          <div className={styles.signalMap}>
-            {signalRows.map((row, index) => (
-              <div
-                key={row.label}
-                className={styles.signalRow}
-              >
-                <span className={styles.signalNumber}>0{index + 1}</span>
-                <div>
-                  <strong>{row.label}</strong>
-                  <p>{row.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.flow}>
-            <div className={styles.flowNode}>Problem</div>
-            <span />
-            <div className={styles.flowNode}>Offer</div>
-            <span />
-            <div className={styles.flowNode}>Lead</div>
-          </div>
-
-          <div className={styles.outcomeBox}>
-            <span>Outcome</span>
-            <strong>A website that explains, persuades, and makes contacting you feel obvious.</strong>
-          </div>
-        </div>
+        <figure className="hero-work">
+          <Link to="/posters" aria-label="Explore our poster design collection">
+            <div className="hero-poster-grid">
+              {postersData.slice(0, 2).map((poster) => (
+                <PosterImage key={poster.id} poster={poster} eager />
+              ))}
+            </div>
+          </Link>
+          <figcaption>
+            Selected poster design explorations ·{" "}
+            <Link className="text-link" to="/posters">
+              Explore the collection →
+            </Link>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
-};
-
-export default HomeHero;
+}

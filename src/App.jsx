@@ -1,88 +1,44 @@
-// src/App.jsx
-/**
- * Main App Component — Black & White Minimal
- * Features: LogoLoader splash, Router, clean page transitions
- */
-
-import React, { useState, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-
-// Layout Components
+import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./user/components/Navbar";
 import Footer from "./user/components/Footer";
-import ScrollToTop from "./user/components/ScrollToTop";
-import LogoLoader from "./user/components/LogoLoader";
 import FloatingContact from "./user/components/FloatingContact";
-
-// Pages
+import ScrollToTop from "./user/components/ScrollToTop";
 import Home from "./user/pages/Home";
-import Services from "./user/pages/Services";
 import About from "./user/pages/About";
 import Contact from "./user/pages/Contact";
 import Portfolio from "./user/pages/Portfolio";
 import PostersGallery from "./user/pages/PostersGallery";
-
-// Context
-import { NavbarLogoContext } from "./user/context/NavbarLogoContext";
-
-// Styles
+import Services from "./user/pages/Services";
+import ServiceDetail from "./user/pages/ServiceDetail";
+import ProjectDetail from "./user/pages/ProjectDetail";
+import Privacy from "./user/pages/Privacy";
+import NotFound from "./user/pages/NotFound";
 import "./styles/global.css";
-
-const AnimatedRoutes = () => {
-  const location = useLocation();
+export default function App({ url }) {
+  const Router = url ? MemoryRouter : BrowserRouter;
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route path="/"          element={<Home />} />
-      <Route path="/services"  element={<Services />} />
-      <Route path="/portfolio" element={<Portfolio />} />
-      <Route path="/posters"   element={<PostersGallery />} />
-      <Route path="/about"     element={<About />} />
-      <Route path="/contact"   element={<Contact />} />
-    </Routes>
+    <Router {...(url ? { initialEntries: [url] } : {})}>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <ScrollToTop />
+      <Navbar />
+      <main id="main-content" tabIndex={-1}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+          <Route path="/posters" element={<PostersGallery />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+      <FloatingContact />
+    </Router>
   );
-};
-
-const App = () => {
-  const [isLoading, setIsLoading]   = useState(true);
-  const [loaderDone, setLoaderDone] = useState(false);
-  const navbarLogoRef               = useRef(null);
-
-  const handleLoaderComplete = () => {
-    setLoaderDone(true);
-    // Small delay so the navbar logo fade-in starts just after the fly lands
-    setTimeout(() => setIsLoading(false), 80);
-  };
-
-  return (
-    <NavbarLogoContext.Provider value={{ navbarLogoRef, loaderDone }}>
-      {isLoading && (
-        <LogoLoader
-          onComplete={handleLoaderComplete}
-          navbarLogoRef={navbarLogoRef}
-        />
-      )}
-      <Router>
-        <ScrollToTop />
-
-        {/* Navbar is ALWAYS rendered at full opacity so the fly target is visible */}
-        <Navbar />
-
-        {/* Page content fades in after loading */}
-        <div
-          style={{
-            opacity: isLoading ? 0 : 1,
-            transition: "opacity 0.4s ease",
-          }}
-        >
-          <main>
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <FloatingContact />
-        </div>
-      </Router>
-    </NavbarLogoContext.Provider>
-  );
-};
-
-export default App;
+}

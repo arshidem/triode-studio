@@ -6,7 +6,7 @@
   border: 1px solid var(--border, #e5e5e5);
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
 }
 
 .formTitle {
@@ -51,16 +51,19 @@
   border-radius: 6px;
   font-size: 0.95rem;
   color: var(--text, #111);
-  transition: border 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border 0.25s ease,
+    box-shadow 0.25s ease;
   font-family: inherit;
 }
 
 .input:focus,
 .select:focus,
 .textarea:focus {
-  outline: none;
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
   border-color: var(--text, #111);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .textarea {
@@ -89,6 +92,7 @@
 }
 
 .chip {
+  min-height: 44px;
   padding: 0.4rem 1rem;
   border: 1px solid var(--border, #e5e5e5);
   border-radius: 40px;
@@ -130,7 +134,7 @@
 .submitBtn:hover:not(:disabled) {
   background: var(--subtext, #555);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.15);
 }
 
 .submitBtn:disabled {
@@ -142,14 +146,16 @@
   display: inline-block;
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top: 2px solid #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Success State */

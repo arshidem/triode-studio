@@ -20,11 +20,11 @@ export const initScrollAnimations = () => {
   ScrollTrigger.refresh();
 
   // Fade-up animation for elements with data-animate="fade-up"
-  gsap.utils.toArray('[data-animate="fade-up"]').forEach((element, index) => {
+  gsap.utils.toArray('[data-animate="fade-up"]').forEach((element) => {
     gsap.from(element, {
       opacity: 0,
       y: 60,
-      duration: .5,
+      duration: 0.5,
       ease: "power3.out",
       scrollTrigger: {
         trigger: element,
@@ -40,7 +40,7 @@ export const initScrollAnimations = () => {
   gsap.utils.toArray('[data-animate="fade-in"]').forEach((element) => {
     gsap.from(element, {
       opacity: 0,
-      duration: .5,
+      duration: 0.5,
       ease: "power2.out",
       scrollTrigger: {
         trigger: element,
@@ -55,7 +55,7 @@ export const initScrollAnimations = () => {
     gsap.from(element, {
       opacity: 0,
       x: -80,
-      duration: .5,
+      duration: 0.5,
       ease: "power3.out",
       scrollTrigger: {
         trigger: element,
@@ -70,7 +70,7 @@ export const initScrollAnimations = () => {
     gsap.from(element, {
       opacity: 0,
       x: 80,
-      duration: .5,
+      duration: 0.5,
       ease: "power3.out",
       scrollTrigger: {
         trigger: element,
@@ -85,7 +85,7 @@ export const initScrollAnimations = () => {
     gsap.from(element, {
       opacity: 0,
       scale: 0.8,
-      duration: .5,
+      duration: 0.5,
       ease: "back.out(1.7)",
       scrollTrigger: {
         trigger: element,
@@ -207,7 +207,7 @@ export const batchAnimation = (selector, animationProps = {}) => {
         opacity: 0,
         y: 60,
         stagger: 0.15,
-        duration: .1,
+        duration: 0.1,
         ease: "power3.out",
         ...animationProps,
       });
