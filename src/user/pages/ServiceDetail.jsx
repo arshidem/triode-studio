@@ -1,3 +1,4 @@
+import PageHeader from "../../shared/PageHeader";
 import { Link, useParams } from "react-router-dom";
 import { services } from "../data/services";
 import useSEO from "../hooks/useSEO";
@@ -9,12 +10,13 @@ export default function ServiceDetail() {
   if (!service) return <NotFound />;
   return (
     <article className="detail-page">
-      <Link className="text-link" to="/services">
-        ← All services
-      </Link>
-      <p className="eyebrow">Triode Studio · Kerala</p>
-      <h1>{service.title}</h1>
-      <p className="intro">{service.description}</p>
+      <PageHeader
+        backTo="/services"
+        backLabel="Back to all services"
+        eyebrow="Triode Studio · Kerala"
+        title={service.title}
+        description={service.description}
+      />
       <section>
         <h2>Who it is for</h2>
         <p>{service.audience}</p>

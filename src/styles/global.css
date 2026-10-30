@@ -598,3 +598,100 @@ a:hover {
 .contact-faq p {
   margin-top: 0.8rem;
 }
+
+/* Keep image navigation attached to the artwork, independent of its details. */
+.lightbox-image {
+  position: relative;
+  display: grid;
+  place-items: center;
+  align-self: start;
+  min-width: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+.lightbox-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(90dvh - 8rem);
+  object-fit: contain;
+}
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #555;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+  cursor: pointer;
+}
+.lightbox-arrow svg {
+  width: 26px;
+  height: 26px;
+}
+.lightbox-arrow:hover {
+  background: #f0f0ee;
+}
+.lightbox-arrow-left {
+  left: 8px;
+}
+.lightbox-arrow-right {
+  right: 8px;
+}
+.page-header {
+  --back-size: 44px;
+  --back-gap: 1rem;
+  margin-bottom: 2rem;
+}
+.page-title-row {
+  display: grid;
+  grid-template-columns: var(--back-size) minmax(0, 1fr);
+  align-items: center;
+  column-gap: var(--back-gap);
+}
+.page-title-row h1 {
+  font-size: var(--title-font-size);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-letter-spacing);
+  margin: 0;
+}
+.page-back {
+  display: grid;
+  place-items: center;
+  width: var(--back-size);
+  height: var(--back-size);
+  border: 1px solid var(--hover-border);
+  border-radius: 50%;
+}
+.page-back svg {
+  width: 22px;
+  height: 22px;
+}
+.page-header-eyebrow {
+  margin: 0 0 0.7rem calc(var(--back-size) + var(--back-gap));
+}
+.page-header-description {
+  margin: 1.25rem 0 0 calc(var(--back-size) + var(--back-gap));
+}
+.dialog-closing::backdrop {
+  animation: dialog-backdrop-out 0.3s ease forwards;
+}
+@keyframes dialog-backdrop-out {
+  to {
+    background-color: transparent;
+  }
+}
+@media (max-width: 650px) {
+  .page-header {
+    --back-gap: 0.75rem;
+  }
+}

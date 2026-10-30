@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import PageHeader from "../../shared/PageHeader";
 import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
 import { postersData } from "../data/postersData";
@@ -31,16 +33,13 @@ export default function PostersGallery() {
   }, [selected, posters.length]);
   return (
     <div className="detail-page portfolio-page">
-      <Link className="text-link" to="/portfolio">
-        ← All work
-      </Link>
-      <p className="eyebrow">Visual design</p>
-      <h1>Creative posters collection.</h1>
-      <p className="intro">
-        Explore visual direction, product imagery, and campaign design. These
-        are design explorations; brand names shown do not imply commissioned
-        client work.
-      </p>
+      <PageHeader
+        backTo="/portfolio"
+        backLabel="Back to all work"
+        eyebrow="Visual design"
+        title="Creative posters collection."
+        description="Explore visual direction, product imagery, and campaign design. These are design explorations; brand names shown do not imply commissioned client work."
+      />
       <div
         className="filter-chips"
         role="group"
@@ -83,33 +82,39 @@ export default function PostersGallery() {
           onClose={() => setSelected(null)}
         >
           <div className="lightbox-layout">
-            <PosterImage poster={poster} large />
+            <div className="lightbox-image">
+              <PosterImage poster={poster} large eager />
+              {posters.length > 1 && (
+                <>
+                  <button
+                    className="lightbox-arrow lightbox-arrow-left"
+                    type="button"
+                    onClick={() =>
+                      setSelected(
+                        (i) => (i - 1 + posters.length) % posters.length,
+                      )
+                    }
+                    aria-label="Previous poster"
+                  >
+                    <FiChevronLeft aria-hidden="true" />
+                  </button>
+                  <button
+                    className="lightbox-arrow lightbox-arrow-right"
+                    type="button"
+                    onClick={() => setSelected((i) => (i + 1) % posters.length)}
+                    aria-label="Next poster"
+                  >
+                    <FiChevronRight aria-hidden="true" />
+                  </button>
+                </>
+              )}
+            </div>
             <div>
               <p className="eyebrow">Design exploration</p>
               <h3>Objective & concept</h3>
               <p>{poster.objective}</p>
               <h3>Tools used</h3>
               <p>{poster.tools.join(" · ")}</p>
-              <div className="link-row">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setSelected(
-                      (i) => (i - 1 + posters.length) % posters.length,
-                    )
-                  }
-                  aria-label="Previous poster"
-                >
-                  ← Previous
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelected((i) => (i + 1) % posters.length)}
-                  aria-label="Next poster"
-                >
-                  Next →
-                </button>
-              </div>
               <p role="status">
                 {selected + 1} of {posters.length}
               </p>

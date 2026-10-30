@@ -117,66 +117,64 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-      {open && (
-        <AccessibleDialog
-          id="mobile-navigation"
-          title="Navigation"
-          onClose={() => setOpen(false)}
-          className={`${styles.navbarMobileMenu} ${styles.navigationDialog} ${styles.slideIn}`}
-        >
-          <div className={styles.mobileContent}>
-            <div className={styles.mobileLinks}>
-              {links.map(([path, label]) => (
-                <NavLink
-                  key={path}
-                  end={path === "/"}
-                  to={path}
-                  onClick={() => setOpen(false)}
-                  className={({ isActive }) =>
-                    `${styles.mobileLink} ${isActive ? styles.activeMobile : ""}`
+      <AccessibleDialog
+        id="mobile-navigation"
+        title="Navigation"
+        onClose={() => setOpen(false)}
+        open={open}
+        exitClassName={styles.slideOut}
+        className={`${styles.navbarMobileMenu} ${styles.navigationDialog} ${open ? styles.slideIn : ""}`}
+      >
+        <div className={styles.mobileContent}>
+          <div className={styles.mobileLinks}>
+            {links.map(([path, label]) => (
+              <NavLink
+                key={path}
+                end={path === "/"}
+                to={path}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `${styles.mobileLink} ${isActive ? styles.activeMobile : ""}`
+                }
+              >
+                <span className={styles.linkText}>{label}</span>
+                <span className={styles.linkIndicator} aria-hidden="true" />
+              </NavLink>
+            ))}
+          </div>
+          <div className={styles.divider} />
+          <div className={styles.mobileSocial}>
+            <span className={styles.socialLabel}>Connect</span>
+            <div className={styles.socialGrid}>
+              {socials.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  aria-label={item.label}
+                  className={styles.socialItem}
+                  target={item.href.startsWith("https:") ? "_blank" : undefined}
+                  rel={
+                    item.href.startsWith("https:")
+                      ? "noopener noreferrer"
+                      : undefined
                   }
                 >
-                  <span className={styles.linkText}>{label}</span>
-                  <span className={styles.linkIndicator} aria-hidden="true" />
-                </NavLink>
+                  <span className={styles.socialIcon} aria-hidden="true">
+                    {item.icon}
+                  </span>
+                </a>
               ))}
             </div>
-            <div className={styles.divider} />
-            <div className={styles.mobileSocial}>
-              <span className={styles.socialLabel}>Connect</span>
-              <div className={styles.socialGrid}>
-                {socials.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    aria-label={item.label}
-                    className={styles.socialItem}
-                    target={
-                      item.href.startsWith("https:") ? "_blank" : undefined
-                    }
-                    rel={
-                      item.href.startsWith("https:")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                  >
-                    <span className={styles.socialIcon} aria-hidden="true">
-                      {item.icon}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <Link
-              className={styles.mobileGetInTouchBtn}
-              to="/contact"
-              onClick={() => setOpen(false)}
-            >
-              Start Your Project <span aria-hidden="true">→</span>
-            </Link>
           </div>
-        </AccessibleDialog>
-      )}
+          <Link
+            className={styles.mobileGetInTouchBtn}
+            to="/contact"
+            onClick={() => setOpen(false)}
+          >
+            Start Your Project <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </AccessibleDialog>
     </nav>
   );
 }
