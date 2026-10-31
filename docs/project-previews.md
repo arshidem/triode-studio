@@ -6,7 +6,7 @@ Captured 31 October 2026:
 
 | Project                 | Source snapshot                                          | Captured view                                                 |
 | ----------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
-| KoFind                  | `a36146f7958edd5a4965e820583b679fc35e1ccc`               | Lost-and-found homepage with demo reports, desktop and mobile |
+| KoFind                  | `a36146f7958edd5a4965e820583b679fc35e1ccc`               | Signed-in Home, Potential Matches, Item details (desktop and mobile) |
 | Nike E-commerce Concept | Nike-Redesign `d25fc2b693cc668def4dc78b9d33ebacee19026a` | Storefront homepage, desktop and mobile                       |
 | KoFund                  | `cef3bbe158fba1d4de37cdf78cd100e4ba1cad8c`               | Community dashboard (demo) and mobile authentication          |
 
@@ -27,3 +27,11 @@ Fictional dashboard figures: 48 members; 39 contributors; â‚¹48,750 collected; â
 KoFind's sample reports are a brown wallet, black headphones, a blue backpack, house keys, and a silver watch. Names, locations, times, and item illustrations are demonstration content only. The captures do not read or write production listings.
 
 The screenshots include a visible demo-data banner, and the website marks demo previews on cards and captions.
+
+## Signed-in KoFind gallery
+
+KoFind's gallery now covers three pages: signed-in Home, Potential Matches, and Item details. Each has a desktop and mobile capture. Home remains the primary project thumbnail.
+
+The signed-in state is supplied by a capture-only local auth-context fixture for a fictional member; it is not a real account or a valid production session. Protected-page routing in this local source copy was isolated for the capture. All Supabase reads are intercepted with in-memory fixtures, and mutation requests are rejected. These source-copy adjustments are not included in the deployed KoFind repository or this studio website.
+
+The sample user has three fictional pending matches (wallet, headphones, and keys), and the item-detail screen shows a fictional wallet report from a different demo member. Screenshots include the signed-in navigation and the applicable contact and claim controls. No messages, claims, sign-ins, or database updates were submitted. Every capture has a visible signed-in demo banner; gallery captions retain the fictional-data label.
