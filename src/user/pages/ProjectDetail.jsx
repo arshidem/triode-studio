@@ -1,5 +1,4 @@
 import ProjectScreenshots from "../../shared/ProjectScreenshots";
-import PageHeader from "../../shared/PageHeader";
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import useSEO from "../hooks/useSEO";
@@ -11,13 +10,10 @@ export default function ProjectDetail() {
   if (!project) return <NotFound />;
   return (
     <article className="detail-page">
-      <PageHeader
-        backTo="/portfolio"
-        backLabel="Back to all projects"
-        eyebrow={project.type}
-        title={project.title}
-        description={project.summary}
-      />
+      <header className="showcase-intro">
+        <p className="eyebrow">{project.type}</p>
+        <p className="intro">{project.summary}</p>
+      </header>
       <ProjectScreenshots key={project.slug} project={project} />
       <section>
         <h2>The challenge</h2>

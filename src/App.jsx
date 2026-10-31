@@ -1,5 +1,7 @@
-import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./user/components/Navbar";
+import ShowcaseHeader from "./shared/ShowcaseHeader";
+import { projects } from "./user/data/projects";
 import Footer from "./user/components/Footer";
 import FloatingContact from "./user/components/FloatingContact";
 import ScrollToTop from "./user/components/ScrollToTop";
@@ -18,12 +20,27 @@ export default function App({ url }) {
   const Router = url ? MemoryRouter : BrowserRouter;
   return (
     <Router {...(url ? { initialEntries: [url] } : {})}>
+      <SiteLayout />
+    </Router>
+  );
+}
+function SiteLayout() {
+  const { pathname } = useLocation();
+  const path = pathname.replace(/\/+$/, "") || "/";
+  const project = projects.find((item) => path === `/portfolio/${item.slug}`);
+  const showcase = Boolean(project) || path === "/posters";
+  return (
+    <>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
       <ScrollToTop />
-      <Navbar />
-      <main id="main-content" tabIndex={-1}>
+      {showcase ? (
+        <ShowcaseHeader title={project?.title || "Posters Gallery"} />
+      ) : (
+        <Navbar />
+      )}
+      <main id="main-content" tabIndex={-1} className={showcase ? "showcase-main" : undefined}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
@@ -39,6 +56,6 @@ export default function App({ url }) {
       </main>
       <Footer />
       <FloatingContact />
-    </Router>
+    </>
   );
 }

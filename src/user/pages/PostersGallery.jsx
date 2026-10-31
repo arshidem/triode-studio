@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import PageHeader from "../../shared/PageHeader";
 import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
 import { postersData } from "../data/postersData";
@@ -33,13 +32,14 @@ export default function PostersGallery() {
   }, [selected, posters.length]);
   return (
     <div className="detail-page portfolio-page">
-      <PageHeader
-        backTo="/portfolio"
-        backLabel="Back to all work"
-        eyebrow="Visual design"
-        title="Creative posters collection."
-        description="Explore visual direction, product imagery, and campaign design. These are design explorations; brand names shown do not imply commissioned client work."
-      />
+      <header className="showcase-intro">
+        <p className="eyebrow">Visual design</p>
+        <p className="intro">
+          Explore visual direction, product imagery, and campaign design. These
+          are design explorations; brand names shown do not imply commissioned
+          client work.
+        </p>
+      </header>
       <div
         className="filter-chips"
         role="group"
