@@ -27,10 +27,7 @@ export default function ProjectScreenshots({ project }) {
       aria-labelledby="project-screens-heading"
     >
       <h2 id="project-screens-heading">A look inside {project.title}</h2>
-      <p>
-        Captured from the running interface. Select a screen to take a closer
-        look.
-      </p>
+      <p>Explore the interface. Select a screen to take a closer look.</p>
       <div className="project-screen-grid">
         {screens.map((screen, index) => (
           <figure
@@ -56,7 +53,12 @@ export default function ProjectScreenshots({ project }) {
                 <FiMaximize2 />
               </span>
             </button>
-            <figcaption>{screen.label}</figcaption>
+            <figcaption>
+              {screen.label}
+              {screen.demo && (
+                <span className="screen-demo-note">Fictional sample data</span>
+              )}
+            </figcaption>
           </figure>
         ))}
       </div>

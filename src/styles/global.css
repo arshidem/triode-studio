@@ -810,3 +810,25 @@ a:hover {
   grid-column: 1 / -1;
   justify-self: center;
 }
+
+.project-preview {
+  position: relative;
+}
+.preview-demo-label {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  border: 1px solid #ccd4cf;
+  border-radius: 999px;
+  background: #fff;
+  color: #153f37;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.screen-demo-note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--subtext);
+}

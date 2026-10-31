@@ -22,6 +22,7 @@ export default function ProjectPreview({ project }) {
         loading="lazy"
         decoding="async"
       />
+      {screen.demo && <span className="preview-demo-label">Demo data</span>}
     </Link>
   );
 }

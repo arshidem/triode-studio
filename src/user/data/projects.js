@@ -5,18 +5,20 @@ export const projects = [
       {
         src: "/assets/projects/kofind-desktop.webp",
         thumbnail: "/assets/projects/kofind-desktop-640.webp",
-        label: "Lost-and-found home · desktop",
-        alt: "Lost-and-found home · desktop captured from the running kofind interface",
+        label: "Recent reports with demo items · desktop",
+        alt: "KoFind homepage showing fictional lost-and-found sample reports",
         width: 1440,
-        height: 960,
+        height: 1100,
+        demo: true,
       },
       {
         src: "/assets/projects/kofind-mobile.webp",
         thumbnail: "/assets/projects/kofind-mobile-640.webp",
-        label: "Lost-and-found home · mobile",
-        alt: "Lost-and-found home · mobile captured from the running kofind interface",
+        label: "Recent reports with demo items · mobile",
+        alt: "KoFind homepage showing fictional lost-and-found sample reports",
         width: 390,
-        height: 844,
+        height: 1100,
+        demo: true,
       },
     ],
     title: "KoFind",
@@ -39,6 +41,15 @@ export const projects = [
   {
     slug: "kofund",
     screenshots: [
+      {
+        src: "/assets/projects/kofund-dashboard-demo.webp",
+        thumbnail: "/assets/projects/kofund-dashboard-demo-640.webp",
+        label: "Community dashboard · demo data",
+        alt: "KoFund dashboard with fictional community figures: 48 members, 48,750 rupees collected, 12,750 rupees expenses, and 36,000 rupees balance",
+        width: 390,
+        height: 1100,
+        demo: true,
+      },
       {
         src: "/assets/projects/kofund-mobile.webp",
         thumbnail: "/assets/projects/kofund-mobile-640.webp",
