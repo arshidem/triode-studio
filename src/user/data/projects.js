@@ -135,21 +135,77 @@ export const projects = [
     slug: "nike-ecommerce",
     screenshots: [
       {
-        src: "/assets/projects/nike-desktop.webp",
-        thumbnail: "/assets/projects/nike-desktop-640.webp",
-        label: "Storefront home · desktop",
-        alt: "Storefront home · desktop captured from the running nike-ecommerce interface",
-        width: 1440,
-        height: 960,
+        "src": "/assets/projects/nike-home-desktop-demo.webp",
+        "thumbnail": "/assets/projects/nike-home-desktop-demo-640.webp",
+        "label": "Storefront home · desktop · demo data",
+        "alt": "Independent Nike redesign concept: storefront home on desktop with fictional catalog products and prices",
+        "width": 1440,
+        "height": 1000,
+        "demo": true
       },
       {
-        src: "/assets/projects/nike-mobile.webp",
-        thumbnail: "/assets/projects/nike-mobile-640.webp",
-        label: "Storefront home · mobile",
-        alt: "Storefront home · mobile captured from the running nike-ecommerce interface",
-        width: 390,
-        height: 844,
+        "src": "/assets/projects/nike-home-mobile-demo.webp",
+        "thumbnail": "/assets/projects/nike-home-mobile-demo-640.webp",
+        "label": "Storefront home · mobile · demo data",
+        "alt": "Independent Nike redesign concept: storefront home on mobile with fictional catalog products and prices",
+        "width": 390,
+        "height": 1000,
+        "demo": true
       },
+      {
+        "src": "/assets/projects/nike-catalog-desktop-demo.webp",
+        "thumbnail": "/assets/projects/nike-catalog-desktop-demo-640.webp",
+        "label": "Product listing · desktop · demo data",
+        "alt": "Independent Nike redesign concept: product listing on desktop with fictional catalog products and prices",
+        "width": 1440,
+        "height": 1000,
+        "demo": true
+      },
+      {
+        "src": "/assets/projects/nike-catalog-mobile-demo.webp",
+        "thumbnail": "/assets/projects/nike-catalog-mobile-demo-640.webp",
+        "label": "Product listing · mobile · demo data",
+        "alt": "Independent Nike redesign concept: product listing on mobile with fictional catalog products and prices",
+        "width": 390,
+        "height": 1000,
+        "demo": true
+      },
+      {
+        "src": "/assets/projects/nike-product-desktop-demo.webp",
+        "thumbnail": "/assets/projects/nike-product-desktop-demo-640.webp",
+        "label": "Product details · desktop · demo data",
+        "alt": "Independent Nike redesign concept: product details on desktop with fictional catalog products and prices",
+        "width": 1440,
+        "height": 1000,
+        "demo": true
+      },
+      {
+        "src": "/assets/projects/nike-product-mobile-demo.webp",
+        "thumbnail": "/assets/projects/nike-product-mobile-demo-640.webp",
+        "label": "Product details · mobile · demo data",
+        "alt": "Independent Nike redesign concept: product details on mobile with fictional catalog products and prices",
+        "width": 390,
+        "height": 1000,
+        "demo": true
+      },
+      {
+        "src": "/assets/projects/nike-bag-desktop-demo.webp",
+        "thumbnail": "/assets/projects/nike-bag-desktop-demo-640.webp",
+        "label": "Shopping bag · desktop · demo data",
+        "alt": "Independent Nike redesign concept: shopping bag on desktop with fictional catalog products and prices",
+        "width": 1440,
+        "height": 1000,
+        "demo": true
+      },
+      {
+        "src": "/assets/projects/nike-bag-mobile-demo.webp",
+        "thumbnail": "/assets/projects/nike-bag-mobile-demo-640.webp",
+        "label": "Shopping bag · mobile · demo data",
+        "alt": "Independent Nike redesign concept: shopping bag on mobile with fictional catalog products and prices",
+        "width": 390,
+        "height": 1000,
+        "demo": true
+      }
     ],
     title: "Nike E-commerce Concept",
     type: "Independent concept · No brand affiliation",

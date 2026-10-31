@@ -7,10 +7,10 @@ Captured 31 October 2026:
 | Project                 | Source snapshot                                          | Captured view                                                 |
 | ----------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
 | KoFind                  | `a36146f7958edd5a4965e820583b679fc35e1ccc`               | Signed-in Home, Potential Matches, Item details (desktop and mobile) |
-| Nike E-commerce Concept | Nike-Redesign `d25fc2b693cc668def4dc78b9d33ebacee19026a` | Storefront homepage, desktop and mobile                       |
+| Nike E-commerce Concept | Nike-Redesign `d25fc2b693cc668def4dc78b9d33ebacee19026a` | Home, product listing, product details and shopping bag (desktop and mobile)                       |
 | KoFund                  | `cef3bbe158fba1d4de37cdf78cd100e4ba1cad8c`               | Community dashboard, event overview, contributions and expenses (demo)          |
 
-KoFind was run with isolated local Supabase configuration. Its refreshed previews use five in-memory fictional lost-and-found reports with generic item illustrations. Nike's public storefront was run with empty API responses. No production account was signed into, no private records were included, and no production data was changed. Development tooling overlays were excluded from the captures.
+KoFind was run with isolated local Supabase configuration. Its refreshed previews use five in-memory fictional lost-and-found reports with generic item illustrations. Nike's public storefront was run with isolated local API fixtures. No production account was signed into, no private records were included, and no production data was changed. Development tooling overlays were excluded from the captures.
 
 KoFund was built from the Flutter source using Flutter 3.35.7 / Dart 3.9.2. Case-sensitive import paths were normalized in the local preview copy, and its icon dependency was updated within the existing major version for build compatibility. Layouts and screen copy were not redesigned. These adjustments were not pushed to the source project repositories.
 
@@ -37,3 +37,9 @@ The signed-in state is supplied by a capture-only local auth-context fixture for
 The sample user has three fictional pending matches (wallet, headphones, and keys), and the item-detail screen shows a fictional wallet report from a different demo member. Screenshots include the signed-in navigation and the applicable contact and claim controls. No messages, claims, sign-ins, or database updates were submitted. Every capture has a visible signed-in demo banner; gallery captions retain the fictional-data label.
 
 The event previews use the actual Event Details tabs for the fictional Community Clean-up: ₹10,000 target; 32 contributions of ₹250 (₹8,000 collected); expenses of ₹750 for equipment, ₹500 for refreshments, and ₹250 for safety supplies (₹1,500 total); ₹6,500 remaining. The event totals are separate from the dashboard’s monthly community treasury.
+
+## Nike redesign gallery
+
+The independent Nike concept has eight previews: Home, Product Listing, Product Details, and Shopping Bag, each on desktop (1440 × 1000) and mobile (390 × 1000). Desktop Home remains the main thumbnail. Captures use the original React screens, fonts, and bundled shoe images, with a visible independent-concept/demo banner.
+
+The catalog contains six fictional products with sample prices and stock. The local guest bag contains two demo items (₹7,995 and ₹8,495; ₹16,490 total). Browser request interception supplies catalog and review responses; the bag uses local storage. External API calls and mutations are blocked. No real customer account, order, payment, or production records are used. Capture fixtures are not deployed to the Nike project.
