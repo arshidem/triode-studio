@@ -1,3 +1,4 @@
+import ProjectScreenshots from "../../shared/ProjectScreenshots";
 import PageHeader from "../../shared/PageHeader";
 import { Link, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
@@ -17,6 +18,7 @@ export default function ProjectDetail() {
         title={project.title}
         description={project.summary}
       />
+      <ProjectScreenshots key={project.slug} project={project} />
       <section>
         <h2>The challenge</h2>
         <p>{project.challenge}</p>

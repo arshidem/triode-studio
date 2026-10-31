@@ -1,3 +1,4 @@
+import ProjectPreview from "../../shared/ProjectPreview";
 import { Link } from "react-router-dom";
 import useSEO from "../hooks/useSEO";
 import { projects } from "../data/projects";
@@ -18,6 +19,7 @@ export default function Portfolio() {
         <div className="project-grid">
           {projects.map((project) => (
             <article className="project-card" key={project.slug}>
+              <ProjectPreview project={project} />
               <p className="eyebrow">{project.type}</p>
               <h3>{project.title}</h3>
               <p>{project.summary}</p>

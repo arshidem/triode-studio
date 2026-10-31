@@ -1,3 +1,4 @@
+import ProjectPreview from "../../shared/ProjectPreview";
 import { Link } from "react-router-dom";
 import HomeHero from "../components/HomeHero";
 import useSEO from "../hooks/useSEO";
@@ -67,6 +68,7 @@ export default function Home() {
         <div className="project-grid">
           {projects.map((project) => (
             <article className="project-card dark-card" key={project.slug}>
+              <ProjectPreview project={project} />
               <p className="eyebrow">{project.type}</p>
               <h3>{project.title}</h3>
               <p>{project.summary}</p>

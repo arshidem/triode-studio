@@ -1,24 +1,53 @@
 export const projects = [
   {
     slug: "kofind",
+    screenshots: [
+      {
+        src: "/assets/projects/kofind-desktop.webp",
+        thumbnail: "/assets/projects/kofind-desktop-640.webp",
+        label: "Lost-and-found home · desktop",
+        alt: "Lost-and-found home · desktop captured from the running kofind interface",
+        width: 1440,
+        height: 960,
+      },
+      {
+        src: "/assets/projects/kofind-mobile.webp",
+        thumbnail: "/assets/projects/kofind-mobile-640.webp",
+        label: "Lost-and-found home · mobile",
+        alt: "Lost-and-found home · mobile captured from the running kofind interface",
+        width: 390,
+        height: 844,
+      },
+    ],
     title: "KoFind",
     type: "Studio product exploration",
-    category: "Product Design · Web App · UI/UX",
-    summary: "An exploration of a discovery interface for local experiences.",
+    category: "Lost & Found · Web App · UI/UX",
+    summary:
+      "A lost-and-found platform for reporting items, discovering possible matches, and helping belongings find their way home.",
     challenge:
-      "Bring scattered local information into a clearer discovery journey.",
+      "Help people report lost or found belongings and discover relevant reports without a confusing search process.",
     approach:
-      "Organize browsing, search, and detail screens into a consistent product interface.",
+      "Connect lost-and-found reporting, search filters, location controls, and account flows in a responsive web interface.",
     deliverables: [
-      "Discovery interface",
+      "Lost-and-found reporting interface",
       "Responsive screen layouts",
-      "Navigation and component exploration",
+      "Search, location, and category filters",
     ],
-    technology: ["React", "TypeScript", "Tailwind CSS"],
+    technology: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"],
     service: "ui-ux-design",
   },
   {
     slug: "kofund",
+    screenshots: [
+      {
+        src: "/assets/projects/kofund-mobile.webp",
+        thumbnail: "/assets/projects/kofund-mobile-640.webp",
+        label: "Sign-in screen · mobile",
+        alt: "Sign-in screen · mobile captured from the running kofund interface",
+        width: 390,
+        height: 844,
+      },
+    ],
     title: "KoFund",
     type: "Studio product",
     category: "Mobile App · Community",
@@ -33,11 +62,29 @@ export const projects = [
       "Role-based interface design",
       "Fund summary screens",
     ],
-    technology: ["Flutter", "Firebase", "Dart", "Riverpod"],
+    technology: ["Flutter", "Firebase", "Dart", "Provider"],
     service: "app-development",
   },
   {
     slug: "nike-ecommerce",
+    screenshots: [
+      {
+        src: "/assets/projects/nike-desktop.webp",
+        thumbnail: "/assets/projects/nike-desktop-640.webp",
+        label: "Storefront home · desktop",
+        alt: "Storefront home · desktop captured from the running nike-ecommerce interface",
+        width: 1440,
+        height: 960,
+      },
+      {
+        src: "/assets/projects/nike-mobile.webp",
+        thumbnail: "/assets/projects/nike-mobile-640.webp",
+        label: "Storefront home · mobile",
+        alt: "Storefront home · mobile captured from the running nike-ecommerce interface",
+        width: 390,
+        height: 844,
+      },
+    ],
     title: "Nike E-commerce Concept",
     type: "Independent concept · No brand affiliation",
     category: "Web Development · E-commerce",
