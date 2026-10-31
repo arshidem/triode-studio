@@ -8,7 +8,7 @@ Captured 31 October 2026:
 | ----------------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
 | KoFind                  | `a36146f7958edd5a4965e820583b679fc35e1ccc`               | Signed-in Home, Potential Matches, Item details (desktop and mobile) |
 | Nike E-commerce Concept | Nike-Redesign `d25fc2b693cc668def4dc78b9d33ebacee19026a` | Storefront homepage, desktop and mobile                       |
-| KoFund                  | `cef3bbe158fba1d4de37cdf78cd100e4ba1cad8c`               | Community dashboard (demo) and mobile authentication          |
+| KoFund                  | `cef3bbe158fba1d4de37cdf78cd100e4ba1cad8c`               | Community dashboard, event overview, contributions and expenses (demo)          |
 
 KoFind was run with isolated local Supabase configuration. Its refreshed previews use five in-memory fictional lost-and-found reports with generic item illustrations. Nike's public storefront was run with empty API responses. No production account was signed into, no private records were included, and no production data was changed. Development tooling overlays were excluded from the captures.
 
@@ -20,7 +20,7 @@ To refresh these images, run the project sources locally, capture the same views
 
 ## Demo-data refresh
 
-KoFund now opens with a community dashboard preview using its actual Flutter dashboard widgets and isolated in-memory provider fixtures. The authentication screenshot is retained as the second screen. The capture uses a dummy Firebase project configuration; production Firestore traffic is blocked. These capture-only fixtures and provider adjustments are not deployed to the KoFund app.
+KoFund now opens with a community dashboard preview using its actual Flutter dashboard widgets and isolated in-memory provider fixtures. The gallery contains four screens in order: Dashboard, Event Overview, Contributions, and Expenses; the authentication screen is no longer shown. The capture uses a dummy Firebase project configuration; production Firestore traffic is blocked. These capture-only fixtures and provider adjustments are not deployed to the KoFund app.
 
 Fictional dashboard figures: 48 members; 39 contributors; ₹48,750 collected; ₹12,750 expenses; ₹36,000 balance; ₹60,000 target. The numbers are sample UI content, not real financial records or evidence of customer outcomes.
 
@@ -35,3 +35,5 @@ KoFind's gallery now covers three pages: signed-in Home, Potential Matches, and 
 The signed-in state is supplied by a capture-only local auth-context fixture for a fictional member; it is not a real account or a valid production session. Protected-page routing in this local source copy was isolated for the capture. All Supabase reads are intercepted with in-memory fixtures, and mutation requests are rejected. These source-copy adjustments are not included in the deployed KoFind repository or this studio website.
 
 The sample user has three fictional pending matches (wallet, headphones, and keys), and the item-detail screen shows a fictional wallet report from a different demo member. Screenshots include the signed-in navigation and the applicable contact and claim controls. No messages, claims, sign-ins, or database updates were submitted. Every capture has a visible signed-in demo banner; gallery captions retain the fictional-data label.
+
+The event previews use the actual Event Details tabs for the fictional Community Clean-up: ₹10,000 target; 32 contributions of ₹250 (₹8,000 collected); expenses of ₹750 for equipment, ₹500 for refreshments, and ₹250 for safety supplies (₹1,500 total); ₹6,500 remaining. The event totals are separate from the dashboard’s monthly community treasury.
